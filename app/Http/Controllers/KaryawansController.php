@@ -16,12 +16,13 @@ class KaryawansController extends Controller
 		return view ('karyawan', compact('karyawans'));
 
 	}
-	public function create()
+	public function tambah_karyawan()
 	{
-		return view('create');
+		$karyawans  = Karyawan::all();
+		return view('tambah-karyawan');
 	}
 
-	public function store(Request $request)
+	public function post_karyawan(Request $request)
 	{
 		$karyawan = new Karyawan;
 		$karyawan->nama= $request->nama;
@@ -47,22 +48,16 @@ class KaryawansController extends Controller
 		return redirect ('karyawan');
 	}
 
-	public function edit($id)
+	public function edit_karyawan($id)
 	{
 		$karyawan = Karyawan::where('karyawan.id', $id)
 		->first();
 
-		return view ('edit-karyawan' , compact('karyawan')); 
+		return view ('edit_karyawan' , compact('karyawan')); 
 	}
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function editpost_karyawan(Request $request, $id)
     {
 
     	$karyawan = Karyawan::where('karyawan.id', $id)
@@ -71,18 +66,7 @@ class KaryawansController extends Controller
     	return redirect('karyawan');
     }
 
-    public function show($id)
-    {
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function hapus_karyawan($id)
     {
 
 

@@ -19,7 +19,7 @@
             <form action="{{url('editpost/kompetensi/'.$komp->id)}}" method="POST" class="form-horizontal">
             {{csrf_field()}}
                 <div class="form-group">
-                    <label class="col-sm-4 control-label">Nama Karyawan</label>
+                    <label class="col-sm-4">Nama Karyawan</label>
                     <div class="col-sm-8">
                         <input type="text" name="karyawan" value="{{$komp->nama}}" class="form-control" disabled>
                     </div>

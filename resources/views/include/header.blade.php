@@ -1,5 +1,9 @@
 
 <style>
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover{
+
+    background-color: #2c3e50;
+}
     body,html{
         height: 100%;
     }
@@ -175,21 +179,26 @@
         <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="{{url('/')}}">Home<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-home"></span></a></li>
-                <li ><a href="{{url('karyawan')}}">Data Karyawan<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-user"></span></a></li>
-                <li ><a href="{{url('kompetensi')}}">Kompetensi<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-list-alt"></span></a></li>
-                <li ><a href={{url('pcr')}}>PCR<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-pencil-square-o"></span></a></li>
-                <li ><a href="rekap">Rekap JCR<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-book"></span></a></li>
-                <li>
-                    <a href="{{ url('/logout') }}"
-                    onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                    Logout<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-sign-out"></span>
-                    </a>
-                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                    {{ csrf_field() }}
-                </form>
-                </li>
-            </ul>
-        </div>
-    </div>
+                <li><a href="{{url('karyawan')}}">Data Karyawan<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-user"></span></a></li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Kompetensi<span  style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-caret-square-o-down"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="{{url('kompetensi')}}">Kompetensi<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-list-alt"></span></a></li>
+                      <li><a href="{{url('add/jenis-kompetensi')}}">Jenis Kompetensi<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-drivers-license-o"></span></a></li>
+                  </ul>
+              </li>
+              <li ><a href={{url('pcr')}}>PCR<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-pencil-square-o"></span></a></li>
+              <li ><a href="rekap">Rekap JCR<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-book"></span></a></li>
+              <li>
+                <a href="{{ url('/logout') }}"
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                Logout<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-sign-out"></span>
+            </a>
+            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+        </li>
+    </ul>
+</div>
+</div>
 </nav>
