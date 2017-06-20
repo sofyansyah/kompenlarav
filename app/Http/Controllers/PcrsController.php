@@ -12,12 +12,12 @@ class PcrsController extends Controller
 	public function index()
 	{
 		$pcrs = Pcr::all();
-		$pcrs = Pcr::join('kompetensi', 'pcr.kompetensi_id', 'pcr.id')
-		->get();
-		$karyawans = Pcr::join('karyawan', 'pcr.kompetensi_id', 'karyawan.id' )->
-		select('pcr.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.jen_jabatan', 'kompetensi.jen_j')
+		$pcrs = Pcr::
+		join('kompetensi', 'pcr.kompetensi_id', 'kompetensi.id')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id' )
+		->select('pcr.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.jen_jabatan', 'kompetensi.nama_kompetensi', 'kompetensi.jenis_kompetensi','kompetensi.standar')
 		->get();
 
-		return view ('kompetensi' compact('kompetensis', 'karyawans'));
+		return view ('pcr', compact('pcrs'));
 	}
 }

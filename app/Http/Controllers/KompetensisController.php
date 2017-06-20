@@ -11,9 +11,10 @@ class KompetensisController extends Controller
 	public function index()
 	{
 		$kompetensis = Kompetensi::all();
-		$kompentsis = Kompetensi::join('karyawan', 'kompetensi.karyawan_id', 'karyawan.id' )->
+		$kompetensis = Kompetensi::join('karyawan', 'kompetensi.karyawan_id', 'karyawan.id' )->
 		select('kompetensi.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.nid')
 		->get();
-		return view ('kompetensi' compact('kompetensis'));
+		
+		return view ('kompetensi', compact('kompetensis'));
 	}
 }

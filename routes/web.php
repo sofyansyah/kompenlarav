@@ -14,18 +14,21 @@
 Route::get('/', function () {
     return view('home');
 });
-Route::get('/pcr', function () {
-    return view('pcr');
-});
+// Route::get('/pcr', function () {
+//     return view('pcr');
+// });
 
 Route::get('/rekap', function () {
     return view('rekap');
 });
+// Route::get('/kompetensi', function () {
+//     return view('kompetensi');
+// });
 
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/karyawan', 'KaryawansController@index');
 Route::get('/kompetensi', 'KompetensisController@index');
-// Route::get('/pcr', 'PcrsController@index');
+Route::get('/pcr', 'PcrsController@index');
 // Route::post('/rekap-jcr', 'AljcrController@index');
