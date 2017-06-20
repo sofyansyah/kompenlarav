@@ -98,6 +98,13 @@
 						<td class="tg-031e"></td>
 						<td class="tg-031e"></td>
 					</tr>
+					<tr>
+						<td class="tg-031e" colspan="3" style="border: none"></td>
+						
+						<td class="tg-031e" colspan="2"  style="border: none"></td>
+						<td class="juduls" colspan="1">{{--rata2 readliness--}}Pcr</td>
+						<td class="tg-031e" colspan="2"  style="border: none"></td>
+					</tr>
 				</table>
 			</div>
 		</div>
