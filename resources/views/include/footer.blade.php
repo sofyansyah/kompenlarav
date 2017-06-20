@@ -10,4 +10,4 @@
 }
 
 </style>
-<div class="footer">Copyright by <a href="{{url('http://creative-g.com/')}}">creative-g</a></div>
+<div class="footer">Copyright by <a href="{{url('http://creative-g.com/')}}">Creative Generation Digital Agency</a></div>
