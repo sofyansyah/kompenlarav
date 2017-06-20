@@ -176,7 +176,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{url('home')}}">Home<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-home"></span></a></li>
                 <li ><a href="{{url('karyawan')}}">Data Karyawan<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-user"></span></a></li>
-                <li ><a href="#">Kompetensi<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-list-alt"></span></a></li>
+                <li ><a href="{{url('kompetensi')}}">Kompetensi<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-list-alt"></span></a></li>
                 <li ><a href={{url('pcr')}}>PCR<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-pencil-square-o"></span></a></li>
                 <li ><a href="rekap">Rekap JCR<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-book"></span></a></li>
                 <li>

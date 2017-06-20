@@ -11,7 +11,7 @@ class KaryawansController extends Controller
 	{
 		$karyawans = Karyawan::all();
 			return view ('karyawan', compact('karyawans'));
-			Dd($karyawans);
+			
 	}
 		
 }
