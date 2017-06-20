@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Kompetensi;
+use App\JenisKompetensi;
 use App\Karyawan;
 
 class KompetensisController extends Controller
@@ -11,10 +12,89 @@ class KompetensisController extends Controller
 	public function index()
 	{
 		$kompetensis = Kompetensi::all();
-		$kompetensis = Kompetensi::join('karyawan', 'kompetensi.karyawan_id', 'karyawan.id' )->
-		select('kompetensi.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.nid')
+		$kompetensis = Kompetensi::join('karyawan', 'kompetensi.karyawan_id', 'karyawan.id' )
+        ->join('jenis_kompetensi', 'kompetensi.jenis_kompetensi', 'jenis_kompetensi.id' )
+        ->select('kompetensi.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.nid','jenis_kompetensi.nama as nama_jenis','jenis_kompetensi.no')
+        ->orderBy('kompetensi.id','DESC')
 		->get();
 		
-		return view ('kompetensi', compact('kompetensis'));
+		return view ('kompetensi.kompetensi', compact('kompetensis'));
 	}
+    public function tambah_kompetensi()
+    {
+        $user  = Karyawan::all();
+        $jenis = JenisKompetensi::all();
+        return view ('kompetensi.tambah_kompetensi',compact('user','jenis'));
+    }
+    public function post_kompetensi(Request $r)
+    {
+        $komp = new Kompetensi;
+        $komp->karyawan_id = $r->karyawan;
+        $komp->jenis_kompetensi = $r->jenis;
+        $komp->standar = $r->standar;
+        $komp->nilai = $r->nilai;
+        $komp->gap = $r->gap;
+        $komp->unit = $r->unit;
+        $komp->save();
+
+        return redirect()->back()->with('success','Berhasil ditambahkan');
+    }
+    public function editkompetensi($id)
+    {
+        $komp = Kompetensi::join('karyawan', 'kompetensi.karyawan_id', 'karyawan.id' )
+                            ->join('jenis_kompetensi', 'kompetensi.jenis_kompetensi', 'jenis_kompetensi.id' )
+                            ->select('kompetensi.*','karyawan.nama','jenis_kompetensi.nama as nama_jenis')
+                            ->where('kompetensi.id',$id)
+                            ->first();
+
+        $jenis = JenisKompetensi::all();
+
+        return view('kompetensi.edit_kompetensi',compact('komp','jenis'));
+    }
+    public function editpostkompetensi(Request $r,$id)
+    {
+        $komp = Kompetensi::findOrFail($id);
+        $komp->jenis_kompetensi = $r->jenis;
+        $komp->standar          = $r->standar;
+        $komp->nilai            = $r->nilai;
+        $komp->gap              = $r->gap;
+        $komp->unit             = $r->unit;
+        $komp->save();
+
+        return redirect()->back()->with('success','Berhasil edit data');
+    }
+    public function hapuskompetensi($id)
+    {
+        Kompetensi::findOrFail($id)->delete();
+        return redirect()->back()->with('success','Berhasil edit data');
+    }
+    public function tambahjenis()
+    {
+        return view ('jenis_kompetensi.tambah_jeniskom');   
+    }
+    public function post_jeniskom(Request $r)
+    {
+        $jenis = new JenisKompetensi;
+
+        if ($r->tipe == 'inti') {
+            $cari = JenisKompetensi::where('type','inti')->orderBy('id','DESC')->first();
+        }elseif($r->tipe == 'peran'){
+            $cari = JenisKompetensi::where('type','peran')->orderBy('id','DESC')->first();
+        }elseif($r->tipe == 'bidang'){
+            $cari = JenisKompetensi::where('type','bidang')->orderBy('id','DESC')->first();
+        }
+
+        if (empty($cari)) {
+            $no = 1;
+        }else{
+            $no = $cari->no+1;
+        }
+
+        $jenis->no = $no;
+        $jenis->nama = $r->nama;
+        $jenis->type = $r->tipe;
+        $jenis->save();
+
+        return redirect()->back()->with('success','Berhasil tambah');
+    }
 }

@@ -29,6 +29,17 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/karyawan', 'KaryawansController@index');
-Route::get('/kompetensi', 'KompetensisController@index');
-Route::get('/pcr', 'PcrsController@index');
+Route::get('pcr', 'PcrsController@index');
 // Route::post('/rekap-jcr', 'AljcrController@index');
+
+//KOMPETENSI
+Route::get('kompetensi', 'KompetensisController@index');
+Route::get('tambah-kompetensi', 'KompetensisController@tambah_kompetensi');
+Route::post('post-kompetensi', 'KompetensisController@post_kompetensi');
+Route::get('edit/kompetensi/{id}', 'KompetensisController@editkompetensi');
+Route::post('editpost/kompetensi/{id}', 'KompetensisController@editpostkompetensi');
+Route::get('hapus/kompetensi/{id}', 'KompetensisController@hapuskompetensi');
+
+//JENIS KOMPETENSI
+Route::get('add/jenis-kompetensi', 'KompetensisController@tambahjenis');
+Route::post('post-jeniskom', 'KompetensisController@post_jeniskom');
