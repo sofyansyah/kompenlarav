@@ -13,13 +13,13 @@ class KaryawansController extends Controller
 	public function index()
 	{
 		$karyawans = Karyawan::all();
-		return view ('karyawan', compact('karyawans'));
+		return view ('karyawan.karyawan', compact('karyawans'));
 
 	}
 	public function tambah_karyawan()
 	{
 		$karyawans  = Karyawan::all();
-		return view('tambah-karyawan');
+		return view('karyawan.tambah-karyawan');
 	}
 
 	public function post_karyawan(Request $request)
@@ -53,7 +53,7 @@ class KaryawansController extends Controller
 		$karyawan = Karyawan::where('karyawan.id', $id)
 		->first();
 
-		return view ('edit_karyawan' , compact('karyawan')); 
+		return view ('karyawan.edit_karyawan' , compact('karyawan')); 
 	}
 
 
