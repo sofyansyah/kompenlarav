@@ -22,7 +22,7 @@ Route::get('/rekap', function () {
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index');
 //KARYAWAN
 Route::get('karyawan', 'KaryawansController@index');
 Route::get('tambah-karyawan', 'KaryawansController@tambah_karyawan');
