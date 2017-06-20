@@ -5,6 +5,16 @@
 @endsection
 @section('content')
 <style>
+td.buttons{
+	padding:2px !important;
+}
+	.action li{
+		display: inline-block;
+	}
+	.action{
+		padding-left: 0;
+		margin-bottom: 0;
+	}
 	th, td{
 		text-align: center;
 	}
@@ -32,13 +42,24 @@
 		background-color: #fff;
 		border: none;
 	}
+	div.scroll-menu{
+		overflow: auto;
+		white-space: nowrap;
+	}
+	div.scroll-menu .table td a{
+		display: inline-block;
+		color: white;
+		text-align: center;
+		padding: 14px;
+		text-decoration: none;
+	}
 </style>
-<div class="panel panel-default">
+<div class="panel panel-default ">
 	<div class="panel-heading"><h4>Data Karyawan</h4></div>
-	<div class="panel-body">
-		<table id="karyawan" class="table table-striped table-bordered" cellspacing="0" width="100%">
+	<div class="panel-body scroll-menu">
+		<a href="{{url('/karyawan/create')}}" class="btn btn-success" style="padding: 6px 12px; margin-bottom: 20px;"><i class="fa fa-plus"></i> Tambah</a>
+		<table id="karyawan" class="table table-striped table-bordered " cellspacing="0" width="100%">
 			<thead>
-
 				<tr><th>No</th>
 					<th>Nama</th>
 					<th>Nid</th>
@@ -58,17 +79,73 @@
 					<td>{{$karyawan->jabatan}}</td>
 					<td>{{$karyawan->grade}}</td>
 					<td>{{$karyawan->jen_jabatan}}</td>
-					<td class="buttons"><button class="btn btn-info"><i class="fa fa-pencil"></i></button><button class="btn btn-danger"><i class="fa fa-trash-o"></i></button></td>
+					<td class="buttons">
+						<ul class="action">
+							<li><button class="btn btn-warning" style="padding: 6px 12px;" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i></button></li>
+							<li><form action="{{url('/karyawan/'.$karyawan->id) }}" method="POST">
+								{{ csrf_field() }}
+								{{ method_field('DELETE') }}
+								<button class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+							</form>
+						</li>
+					</ul>
+				</td>
+			</tr>
+			@empty
+			@endforelse
+		</tbody>
+	</table>
+</div>
+<div class="panel-footer">
+</div>
+</div>
 
-				</tr>
-				@empty
-				@endforelse
-			</tbody>
-		</table>
-	</div>
-	<div class="panel-footer">
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Edit Karyawan</h4>
+			</div>
+			<div class="modal-body">
+				<form action="{{url('/karyawan/' .$karyawan->id) }}" method="POST">
+
+					{{ method_field('PUT')}}
+					{{ csrf_field()}}
+					
+					<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+					<div class="form-group">
+						<label for="title">Nama</label>
+						<input type="text" class="form-control" id="nama" placeholder="Nama" name="nama" value="{{$karyawan->nama}}" >
+					</div>
+					<div class="form-group">
+						<label for="title">Nid</label>
+						<input type="text" class="form-control" id="nid" placeholder="Nid" name="nid" value="{{$karyawan->nid}}" >
+					</div>
+					<div class="form-group">
+						<label for="title">Jabatan</label>
+						<input type="text" class="form-control" id="jabatan" placeholder="Jabatan" name="jabatan" value="{{$karyawan->jabatan}}">
+					</div>
+					<div class="form-group">
+						<label for="title">Grade</label>
+						<input type="text" class="form-control" id="grade" placeholder="Grade" name="grade" value="{{$karyawan->grade}}">
+					</div>
+					<div class="form-group">
+						<label for="title">Jenjang Jabatan</label>
+						<input type="text" class="form-control" id="jen_jabatan" placeholder="Jenjang Jabatan" name="jen_jabatan" value="{{$karyawan->jen_jabatan}}">
+					</div>
+
+					<input type="submit" class="btn btn-success" style="width: 100%;">
+				</form>
+			</div>
+		</div>
 	</div>
 </div>
+
 
 @endsection
 @section('javascript')

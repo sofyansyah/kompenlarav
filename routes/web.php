@@ -28,7 +28,7 @@ Route::get('/rekap', function () {
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/karyawan', 'KaryawansController@index');
+Route::resource('karyawan', 'KaryawansController');
 Route::get('/kompetensi', 'KompetensisController@index');
 Route::get('/pcr', 'PcrsController@index');
 // Route::post('/rekap-jcr', 'AljcrController@index');

@@ -174,7 +174,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="{{url('home')}}">Home<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-home"></span></a></li>
+                <li><a href="{{url('/')}}">Home<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-home"></span></a></li>
                 <li ><a href="{{url('karyawan')}}">Data Karyawan<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-user"></span></a></li>
                 <li ><a href="{{url('kompetensi')}}">Kompetensi<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-list-alt"></span></a></li>
                 <li ><a href={{url('pcr')}}>PCR<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-pencil-square-o"></span></a></li>
