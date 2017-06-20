@@ -32,8 +32,9 @@
 	}
 </style>
 @section('content')
-
+<?php $i = 0 ?>
 @forelse($pcrs as $data)
+<?php $i++ ?>
 
 	<table class="table profile">
 		<tr>
@@ -73,7 +74,7 @@
 					<tr>
 	
 						<td class="sidejudul">Kompetensi Inti</td>
-						<td class="number"></td>
+						<td class="number">{{$i}}</td>
 						<td class="items">{{$data->nama_kompetensi}}</td>
 						<td class="tg-031e">{{$data->standar}}</td>
 						<td class="tg-031e"></td>
@@ -97,6 +98,13 @@
 						<td class="tg-031e"></td>
 						<td class="tg-031e"></td>
 						<td class="tg-031e"></td>
+					</tr>
+					<tr>
+						<td class="tg-031e" colspan="3" style="border: none"></td>
+						
+						<td class="tg-031e" colspan="2"  style="border: none"></td>
+						<td class="juduls" colspan="1">{{--rata2 readliness--}}Pcr</td>
+						<td class="tg-031e" colspan="2"  style="border: none"></td>
 					</tr>
 				</table>
 			</div>
