@@ -58,6 +58,7 @@
 	<div class="panel-heading"><h4>Data Karyawan</h4></div>
 	<div class="panel-body scroll-menu">
 		<a href="{{url('/tambah-karyawan')}}" class="btn btn-success" style="padding: 6px 12px; margin-bottom: 20px;"><i class="fa fa-plus"></i> Tambah</a>
+
 		<table id="karyawan" class="table table-striped table-bordered " cellspacing="0" width="100%">
 			<thead>
 				<tr><th>No</th>
@@ -82,7 +83,10 @@
 					<td class="buttons">
 						<ul class="action">
 							<li><a href="{{url('edit/karyawan/'.$karyawan->id)}}" class="btn btn-warning"  data-toggle="tooltip" title="Edit" style="padding: 6px 12px;"><i class="fa fa-pencil"></i></a></li>
-							<li><a href="{{url('hapus/karyawan/'.$karyawan->id)}}" class="btn btn-danger"  data-toggle="tooltip" title="Hapus" style="padding: 6px 12px;"><i class="fa fa-trash-o"></i></a></li>
+							<li><a href="{{url('hapus/karyawan/'.$karyawan->id)}}" class="btn btn-danger"  data-toggle="tooltip" title="Hapus" style="padding: 6px 12px;"><i class="fa fa-trash-o"></i></a>
+							</li>
+							<li><a href="{{url('/tambah-kompetensi')}}" class="btn btn-success" data-toggle="tooltip" title="Buat Kompetensi" style="padding: 6px 12px;"><i class="fa fa-plus"></i></a>
+							</li>
 						</ul>
 					</td>
 				</tr>
@@ -105,13 +109,13 @@
 	$(document).ready(function(){
 		$('[data-toggle="tooltip"]').tooltip(); 
 	});
+
+    $(document).ready(function() {
+        $('#karyawan').DataTable();
+    } );
 </script>
 
-<script>
-	$(document).ready(function() {
-		$('#karyawan').DataTable();
-	} );
-</script>
+
 
 <script src="{{asset('js/jquery-1.12.4.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>

@@ -32,6 +32,7 @@ Route::post('post-karyawan', 'KaryawansController@post_karyawan');
 Route::get('edit/karyawan/{id}', 'KaryawansController@edit_karyawan');
 Route::post('editpost/karyawan/{id}', 'KaryawansController@editpost_karyawan');
 Route::get('hapus/karyawan/{id}', 'KaryawansController@hapus_karyawan');
+Route::get('import-karyawan', 'KaryawansController@importExcel');
 
 //KOMPETENSI
 Route::get('kompetensi', 'KompetensisController@index');

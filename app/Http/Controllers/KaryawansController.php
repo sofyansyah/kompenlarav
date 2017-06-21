@@ -56,20 +56,22 @@ class KaryawansController extends Controller
 	}
 
 
-    public function editpost_karyawan(Request $request, $id)
-    {
+	public function editpost_karyawan(Request $request, $id)
+	{
 
-    	$karyawan = Karyawan::where('karyawan.id', $id)->first();
-    	$karyawan->update($request->all());
-    	return redirect('karyawan');
-    }
+		$karyawan = Karyawan::where('karyawan.id', $id)->first();
+		$karyawan->update($request->all());
+		return redirect('karyawan');
+	}
 
-    public function hapus_karyawan($id)
-    {
-    	$karyawan = Karyawan::where('karyawan.id', $id)->first();
-    	$karyawan->delete();
-    	return redirect('/karyawan');
-    }
+	public function hapus_karyawan($id)
+	{
+		$karyawan = Karyawan::where('karyawan.id', $id)->first();
+		$karyawan->delete();
+		return redirect('/karyawan');
+	}
+
 }
+
 
 
