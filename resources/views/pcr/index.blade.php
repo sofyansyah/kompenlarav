@@ -7,10 +7,23 @@
 @endsection
 
 @section('content')
+<style>
+        div.scroll-menu{
+        overflow: auto;
+        white-space: nowrap;
+    }
+    div.scroll-menu .table td a{
+        display: inline-block;
+        color: white;
+        text-align: center;
+        padding: 14px;
+        text-decoration: none;
+    }
+</style>
 
 <div class="panel panel-default">
     <div class="panel-heading"><h3>Data PCR</h3></div>
-    <div class="panel-body">
+    <div class="panel-body scroll-menu">
 
         <table id="kompetensi" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
@@ -33,6 +46,7 @@
                     <th class="text-center">{{$data->pcr}}</th>
                     <td class="text-center">
                         <a href="{{url('edit/pcr/'.$data->id)}}" class="btn btn-primary btn-sm text-center" title="Edit"><i class="fa fa-pencil"></i></a>
+                        <a href="{{url('ekspor/pcr/'.$data->id)}}" class="btn btn-primary btn-sm text-center" title="Export"><i class="fa fa-print"></i></a>
                     </td>
                 </tr>
                 @empty

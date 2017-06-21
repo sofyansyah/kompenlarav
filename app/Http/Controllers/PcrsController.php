@@ -12,21 +12,21 @@ class PcrsController extends Controller
 	public function index()
 	{
 		$pcr = Pcr::join('karyawan', 'pcr.karyawan_id', 'karyawan.id' )
-					->select('pcr.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.nid')
-					->get();
+		->select('pcr.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.nid')
+		->get();
 		return view ('pcr.index',compact('pcr'));
 	}
 	public function editpcr($id)
 	{
 		$pcr = Pcr::join('karyawan', 'pcr.karyawan_id', 'karyawan.id' )
-					->select('pcr.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.jen_jabatan','karyawan.nid')
-					->where('pcr.id',$id)
-					->first();
+		->select('pcr.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.jen_jabatan','karyawan.nid')
+		->where('pcr.id',$id)
+		->first();
 
 		$komp = Kompetensi::where('karyawan_id',$pcr->karyawan_id)
-							->join('jenis_kompetensi','kompetensi.jenis_kompetensi','=','jenis_kompetensi.id')
-							->select('kompetensi.standar','kompetensi.sem1','kompetensi.sem2','kompetensi.readlines','kompetensi.jenis_kompetensi','jenis_kompetensi.no','kompetensi.id','jenis_kompetensi.nama','jenis_kompetensi.type')
-							->get();
+		->join('jenis_kompetensi','kompetensi.jenis_kompetensi','=','jenis_kompetensi.id')
+		->select('kompetensi.standar','kompetensi.sem1','kompetensi.sem2','kompetensi.readlines','kompetensi.jenis_kompetensi','jenis_kompetensi.no','kompetensi.id','jenis_kompetensi.nama','jenis_kompetensi.type')
+		->get();
 
 		$inti 	= Kompetensi::where('karyawan_id',$pcr->karyawan_id)->join('jenis_kompetensi','kompetensi.jenis_kompetensi','=','jenis_kompetensi.id')->where('jenis_kompetensi.type','inti')->get();
 		$peran 	= Kompetensi::where('karyawan_id',$pcr->karyawan_id)->join('jenis_kompetensi','kompetensi.jenis_kompetensi','=','jenis_kompetensi.id')->where('jenis_kompetensi.type','peran')->get();
@@ -64,13 +64,32 @@ class PcrsController extends Controller
 	{
 		// $pcrs = Pcr::all();
 		$pcrs = Pcr::join('kompetensi', 'pcr.kompetensi_id', 'kompetensi.id')
-					->join('karyawan', 'pcr.karyawan_id', 'karyawan.id' )
-					->join('jenis_kompetensi', 'kompetensi.jenis_kompetensi', 'jenis_kompetensi.id' )
-					->select('pcr.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.jen_jabatan', 'jenis_kompetensi.nama as nama_kompetensi', 'kompetensi.jenis_kompetensi','kompetensi.standar')
-					->get();
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id' )
+		->join('jenis_kompetensi', 'kompetensi.jenis_kompetensi', 'jenis_kompetensi.id' )
+		->select('pcr.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.jen_jabatan', 'jenis_kompetensi.nama as nama_kompetensi', 'kompetensi.jenis_kompetensi','kompetensi.standar')
+		->get();
 
 					// dd($pcrs);
 
 		return view ('pcr', compact('pcrs'));
+	}
+	public function ekspor_pcr($id){
+		$pcr = Pcr::join('karyawan', 'pcr.karyawan_id', 'karyawan.id' )
+		->select('pcr.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.jen_jabatan','karyawan.nid')
+		->where('pcr.id',$id)
+		->first();
+
+		$komp = Kompetensi::where('karyawan_id',$pcr->karyawan_id)
+		->join('jenis_kompetensi','kompetensi.jenis_kompetensi','=','jenis_kompetensi.id')
+		->select('kompetensi.standar','kompetensi.sem1','kompetensi.sem2','kompetensi.readlines','kompetensi.jenis_kompetensi','jenis_kompetensi.no','kompetensi.id','jenis_kompetensi.nama','jenis_kompetensi.type')
+		->get();
+
+		$inti 	= Kompetensi::where('karyawan_id',$pcr->karyawan_id)->join('jenis_kompetensi','kompetensi.jenis_kompetensi','=','jenis_kompetensi.id')->where('jenis_kompetensi.type','inti')->get();
+		$peran 	= Kompetensi::where('karyawan_id',$pcr->karyawan_id)->join('jenis_kompetensi','kompetensi.jenis_kompetensi','=','jenis_kompetensi.id')->where('jenis_kompetensi.type','peran')->get();
+		$bidang = Kompetensi::where('karyawan_id',$pcr->karyawan_id)->join('jenis_kompetensi','kompetensi.jenis_kompetensi','=','jenis_kompetensi.id')->where('jenis_kompetensi.type','bidang')->get();
+					// dd($komp);
+
+		return view ('pcr.ekspor_pcr',compact('pcr','komp','inti','peran','bidang'));
+
 	}
 }

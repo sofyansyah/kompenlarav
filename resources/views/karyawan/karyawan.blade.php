@@ -81,10 +81,10 @@
 					<td>{{$karyawan->jen_jabatan}}</td>
 					<td class="buttons">
 						<ul class="action">
-							<li><a href="{{url('edit/karyawan/'.$karyawan->id)}}" class="btn btn-warning" style="padding: 6px 12px;"><i class="fa fa-pencil"></i></a></li>
-							<li><a href="{{url('hapus/karyawan/'.$karyawan->id)}}" class="btn btn-danger" style="padding: 6px 12px;"><i class="fa fa-trash-o"></i></a>
+							<li><a href="{{url('edit/karyawan/'.$karyawan->id)}}" class="btn btn-warning"  data-toggle="tooltip" title="Edit" style="padding: 6px 12px;"><i class="fa fa-pencil"></i></a></li>
+							<li><a href="{{url('hapus/karyawan/'.$karyawan->id)}}" class="btn btn-danger"  data-toggle="tooltip" title="Hapus" style="padding: 6px 12px;"><i class="fa fa-trash-o"></i></a>
 							</li>
-							<li><a href="{{url('/tambah-kompetensi')}}" class="btn btn-success" data-toggle="tooltip" title="buat kompetensi" style="padding: 6px 12px;"><i class="fa fa-plus"></i></a>
+							<li><a href="{{url('/tambah-kompetensi')}}" class="btn btn-success" data-toggle="tooltip" title="Buat Kompetensi" style="padding: 6px 12px;"><i class="fa fa-plus"></i></a>
 							</li>
 						</ul>
 					</td>
@@ -105,14 +105,21 @@
 @endsection
 @section('javascript')
 <script>
+	$(document).ready(function(){
+		$('[data-toggle="tooltip"]').tooltip(); 
+	});
+</script>
+
+<script>
 	$(document).ready(function() {
 		$('#karyawan').DataTable();
 	} );
 </script>
 
 <script src="{{asset('js/jquery-1.12.4.js')}}"></script>
-<!-- <script src="{{asset('js/dataTables.bootstrap.min.js')}}"></script> -->
+<script src="{{asset('js/bootstrap.min.js')}}"></script>
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
+
 @endsection
 
 

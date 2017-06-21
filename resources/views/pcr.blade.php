@@ -30,6 +30,7 @@
 	.koloms td{
 		border:1px solid #ddd;
 	}
+	
 </style>
 @section('content')
 <?php $i = 0 ?>

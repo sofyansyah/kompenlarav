@@ -50,6 +50,7 @@ Route::get('pcr', 'PcrsController@index');
 Route::get('edit/pcr/{id}', 'PcrsController@editpcr');
 Route::post('editpost/pcr/{id}', 'PcrsController@editpostpcr');
 Route::get('hapus/pcr/{id}', 'PcrsController@hapuspcr');
+Route::get('ekspor/pcr/{id}', 'PcrsController@ekspor_pcr');
 // Route::get('pcr-lama', 'PcrsController@pcrlama');
 
 //JCR
