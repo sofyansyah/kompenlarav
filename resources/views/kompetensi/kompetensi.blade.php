@@ -7,10 +7,24 @@
 @endsection
 
 @section('content')
+<style>
+        div.scroll-menu{
+        overflow: auto;
+        white-space: nowrap;
+    }
+    div.scroll-menu .table td a{
+        display: inline-block;
+        color: white;
+        text-align: center;
+        padding: 14px;
+        text-decoration: none;
+    }
+
+</style>
 
 <div class="panel panel-default">
     <div class="panel-heading">Data Kompetensi</div>
-    <div class="panel-body">
+    <div class="panel-body scroll-menu">
 
         <table id="kompetensi" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
