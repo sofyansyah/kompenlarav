@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Kompetensi;
 use App\JenisKompetensi;
 use App\Karyawan;
+use App\Pcr;
 
 class KompetensisController extends Controller
 {
@@ -29,13 +30,20 @@ class KompetensisController extends Controller
     public function post_kompetensi(Request $r)
     {
         $komp = new Kompetensi;
-        $komp->karyawan_id = $r->karyawan;
+        $komp->karyawan_id      = $r->karyawan;
         $komp->jenis_kompetensi = $r->jenis;
-        $komp->standar = $r->standar;
-        $komp->nilai = $r->nilai;
-        $komp->gap = $r->gap;
-        $komp->unit = $r->unit;
+        $komp->standar          = $r->standar;
+        $komp->nilai            = $r->nilai;
+        $komp->gap              = $r->gap;
+        $komp->unit             = $r->unit;
         $komp->save();
+
+        $cek_pcr = Pcr::where('karyawan_id',$r->karyawan)->first();
+        if (count($cek_pcr) == 0) {
+            $pcr = new Pcr;
+            $pcr->karyawan_id = $r->karyawan;
+            $pcr->save();
+        }
 
         return redirect()->back()->with('success','Berhasil ditambahkan');
     }

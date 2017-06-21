@@ -27,7 +27,7 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Jenis Kompetensi</label>
                     <div class="col-sm-8">
-                        <select name="jenis" class="form-control select2">
+                        <select name="jenis" disabled class="form-control select2">
                             @foreach($jenis as $data_jenis)
                                 <option @if($data_jenis->nama == $komp->nama_jenis) selected @endif value="{{$data_jenis->id}}">{{$data_jenis->nama}}</option>
                             @endforeach

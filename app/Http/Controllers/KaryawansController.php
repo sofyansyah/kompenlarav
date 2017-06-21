@@ -25,17 +25,17 @@ class KaryawansController extends Controller
 	public function post_karyawan(Request $request)
 	{
 		$karyawan = new Karyawan;
-		$karyawan->nama= $request->nama;
-		$karyawan->nid= $request->nid;
-		$karyawan->jabatan= $request->jabatan;
-		$karyawan->grade= $request->grade;
-		$karyawan->jen_jabatan= $request->jen_jabatan;
+		$karyawan->nama           = $request->nama;
+		$karyawan->nid            = $request->nid;
+		$karyawan->jabatan        = $request->jabatan;
+		$karyawan->grade          = $request->grade;
+		$karyawan->jen_jabatan    = $request->jen_jabatan;
 		$validator = Validator::make($request->all(), [
-			'nama' => 'required',
-			'nid' => 'required',
-			'jabatan' => 'required',
-			'grade' => 'required',
-			'jen_jabatan' => 'required',
+			'nama'           => 'required',
+			'nid'            => 'required',
+			'jabatan'        => 'required',
+			'grade'          => 'required',
+			'jen_jabatan'    => 'required',
 			]);
 
 		if ($validator->fails()) {
@@ -52,7 +52,6 @@ class KaryawansController extends Controller
 	{
 		$karyawan = Karyawan::where('karyawan.id', $id)
 		->first();
-
 		return view ('karyawan.edit_karyawan' , compact('karyawan')); 
 	}
 
@@ -60,19 +59,14 @@ class KaryawansController extends Controller
     public function editpost_karyawan(Request $request, $id)
     {
 
-    	$karyawan = Karyawan::where('karyawan.id', $id)
-    	->first();
+    	$karyawan = Karyawan::where('karyawan.id', $id)->first();
     	$karyawan->update($request->all());
     	return redirect('karyawan');
     }
 
     public function hapus_karyawan($id)
     {
-
-
-    	$karyawan = Karyawan::where('karyawan.id', $id)
-    	->first();
-
+    	$karyawan = Karyawan::where('karyawan.id', $id)->first();
     	$karyawan->delete();
     	return redirect('/karyawan');
     }

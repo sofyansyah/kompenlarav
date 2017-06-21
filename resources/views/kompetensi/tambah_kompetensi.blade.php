@@ -11,7 +11,7 @@
     </style>
 @endsection
 @section('content')
-<div class="panel panel-default">
+<div class="panel panel-default" style="overflow: hidden;">
     <div class="panel-body">
         <div class="col-md-12">
             <h3>Tambah Kompetensi</h3>
