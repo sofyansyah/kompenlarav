@@ -77,8 +77,7 @@ class PcrsController extends Controller
 			$v->readlines 	= round(($r->sem1[$k]/$v->standar)*100);
 			$v->save();
 
-
-			$pcr->pcr = ($nilai_inti+$nilai_inti+$nilai_bid)/($count_peran+$count_inti+$count_bid);
+			$pcr->pcr = ($nilai_inti+$nilai_peran+$nilai_bid)/($count_peran+$count_inti+$count_bid);
 			$pcr->save();
 		}
 
