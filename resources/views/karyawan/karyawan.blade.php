@@ -83,10 +83,7 @@
 					<td class="buttons">
 						<ul class="action">
 							<li><a href="{{url('edit/karyawan/'.$karyawan->id)}}" class="btn btn-warning"  data-toggle="tooltip" title="Edit" style="padding: 6px 12px;"><i class="fa fa-pencil"></i></a></li>
-							<li><a href="{{url('hapus/karyawan/'.$karyawan->id)}}" class="btn btn-danger"  data-toggle="tooltip" title="Hapus" style="padding: 6px 12px;"><i class="fa fa-trash-o"></i></a>
-							</li>
-							<li><a href="{{url('/tambah-kompetensi')}}" class="btn btn-success" data-toggle="tooltip" title="Buat Kompetensi" style="padding: 6px 12px;"><i class="fa fa-plus"></i></a>
-							</li>
+							<li><a href="{{url('hapus/karyawan/'.$karyawan->id)}}" class="btn btn-danger"  data-toggle="tooltip" title="Hapus" style="padding: 6px 12px;"><i class="fa fa-trash-o"></i></a></li>
 						</ul>
 					</td>
 				</tr>
