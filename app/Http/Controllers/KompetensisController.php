@@ -29,6 +29,12 @@ class KompetensisController extends Controller
     }
     public function post_kompetensi(Request $r)
     {
+        $cek = Kompetensi::where('karyawan_id',$r->karyawan)->where('jenis_kompetensi',$r->jenis)->first();
+
+        if (count($cek) > 0) {
+            return redirect()->back()->with('warning','Maaf data yang anda masukan sudah ada');
+        }
+
         $komp = new Kompetensi;
         $komp->karyawan_id      = $r->karyawan;
         $komp->jenis_kompetensi = $r->jenis;

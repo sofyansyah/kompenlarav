@@ -51,7 +51,7 @@ class PcrsController extends Controller
 			$v->readlines 	= round(($r->sem1[$k]/$v->standar)*100);
 			$v->save();
 
-			$pcr->pcr = (round($inti->sum('readlines')/count($inti))+round($peran->sum('readlines')/count($peran))+round($bidang->sum('readlines')/count($bidang))/3);
+			$pcr->pcr = (round($inti->sum('readlines')/count($inti))+round($peran->sum('readlines')/count($peran))+round($bidang->sum('readlines')/count($bidang)))/3;
 			$pcr->save();
 		}
 

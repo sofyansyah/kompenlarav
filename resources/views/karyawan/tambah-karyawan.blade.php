@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-4 control-label">Nama Karyawan</label>
+                <label class="col-sm-4 control-label">Jenjang Jabatan</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" name="jen_jabatan" placeholder="Jenjang Jabatan" required>
                 </div>
