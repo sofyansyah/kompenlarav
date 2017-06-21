@@ -56,8 +56,6 @@
             </div>
 
             <div class="table-responsive">
-                <form action="{{url('editpost/pcr/'.$pcr->id)}}" method="POST">
-                {{csrf_field()}}
                     <table class="table table-condensed table-bordered" id="pcr_karyawan">
                         <tr>
                             <th style="border-top:1px solid #fff; border-left:1px solid #fff; border-right:1px solid #fff; "></th>
@@ -213,45 +211,43 @@
                             <td style="border:1px solid #fff;"></td>
                             <td style="border:1px solid #fff;"></td>
                             <td style="border:1px solid #fff;"></td>
-                            <td class="text-right" style="border:1px solid #fff;"><button onclick="goBack()" class="btn btn-warning">Kembali</button>
+                            <td class="text-right" style="border:1px solid #fff;">
                             <button id="btnExport" class="btn btn-primary">Export</button>
                             </td>
                         </tr>
                     </table>
-                </form>
             </div>
         </div>
     </div>
 </div>
 @endsection
 @section('javascript')
-
+<script src="{{asset('js/jquery-1.12.4.js')}}"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
 <script>
-function goBack() {
-    window.history.back();
-}
-</script>
-
-<script>
-    $(function () 
-{
-    var table = $('#pcr_karyawan').dataTable();
-    
-    $("#btnExport").click(function(e) 
-    {
-        e.preventDefault();
-        window.open('data:application/vnd.ms-excel,' + 
-            encodeURIComponent(table[0].outerHTML));
-    });
-});
-</script>
-<script>
+    // $(document).ready(function() {
+    //     $('#pcr_karyawan').DataTable();
+    // } );
+    // $(function () 
+    // {
+    //     var table = $('#pcr_karyawan').dataTable();
+        
+    //     $("#btnExport").click(function(e) 
+    //     {
+    //         e.preventDefault();
+    //         window.open('data:application/vnd.ms-excel,' + 
+    //             encodeURIComponent(table[0].outerHTML));
+    //     });
+    // });
     $(document).ready(function() {
-        $('#pcr_karyawan').DataTable();
-    } );
-</script>
-<script src="{{asset('js/select2.js')}}"></script>
-<script type="text/javascript">
-  $('.select2').select2();
+        $('#pcr_karyawan').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        } );
+    });
 </script>
 @endsection

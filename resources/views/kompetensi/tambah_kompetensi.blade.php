@@ -16,6 +16,7 @@
         <div class="col-md-12">
             <h3>Tambah Kompetensi</h3>
             <br>
+            @include('include.alert')
             <form action="{{url('post-kompetensi')}}" method="POST" class="form-horizontal">
             {{csrf_field()}}
                 <div class="form-group">
@@ -41,25 +42,25 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Unit</label>
                     <div class="col-sm-8">
-                        <input type="text" name="unit" class="form-control">
+                        <input type="text" name="unit" class="form-control" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Standar</label>
                     <div class="col-sm-8">
-                        <input type="number" min="0" name="standar" class="form-control">
+                        <input type="number" min="0" name="standar" class="form-control" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Nilai</label>
                     <div class="col-sm-8">
-                        <input type="number" min="0" name="nilai" class="form-control">
+                        <input type="number" min="0" name="nilai" class="form-control" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-4 control-label">GAP</label>
                     <div class="col-sm-8">
-                        <input type="number" min="0" name="gap" class="form-control">
+                        <input type="number" min="0" name="gap" class="form-control" required>
                     </div>
                 </div>
                 <div class="form-group">
