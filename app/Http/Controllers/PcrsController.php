@@ -44,6 +44,32 @@ class PcrsController extends Controller
 		$peran 	= Kompetensi::where('karyawan_id',$pcr->karyawan_id)->join('jenis_kompetensi','kompetensi.jenis_kompetensi','=','jenis_kompetensi.id')->where('jenis_kompetensi.type','peran')->get();
 		$bidang = Kompetensi::where('karyawan_id',$pcr->karyawan_id)->join('jenis_kompetensi','kompetensi.jenis_kompetensi','=','jenis_kompetensi.id')->where('jenis_kompetensi.type','bidang')->get();
 
+
+		if (count($bidang) > 0) {
+			$nilai_bid = round($bidang->sum('readlines')/count($bidang));
+			$count_bid = 1;
+		}else{
+			$count_bid = 0;
+			$nilai_bid = 0;
+		}
+
+		if (count($inti) > 0) {
+			$nilai_inti = round($inti->sum('readlines')/count($inti));
+			$count_inti = 1;
+		}else{
+			$count_inti = 0;
+			$nilai_inti = 0;
+		}
+
+		if (count($peran) > 0) {
+			$nilai_peran = round($peran->sum('readlines')/count($peran));
+			$count_peran = 1;
+		}else{
+			$count_peran = 0;
+			$nilai_peran = 0;
+		}
+
+
 		foreach ($komp as $k => $v) {
 			//INSERT TABLE KOMPETENSI
 			$v->sem1 		= $r->sem1[$k];
@@ -51,7 +77,8 @@ class PcrsController extends Controller
 			$v->readlines 	= round(($r->sem1[$k]/$v->standar)*100);
 			$v->save();
 
-			$pcr->pcr = (round($inti->sum('readlines')/count($inti))+round($peran->sum('readlines')/count($peran))+round($bidang->sum('readlines')/count($bidang)))/3;
+
+			$pcr->pcr = ($nilai_inti+$nilai_inti+$nilai_bid)/($count_peran+$count_inti+$count_bid);
 			$pcr->save();
 		}
 
