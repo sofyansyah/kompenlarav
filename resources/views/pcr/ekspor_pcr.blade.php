@@ -58,7 +58,7 @@
             <div class="table-responsive">
                 <form action="{{url('editpost/pcr/'.$pcr->id)}}" method="POST">
                 {{csrf_field()}}
-                    <table class="table table-condensed table-bordered" id="pcr_karyawan">
+                    <table class="table table-condensed table-bordered">
                         <tr>
                             <th style="border-top:1px solid #fff; border-left:1px solid #fff; border-right:1px solid #fff; "></th>
                             <th style="border-top:1px solid #fff; border-left:1px solid #fff; "></th>
@@ -245,11 +245,7 @@ function goBack() {
     });
 });
 </script>
-<script>
-    $(document).ready(function() {
-        $('#pcr_karyawan').DataTable();
-    } );
-</script>
+
 <script src="{{asset('js/select2.js')}}"></script>
 <script type="text/javascript">
   $('.select2').select2();
