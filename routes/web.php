@@ -66,7 +66,7 @@ Route::post('importExcel', 'ExcelsController@importExcel');
 //EXCEL KOMPETENSI
 Route::get('importExport', 'KompetensisController@importExport');
 Route::get('downloadExcel', 'KompetensisController@downloadExcel');
-Route::post('importExcel', 'ExcelskompController@importExcel');
+Route::post('importkomp', 'ExcelskompController@importExcel');
 
 Route::post('importExcel', 'ExcelsController@importExcel');
 

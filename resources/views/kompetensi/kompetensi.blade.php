@@ -58,6 +58,14 @@
         </table>
     </div>
 </div>
+<div class="panel-footer">
+        <form action="{{ url('importkomp')}}" class="form-horizontal" method="post" enctype="multipart/form-data">
+        {{ csrf_field() }}
+            <input type="file" name="import_file">
+            <button class="btn btn-primary">Import File</button>
+        </form>
+
+    </div>
 </div>
 <a href="{{url('downloadExcel')}}" class="btn btn-success">Download XLS</a>
 <br><br>
