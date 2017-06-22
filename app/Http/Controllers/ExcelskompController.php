@@ -31,31 +31,30 @@ class ExcelskompController extends Controller
 }
 public function importExcel()
 {
-
 	if(Input::hasFile('import_file')){
 		$path = input::file('import_file')->getRealPath();
 		
 		$data = Excel::load($path, function($reader){})->get();
 		// dd($data);
 
-	// 	if(!empty($data) && $data->count()){
-	// 			foreach ($data as $key => $value) {
-	// 				$insert[] = [
-	// 						'nid' 				=> $value->nid,
-	// 						'nama' 				=> $value->nama,
-	// 						'jabatan' 			=> $value->jabatan,
-	// 						'jenis_kompetensi' 	=> $value->jenis_kompetensi,
-	// 						'standar' 			=> $value->standar,
-	// 						'nilai' 			=> $value->nilai,
-	// 						'gap' 				=> $value->gap,
-	// 						'unit' 				=> $value->unit,
-	// 				];
-	// 			}
-	// 			if(!empty($insert)){
-	// 				DB::table('kompetensi')->insert($insert);
-	// 				return redirect()->back()->with('success','Berhasil import data');
-	// 			}
-	// 		}
+		if(!empty($data) && $data->count()){
+				foreach ($data as $key => $value) {
+					$insert[] = [
+							'nid' 				=> $value->nid,
+							'nama' 				=> $value->nama,
+							'jabatan' 			=> $value->jabatan,
+							'jenis_kompetensi' 	=> $value->nama_kompetensi,
+							'standar' 			=> $value->standar,
+							'nilai' 			=> $value->nilai,
+							'gap' 				=> $value->gap,
+							'unit' 				=> $value->unit,
+					];
+				}
+				if(!empty($insert)){
+					DB::table('kompetensi')->insert($insert);
+					return redirect()->back()->with('success','Berhasil import data');
+				}
+			}
+		}
 	}
-}
 }
