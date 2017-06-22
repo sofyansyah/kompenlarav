@@ -225,24 +225,24 @@
     // $(document).ready(function() {
     //     $('#pcr_karyawan').DataTable();
     // } );
-    // $(function () 
-    // {
-    //     var table = $('#pcr_karyawan').dataTable();
+    $(function () 
+    {
+        var table = $('#pcr_karyawan').dataTable();
 
-    //     $("#btnExport").click(function(e) 
-    //     {
-    //         e.preventDefault();
-    //         window.open('data:application/vnd.ms-excel,' + 
-    //             encodeURIComponent(table[0].outerHTML));
-    //     });
-    // });
-    $(document).ready(function() {
-        $('#pcr_karyawan').DataTable( {
-            dom: 'Bfrtip',
-            buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-            ]
-        } );
+        $("#btnExport").click(function(e) 
+        {
+            e.preventDefault();
+            window.open('data:application/vnd.ms-excel,' + 
+                encodeURIComponent(table[0].outerHTML));
+        });
     });
+    // $(document).ready(function() {
+    //     $('#pcr_karyawan').DataTable( {
+    //         dom: 'Bfrtip',
+    //         buttons: [
+    //         'copy', 'csv', 'excel', 'pdf', 'print'
+    //         ]
+    //     } );
+    // });
 </script>
 @endsection
