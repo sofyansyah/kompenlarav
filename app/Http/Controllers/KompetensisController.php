@@ -126,20 +126,34 @@ class KompetensisController extends Controller
         $komp = Kompetensi::join('karyawan', 'kompetensi.karyawan_id', 'karyawan.id' )
         ->join('jenis_kompetensi', 'kompetensi.jenis_kompetensi', 'jenis_kompetensi.id' )
         ->select('karyawan.nid as NID',
-                 'karyawan.nama as Nama Karyawan',
-                 'karyawan.jabatan as Jabatan',
-                 'jenis_kompetensi.nama as Nama Kompetensi',
-                 'kompetensi.standar as Standar',
-                 'kompetensi.nilai as Nilai',
-                 'kompetensi.gap as GAP',
-                 'kompetensi.unit as Unit')->get();
+         'karyawan.nama as Nama Karyawan',
+         'karyawan.jabatan as Jabatan',
+         'jenis_kompetensi.nama as Nama Kompetensi',
+         'kompetensi.standar as Standar',
+         'kompetensi.nilai as Nilai',
+         'kompetensi.gap as GAP',
+         'kompetensi.unit as Unit')->get();
 
         // dd($komp);
-
-       Excel::create('reportTitle', function($excel) use($komp) {
+        
+        Excel::create('reportTitle', function($excel) use($komp) {
             $excel->sheet('reportTitle', function($sheet) use($komp) {
                 $sheet->fromArray($komp);
+                $sheet->setBorder('A1:F10', 'thin');
+                $sheet->cell('A1', function($cell) {
+
+    // manipulate the cell
+                    $cell->setBorder(array(
+                        'top'   => array(
+                            'style' => 'solid'
+                            ),
+                        ));
+
+                });
+                
             });
+            
+
         })->download('xls');
     }
 }

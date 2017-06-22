@@ -15,12 +15,14 @@ class ExcelsController extends Controller
 	}
 	public function downloadExcel($type)
 	{
+		
 		$data = Karyawan::get()->toArray();
 		return Excel::create('Data_Karyawan', function($excel) use ($data) {
 			$excel->sheet('mySheet', function($sheet) use ($data)
 	        {
 				$sheet->fromArray($data);
 	        });
+
 		})->download($type);
 	}
 	public function importExcel()

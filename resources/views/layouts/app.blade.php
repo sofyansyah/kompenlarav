@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
      <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}">
+     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <style>
         .main{
             min-height: 100%!important;
