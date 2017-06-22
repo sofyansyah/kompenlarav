@@ -116,4 +116,30 @@ class KompetensisController extends Controller
     }
 
 
+    public function importExport()
+    {
+        return view('kompetensi');
+    }
+    public function downloadExcel()
+    {
+
+        $komp = Kompetensi::join('karyawan', 'kompetensi.karyawan_id', 'karyawan.id' )
+        ->join('jenis_kompetensi', 'kompetensi.jenis_kompetensi', 'jenis_kompetensi.id' )
+        ->select('karyawan.nid as NID',
+                 'karyawan.nama as Nama Karyawan',
+                 'karyawan.jabatan as Jabatan',
+                 'jenis_kompetensi.nama as Nama Kompetensi',
+                 'kompetensi.standar as Standar',
+                 'kompetensi.nilai as Nilai',
+                 'kompetensi.gap as GAP',
+                 'kompetensi.unit as Unit')->get();
+
+        // dd($komp);
+
+       Excel::create('reportTitle', function($excel) use($komp) {
+            $excel->sheet('reportTitle', function($sheet) use($komp) {
+                $sheet->fromArray($komp);
+            });
+        })->download('xls');
+    }
 }

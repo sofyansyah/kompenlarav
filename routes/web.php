@@ -52,6 +52,7 @@ Route::get('edit/pcr/{id}', 'PcrsController@editpcr');
 Route::post('editpost/pcr/{id}', 'PcrsController@editpostpcr');
 Route::get('hapus/pcr/{id}', 'PcrsController@hapuspcr');
 Route::get('ekspor/pcr/{id}', 'PcrsController@ekspor_pcr');
+Route::get('ekspor-pcr/', 'PcrsController@eskporpcr');
 // Route::get('pcr-lama', 'PcrsController@pcrlama');
 
 //JCR
@@ -59,5 +60,13 @@ Route::post('rekap-jcr', 'AljcrController@index');
 
 //EXCEL
 Route::get('importExport', 'ExcelsController@importExport');
-Route::get('downloadExcel/{type}', 'ExcelsController@downloadExcel');
+Route::get('downloadExcel', 'ExcelsController@downloadExcel');
 Route::post('importExcel', 'ExcelsController@importExcel');
+
+//EXCEL KOMPETENSI
+Route::get('importExport', 'KompetensisController@importExport');
+Route::get('downloadExcel', 'KompetensisController@downloadExcel');
+Route::post('importExcel', 'ExcelskompController@importExcel');
+
+Route::post('importExcel', 'ExcelsController@importExcel');
+

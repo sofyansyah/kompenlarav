@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Kompetensi;
 use App\Karyawan;
 use App\Pcr;
+use Excel;
 
 class PcrsController extends Controller
 {
@@ -116,6 +117,16 @@ class PcrsController extends Controller
 					// dd($komp);
 
 		return view ('pcr.ekspor_pcr',compact('pcr','komp','inti','peran','bidang'));
+	}
 
+	public function eskporpcr()
+	{
+		$kompetensi = Kompetensi::all();
+
+       	Excel::create('KOMP', function($excel) use($kompetensi) {
+    		$excel->sheet('KOMP', function($sheet) use($kompetensi) {
+       			$sheet->fromArray($kompetensi);
+        	});
+        })->download('xls');
 	}
 }
