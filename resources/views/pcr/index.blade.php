@@ -12,6 +12,10 @@
     <div class="panel-heading"><h3>Data PCR</h3></div>
     <div class="panel-body">
         <div class="table-responsive">
+            <div class="pull-right">
+                <a href="{{url('ekspor-pcr')}}" class="btn btn-info"><b><i class="fa fa-file-excel-o"></i> Eksport PCR</b></a>
+            </div>
+            <br><br>
             <table id="kompetensi" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                     <tr>

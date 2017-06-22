@@ -7,21 +7,6 @@
 @endsection
 
 @section('content')
-<style>
-        /*div.scroll-menu{
-        overflow: auto;
-        white-space: nowrap;
-    }*/
-   /* div.scroll-menu .table td a{
-        display: inline-block;
-        color: white;
-        text-align: center;
-        padding: 14px;
-        text-decoration: none;
-    }*/
-
-</style>
-
 <div class="panel panel-default">
     <div class="panel-heading">Data Kompetensi</div>
     <div class="panel-body">
@@ -72,20 +57,10 @@
             </tbody>
         </table>
     </div>
-
-    <a href="{{ URL::to('downloadExcel/xls') }}"><button class="btn btn-success">Download Excel xls</button></a>
-   {{-- <a href="{{ URL::to('downloadExcel/xlsx') }}"><button class="btn btn-success">Download Excel xlsx</button></a>
-    <a href="{{ URL::to('downloadExcel/csv') }}"><button class="btn btn-success">Download CSV</button></a>
-    <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 10px;" action="{{ URL::to('importExcel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
-
-        {{ csrf_field() }}
-        <input type="file" name="import_file" />
-        <button class="btn btn-primary">Import File</button>
-    </form>--}}
-
 </div>
 </div>
-
+<a href="{{url('downloadExcel')}}" class="btn btn-success">Download XLS</a>
+<br><br>
 @endsection
 @section('javascript')
 <script>

@@ -119,20 +119,26 @@ class KompetensisController extends Controller
     {
         return view('kompetensi');
     }
-    public function downloadExcel($type)
+    public function downloadExcel()
     {
 
-        $kompetensis = Kompetensi::join('karyawan', 'kompetensi.karyawan_id', 'karyawan.id' )
+        $komp = Kompetensi::join('karyawan', 'kompetensi.karyawan_id', 'karyawan.id' )
         ->join('jenis_kompetensi', 'kompetensi.jenis_kompetensi', 'jenis_kompetensi.id' )
-        ->select('kompetensi.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.nid','jenis_kompetensi.nama as nama_jenis','jenis_kompetensi.no')
-        ->get();
+        ->select('karyawan.nid as NID',
+                 'karyawan.nama as Nama Karyawan',
+                 'karyawan.jabatan as Jabatan',
+                 'jenis_kompetensi.nama as Nama Kompetensi',
+                 'kompetensi.standar as Standar',
+                 'kompetensi.nilai as Nilai',
+                 'kompetensi.gap as GAP',
+                 'kompetensi.unit as Unit')->get();
 
-       Excel::create('reportTitle', function($excel) use($kompetensis) {
+        // dd($komp);
 
-    $excel->sheet('reportTitle', function($sheet) use($kompetensis) {
-
-       $sheet->fromArray($kompetensis);
-                    });
-                })->download('xls');
+       Excel::create('reportTitle', function($excel) use($komp) {
+            $excel->sheet('reportTitle', function($sheet) use($komp) {
+                $sheet->fromArray($komp);
+            });
+        })->download('xls');
     }
 }

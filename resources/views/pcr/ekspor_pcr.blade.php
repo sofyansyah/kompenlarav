@@ -185,7 +185,7 @@
                             </form>
                         </div>
                     </table>
-                    <button id="btnExport" class="btn btn-primary" style="float: right;">Export</button>
+                    <button id="btnExport" class="btn btn-primary" style="float: right;">Eksport</button>
                     </div>
             </div>
         </div>
