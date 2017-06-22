@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Kompetensi;
 use App\JenisKompetensi;
 use App\Karyawan;
 use App\Pcr;
+use Illuminate\Support\Facades\DB;
+use Excel;
 
 class KompetensisController extends Controller
 {
@@ -17,10 +20,10 @@ class KompetensisController extends Controller
         ->join('jenis_kompetensi', 'kompetensi.jenis_kompetensi', 'jenis_kompetensi.id' )
         ->select('kompetensi.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.nid','jenis_kompetensi.nama as nama_jenis','jenis_kompetensi.no')
         ->orderBy('kompetensi.id','DESC')
-		->get();
-		
-		return view ('kompetensi.kompetensi', compact('kompetensis'));
-	}
+        ->get();
+
+        return view ('kompetensi.kompetensi', compact('kompetensis'));
+    }
     public function tambah_kompetensi()
     {
         $user  = Karyawan::all();
@@ -56,10 +59,10 @@ class KompetensisController extends Controller
     public function editkompetensi($id)
     {
         $komp = Kompetensi::join('karyawan', 'kompetensi.karyawan_id', 'karyawan.id' )
-                            ->join('jenis_kompetensi', 'kompetensi.jenis_kompetensi', 'jenis_kompetensi.id' )
-                            ->select('kompetensi.*','karyawan.nama','jenis_kompetensi.nama as nama_jenis')
-                            ->where('kompetensi.id',$id)
-                            ->first();
+        ->join('jenis_kompetensi', 'kompetensi.jenis_kompetensi', 'jenis_kompetensi.id' )
+        ->select('kompetensi.*','karyawan.nama','jenis_kompetensi.nama as nama_jenis')
+        ->where('kompetensi.id',$id)
+        ->first();
 
         $jenis = JenisKompetensi::all();
 
@@ -110,5 +113,26 @@ class KompetensisController extends Controller
         $jenis->save();
 
         return redirect()->back()->with('success','Berhasil tambah');
+    }
+
+    public function importExport()
+    {
+        return view('kompetensi');
+    }
+    public function downloadExcel($type)
+    {
+
+        $kompetensis = Kompetensi::join('karyawan', 'kompetensi.karyawan_id', 'karyawan.id' )
+        ->join('jenis_kompetensi', 'kompetensi.jenis_kompetensi', 'jenis_kompetensi.id' )
+        ->select('kompetensi.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.nid','jenis_kompetensi.nama as nama_jenis','jenis_kompetensi.no')
+        ->get();
+
+       Excel::create('reportTitle', function($excel) use($kompetensis) {
+
+    $excel->sheet('reportTitle', function($sheet) use($kompetensis) {
+
+       $sheet->fromArray($kompetensis);
+                    });
+                })->download('xls');
     }
 }

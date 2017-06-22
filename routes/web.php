@@ -56,3 +56,13 @@ Route::get('ekspor/pcr/{id}', 'PcrsController@ekspor_pcr');
 
 //JCR
 Route::post('rekap-jcr', 'AljcrController@index');
+
+//EXCEL
+Route::get('importExport', 'ExcelsController@importExport');
+Route::get('downloadExcel/{type}', 'ExcelsController@downloadExcel');
+Route::post('importExcel', 'ExcelsController@importExcel');
+
+//EXCEL KOMPETENSI
+Route::get('importExport', 'KompetensisController@importExport');
+Route::get('downloadExcel/{type}', 'kompetensisController@downloadExcel');
+Route::post('importExcel', 'ExcelskompController@importExcel');
