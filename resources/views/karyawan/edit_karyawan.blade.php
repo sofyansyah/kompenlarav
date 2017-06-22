@@ -12,6 +12,7 @@
 		<div class="col-md-12">
 			<h3>Edit Karyawan</h3>
 				<br/>
+				@include('include.alert')
 				<form action="{{url('editpost/karyawan/' .$karyawan->id) }}" method="POST" class="form-horizontal">
 					{{ csrf_field()}}
 

@@ -5,60 +5,13 @@
 @endsection
 @section('content')
 <style>
-	td.buttons{
-		padding:2px !important;
-	}
-	.action li{
-		display: inline-block;
-	}
-	.action{
-		padding-left: 0;
-		margin-bottom: 0;
-	}
-	th, td{
-		text-align: center;
-	}
-	.btn{
-		margin: 5px;
-		border: none;
-	}
-	tr .buttons{
-		width: 15%;
-		text-align: center;
-	}
-	tr .names{
-		width: 20%;
-	}
-	.btn-info{
-		background-color: #60b3ea;
-	}
-	.btn-danger{
-		background-color: #d87676;
-	}
-	.btn-warning{
-		background-color: #ffbc6a;
-	}
-	.panel-footer{
-		background-color: #fff;
-		border: none;
-	}
-	div.scroll-menu{
-		overflow: auto;
-		white-space: nowrap;
-	}
-	div.scroll-menu .table td a{
-		display: inline-block;
-		color: white;
-		text-align: center;
-		padding: 14px;
-		text-decoration: none;
-	}
+
 </style>
 <div class="panel panel-default ">
 	<div class="panel-heading"><h4>Data Karyawan</h4></div>
 	<div class="panel-body scroll-menu">
 		<a href="{{url('/tambah-karyawan')}}" class="btn btn-success" style="padding: 6px 12px; margin-bottom: 20px;"><i class="fa fa-plus"></i> Tambah</a>
-
+		
 		<table id="karyawan" class="table table-striped table-bordered " cellspacing="0" width="100%">
 			<thead>
 				<tr><th>No</th>

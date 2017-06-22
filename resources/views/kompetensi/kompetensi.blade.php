@@ -67,7 +67,7 @@
 
     </div>
 </div>
-<a href="{{url('downloadExcel')}}" class="btn btn-success">Download XLS</a>
+<!-- <a href="{{url('downloadExcel')}}" class="btn btn-success">Download XLS</a> -->
 <br><br>
 @endsection
 @section('javascript')

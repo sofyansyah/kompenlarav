@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Karyawan;
-use Auth;
+
 use Validator;
 
 
@@ -45,7 +45,7 @@ class KaryawansController extends Controller
 		}
 
 		$karyawan->save();
-		return redirect ('karyawan');
+		 return redirect()->back()->with('success','Berhasil tambah');
 	}
 
 	public function edit_karyawan($id)
@@ -61,7 +61,7 @@ class KaryawansController extends Controller
 
 		$karyawan = Karyawan::where('karyawan.id', $id)->first();
 		$karyawan->update($request->all());
-		return redirect('karyawan');
+		return redirect()->back()->with('success','Berhasil tambah');
 	}
 
 	public function hapus_karyawan($id)

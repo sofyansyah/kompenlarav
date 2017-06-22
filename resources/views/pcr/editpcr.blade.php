@@ -35,6 +35,7 @@
         <div class="col-md-12">
             <h3>Edit PCR</h3>
             <br>
+            @include('include.alert')
             <div class="table-responsive">
                 <table class="table profile">
                     <tr>

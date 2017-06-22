@@ -13,6 +13,7 @@
         <div class="col-md-12">
             <h3>Tambah Data Karyawan</h3>
             <br>
+            @include('include.alert')
             <form action="{{url('post-karyawan')}}" method="POST" enctype="multipart/form-data" class="form-horizontal">
                 {{ csrf_field() }}
                 <div class="form-group">

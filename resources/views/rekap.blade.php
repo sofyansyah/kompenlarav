@@ -33,7 +33,8 @@
 @endsection
 
 @section('javascript')
-<script src="{{asset('js/getorgchart.js')}}"></script>
+<script src="{{url('www.getorgchart.com/getorgchart.js')}}"></script>
+<!-- <script src="{{asset('js/getorgchart.js')}}"></script> -->
 <script type="text/javascript">
     var peopleElement = document.getElementById("people");
     var orgChart = new getOrgChart(document.getElementById("people"), {
