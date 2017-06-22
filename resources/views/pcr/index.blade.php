@@ -41,7 +41,7 @@
                         </td>
                     </tr>
                     @empty
-                    kosong
+                    
                     @endforelse
                 </tbody>
             </table>

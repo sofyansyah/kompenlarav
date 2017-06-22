@@ -1,7 +1,7 @@
 @extends('layouts.app')
 <style>
     .navbar, .footer{
-        display: none;
+        display: none!important;
     }
     .main{
         margin-left: 0px!important;

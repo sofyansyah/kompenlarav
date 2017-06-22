@@ -115,6 +115,7 @@ class KompetensisController extends Controller
         return redirect()->back()->with('success','Berhasil tambah');
     }
 
+
     public function importExport()
     {
         return view('kompetensi');

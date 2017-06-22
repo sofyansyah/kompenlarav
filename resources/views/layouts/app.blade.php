@@ -40,7 +40,7 @@
 
 
         @yield('content')
-        <div style="bottom: 0px; padding: 20px; text-align: center; background-color: #efefef;">
+        <div class="footer" style="bottom: 0px; padding: 20px; text-align: center; background-color: #efefef;">
             Copyright by <a href="{{url('http://creative-g.com/')}}">Creative Generation Digital Agency</a>
         </div>
     </div>
