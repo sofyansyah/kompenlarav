@@ -35,7 +35,7 @@ class ExcelsController extends Controller
 					 'nid' => $value->nid,
 					 'jabatan' => $value->jabatan,
 					 'grade' => $value->grade,
-					 'jen_jabatan' => $value->jen_jabatan,
+					 'jen_jabatan' => $value->jenjang_jabatan,
 					 ];
 				}
 				if(!empty($insert)){

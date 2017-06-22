@@ -115,24 +115,5 @@ class KompetensisController extends Controller
         return redirect()->back()->with('success','Berhasil tambah');
     }
 
-    public function importExport()
-    {
-        return view('kompetensi');
-    }
-    public function downloadExcel($type)
-    {
 
-        $kompetensis = Kompetensi::join('karyawan', 'kompetensi.karyawan_id', 'karyawan.id' )
-        ->join('jenis_kompetensi', 'kompetensi.jenis_kompetensi', 'jenis_kompetensi.id' )
-        ->select('kompetensi.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.nid','jenis_kompetensi.nama as nama_jenis','jenis_kompetensi.no')
-        ->get();
-
-       Excel::create('reportTitle', function($excel) use($kompetensis) {
-
-    $excel->sheet('reportTitle', function($sheet) use($kompetensis) {
-
-       $sheet->fromArray($kompetensis);
-                    });
-                })->download('xls');
-    }
 }
