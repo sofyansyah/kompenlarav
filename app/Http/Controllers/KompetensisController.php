@@ -44,12 +44,14 @@ class KompetensisController extends Controller
         $komp->gap              = $r->gap;
         $komp->unit             = $r->unit;
         $komp->save();
+
         $cek_pcr = Pcr::where('karyawan_id',$r->karyawan)->first();
         if (count($cek_pcr) == 0) {
             $pcr = new Pcr;
             $pcr->karyawan_id = $r->karyawan;
             $pcr->save();
         }
+
         return redirect()->back()->with('success','Berhasil ditambahkan');
     }
     public function editkompetensi($id)
@@ -129,10 +131,16 @@ class KompetensisController extends Controller
                          ];
                          
                         DB::table('kompetensi')->insert($insert[$k]);
-                        return redirect()->back()->with('success','Berhasil import data');
+                        $cek_pcr[$k] = Pcr::where('karyawan_id',$v->id)->first();
+                        if (count($cek_pcr[$k]) == 0) {
+                            $pcr[$k] = new Pcr;
+                            $pcr[$k]->karyawan_id = $v->id;
+                            $pcr[$k]->save();
+                        }
                     }   
                 }
             }
+            return redirect()->back()->with('success','Berhasil import data');
         }
     }
 }
