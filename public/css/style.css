@@ -199,15 +199,3 @@
     th, td{
         text-align: center;
     }
-
-    div.scroll-menu{
-        overflow: auto;
-        white-space: nowrap;
-    }
-    div.scroll-menu .table td a{
-        display: inline-block;
-        color: white;
-        text-align: center;
-        padding: 14px;
-        text-decoration: none;
-    }
