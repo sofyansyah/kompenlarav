@@ -19,7 +19,9 @@ class KompetensisController extends Controller
         ->join('jenis_kompetensi', 'kompetensi.jenis_kompetensi', 'jenis_kompetensi.nama' )
         ->select('kompetensi.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.nid','jenis_kompetensi.nama as nama_jenis','jenis_kompetensi.no')
         ->orderBy('kompetensi.id','DESC')
-        ->get();
+        ->paginate(10);
+        // ->get();
+        // dd(count($kompetensis));
         return view ('kompetensi.kompetensi', compact('kompetensis'));
     }
     public function tambah_kompetensi()
@@ -107,31 +109,28 @@ class KompetensisController extends Controller
     }
    public function importExcel()
     {
+        // dd(phpinfo());
+        // set_time_limit(600000000);
         if(Input::hasFile('import_file')){
             $path = input::file('import_file')->getRealPath();
             $data = Excel::load($path, function($reader) {
             })->get();
             if(!empty($data) && $data->count()){
                 foreach ($data as $key => $value) {
-                    $inserts[] = [
-                    'id' => $value->no,
-                     'nid' => $value->nid,
-                     'nama' => $value->nama,
-                     'jabatan' => $value->jabatan,
-                     ];
-                     $insert[] = [
-                    'karyawan_id' => $value->no,
-                     'jenis_kompetensi'=> $value->nama_kompetensi,
-                     'standar' => $value->standar,
-                     'nilai' => $value->nilai,
-                     'gap' => $value->gap,
-                     'unit' => $value->unit,
-                     ];
-                }
-                if(!empty($insert)){
-                    DB::table('karyawan')->insert($inserts);
-                    DB::table('kompetensi')->insert($insert);
-                    return redirect()->back()->with('success','Berhasil import data');
+                    $datauser[$key] = Karyawan::where('nid',$value->nid)->get();
+                    foreach ($datauser[$key] as $k => $v) {
+                        $insert[$k] = [
+                            'karyawan_id'       => $v->id,
+                            'jenis_kompetensi'  => $value->nama_kompetensi,
+                            'standar'           => $value->standar,
+                            'nilai'             => $value->nilai,
+                            'gap'               => $value->gap,
+                            'unit'              => $value->unit,
+                         ];
+                         
+                        DB::table('kompetensi')->insert($insert[$k]);
+                        return redirect()->back()->with('success','Berhasil import data');
+                    }   
                 }
             }
         }

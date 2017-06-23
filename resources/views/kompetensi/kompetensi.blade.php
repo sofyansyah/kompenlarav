@@ -3,6 +3,7 @@
 <link href="{{asset('css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
 <style>
     .dropdown-menu{min-width: 80px!important;}
+    div.dataTables_wrapper div.dataTables_paginate{display: none;}
 </style>
 @endsection
 
@@ -56,6 +57,11 @@
                 @endforelse
             </tbody>
         </table>
+            @if(!empty($kompetensis))
+            <div class="pull-right">
+                {{$kompetensis->render()}}
+            </div>
+            @endif
     </div>
 </div>
 <div class="panel-footer">

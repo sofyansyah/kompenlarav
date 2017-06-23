@@ -12,7 +12,6 @@ class Karyawan extends Model
 	    'nid', 
 	    'jabatan', 
 	    'grade',
-	    'jen_jabatan',
-	   
+	    'jen_jabatan',	   
     ];
 }
