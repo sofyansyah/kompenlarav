@@ -47,7 +47,7 @@
                 </div>
             </div>
             <input type="hidden" value="{{ 'csrf_token' }}" name="token">
-            <input type="submit" name="submit" class="btn btn-success pull-right" value="Simpan">
+            <input type="submit" name="submit" class="btn btn-primary pull-right" value="Simpan">
         </form>
     </div>
 </div>

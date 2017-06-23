@@ -10,6 +10,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">Data Kompetensi</div>
     <div class="panel-body">
+    <a href="{{url('tambah-kompetensi')}}" class="btn btn-success"><i class="fa fa-plus "></i> Tambah</a>
         <div class="table-responsive">
             <table id="kompetensi" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
@@ -42,7 +43,7 @@
                         <td class="text-center">{{$data->unit}}</td>
                         <td class="text-center">
                             <div class="btn-group">
-                              <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+                              <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
                                 Action <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">

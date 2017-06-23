@@ -36,8 +36,8 @@
                         <td class="text-center">{{$data->nama}}</td>
                         <th class="text-center">{{$data->pcr}}%</th>
                         <td class="text-center">
-                            <a href="{{url('edit/pcr/'.$data->id)}}" class="btn btn-primary btn-sm text-center" title="Edit"><i class="fa fa-pencil"></i></a>
-                            <a href="{{url('ekspor/pcr/'.$data->id)}}" class="btn btn-warning btn-sm text-center" title="Export"><i class="fa fa-print"></i></a>
+                            <a href="{{url('edit/pcr/'.$data->id)}}" class="btn btn-warning  text-center" title="Edit"><i class="fa fa-pencil"></i></a>
+                            <a href="{{url('ekspor/pcr/'.$data->id)}}" class="btn btn-primary text-center" title="Export"><i class="fa fa-print"></i></a>
                         </td>
                     </tr>
                     @empty

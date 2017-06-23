@@ -40,7 +40,7 @@
 <div class="container">
     <div class="row" style="margin-top: 15%;">
         <div class="col-md-5 cover nopadding">
-            <h4>PT PLN Muara Kamal</h4>
+            <h4>PT PLN Muara Tawar</h4>
         </div>
 
         <div class="col-md-7 nopadding">
