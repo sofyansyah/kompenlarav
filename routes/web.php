@@ -56,7 +56,7 @@ Route::get('ekspor-pcr/', 'PcrsController@eskporpcr');
 // Route::get('pcr-lama', 'PcrsController@pcrlama');
 
 //JCR
-Route::post('rekap-jcr', 'AljcrController@index');
+Route::get('downloadView', 'RekapsController@downloadExcel');
 
 //EXCEL
 Route::get('importExport', 'ExcelsController@importExport');

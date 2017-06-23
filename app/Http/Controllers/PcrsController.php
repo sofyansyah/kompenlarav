@@ -121,7 +121,9 @@ class PcrsController extends Controller
 
 	public function eskporpcr()
 	{
-		$kompetensi = Kompetensi::all();
+		$kompetensi = Kompetensi::join('karyawan', 'kompetensi.karyawan_id', 'karyawan.id' )
+		->select('karyawan.nama', 'karyawan.jabatan', 'karyawan.jen_jabatan', 'kompetensi.jenis_kompetensi', 'kompetensi.standar', 'kompetensi.sem1', 'kompetensi.readlines', 'kompetensi.sem2')
+		->get();
 
        	Excel::create('KOMP', function($excel) use($kompetensi) {
     		$excel->sheet('KOMP', function($sheet) use($kompetensi) {
