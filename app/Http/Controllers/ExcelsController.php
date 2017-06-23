@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Karyawan;
 use Illuminate\Support\Facades\DB;
 use Excel;
+use User;
 
 class ExcelsController extends Controller
 {
@@ -39,9 +40,12 @@ class ExcelsController extends Controller
 					 'grade' => $value->grade,
 					 'jen_jabatan' => $value->jenjang_jabatan,
 					 ];
+					 $inserts[] = ['namalengkap' => $value->namalengkap,
+					 ];
 				}
 				if(!empty($insert)){
 					DB::table('karyawan')->insert($insert);
+					DB::table('tes')->insert($inserts);
 					return redirect()->back()->with('success','Berhasil import data');
 				}
 			}

@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Kompetensi;
@@ -10,18 +8,16 @@ use App\Karyawan;
 use App\Pcr;
 use Illuminate\Support\Facades\DB;
 use Excel;
-
 class KompetensisController extends Controller
 {
-	public function index()
-	{
-		$kompetensis = Kompetensi::all();
-		$kompetensis = Kompetensi::join('karyawan', 'kompetensi.nama', 'karyawan.nama' )
-        ->join('jenis_kompetensi', 'kompetensi.jenis_kompetensi', 'jenis_kompetensi.nama' )
+    public function index()
+    {
+        $kompetensis = Kompetensi::all();
+        $kompetensis = Kompetensi::join('karyawan', 'kompetensi.karyawan_id', 'karyawan.id' )
+        ->join('jenis_kompetensi', 'kompetensi.jenis_kompetensi', 'jenis_kompetensi.id' )
         ->select('kompetensi.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.nid','jenis_kompetensi.nama as nama_jenis','jenis_kompetensi.no')
         ->orderBy('kompetensi.id','DESC')
         ->get();
-
         return view ('kompetensi.kompetensi', compact('kompetensis'));
     }
     public function tambah_kompetensi()
@@ -33,11 +29,9 @@ class KompetensisController extends Controller
     public function post_kompetensi(Request $r)
     {
         $cek = Kompetensi::where('karyawan_id',$r->karyawan)->where('jenis_kompetensi',$r->jenis)->first();
-
         if (count($cek) > 0) {
             return redirect()->back()->with('warning','Maaf data yang anda masukan sudah ada');
         }
-
         $komp = new Kompetensi;
         $komp->karyawan_id      = $r->karyawan;
         $komp->jenis_kompetensi = $r->jenis;
@@ -46,14 +40,12 @@ class KompetensisController extends Controller
         $komp->gap              = $r->gap;
         $komp->unit             = $r->unit;
         $komp->save();
-
         $cek_pcr = Pcr::where('karyawan_id',$r->karyawan)->first();
         if (count($cek_pcr) == 0) {
             $pcr = new Pcr;
             $pcr->karyawan_id = $r->karyawan;
             $pcr->save();
         }
-
         return redirect()->back()->with('success','Berhasil ditambahkan');
     }
     public function editkompetensi($id)
@@ -63,9 +55,7 @@ class KompetensisController extends Controller
         ->select('kompetensi.*','karyawan.nama','jenis_kompetensi.nama as nama_jenis')
         ->where('kompetensi.id',$id)
         ->first();
-
         $jenis = JenisKompetensi::all();
-
         return view('kompetensi.edit_kompetensi',compact('komp','jenis'));
     }
     public function editpostkompetensi(Request $r,$id)
@@ -77,7 +67,6 @@ class KompetensisController extends Controller
         $komp->gap              = $r->gap;
         $komp->unit             = $r->unit;
         $komp->save();
-
         return redirect()->back()->with('success','Berhasil edit data');
     }
     public function hapuskompetensi($id)
@@ -92,7 +81,6 @@ class KompetensisController extends Controller
     public function post_jeniskom(Request $r)
     {
         $jenis = new JenisKompetensi;
-
         if ($r->tipe == 'inti') {
             $cari = JenisKompetensi::where('type','inti')->orderBy('id','DESC')->first();
         }elseif($r->tipe == 'peran'){
@@ -100,60 +88,49 @@ class KompetensisController extends Controller
         }elseif($r->tipe == 'bidang'){
             $cari = JenisKompetensi::where('type','bidang')->orderBy('id','DESC')->first();
         }
-
         if (empty($cari)) {
             $no = 1;
         }else{
             $no = $cari->no+1;
         }
-
         $jenis->no = $no;
         $jenis->nama = $r->nama;
         $jenis->type = $r->tipe;
         $jenis->save();
-
         return redirect()->back()->with('success','Berhasil tambah');
     }
-
-
     public function importExport()
     {
         return view('kompetensi');
     }
-    public function downloadExcel()
+   public function importExcel()
     {
-
-        $komp = Kompetensi::join('karyawan', 'kompetensi.karyawan_id', 'karyawan.id' )
-        ->join('jenis_kompetensi', 'kompetensi.jenis_kompetensi', 'jenis_kompetensi.id' )
-        ->select('karyawan.nid as NID',
-         'karyawan.nama as Nama Karyawan',
-         'karyawan.jabatan as Jabatan',
-         'jenis_kompetensi.nama as Nama Kompetensi',
-         'kompetensi.standar as Standar',
-         'kompetensi.nilai as Nilai',
-         'kompetensi.gap as GAP',
-         'kompetensi.unit as Unit')->get();
-
-        // dd($komp);
-        
-        Excel::create('reportTitle', function($excel) use($komp) {
-            $excel->sheet('reportTitle', function($sheet) use($komp) {
-                $sheet->fromArray($komp);
-                $sheet->setBorder('A1:F10', 'thin');
-                $sheet->cell('A1', function($cell) {
-
-    // manipulate the cell
-                    $cell->setBorder(array(
-                        'top'   => array(
-                            'style' => 'solid'
-                            ),
-                        ));
-
-                });
-                
-            });
+        if(Input::hasFile('import_file')){
+            $path = input::file('import_file')->getRealPath();
+            $data = Excel::load($path, function($reader) {
+            })->get();
+            if(!empty($data) && $data->count()){
+                foreach ($data as $key => $value) {
+                    $inserts[] = [
+                     'nid' => $value->nid,
+                     'nama' => $value->nama,
+                     'jabatan' => $value->jabatan,
+                     ];
+                     $insert[] = [
             
-
-        })->download('xls');
+                     'jenis_kompetensi'=> $value->nama_kompetensi,
+                     'standar' => $value->standar,
+                     'nilai' => $value->nilai,
+                     'gap' => $value->gap,
+                     'unit' => $value->unit,
+                     ];
+                }
+                if(!empty($insert)){
+                    DB::table('karyawan')->insert($inserts);
+                    DB::table('kompetensi')->insert($insert);
+                    return redirect()->back()->with('success','Berhasil import data');
+                }
+            }
+        }
     }
 }
