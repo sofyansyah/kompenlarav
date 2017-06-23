@@ -10,11 +10,13 @@ use Illuminate\Support\Facades\DB;
 use Excel;
 class KompetensisController extends Controller
 {
-    public function index()
-    {
-        $kompetensis = Kompetensi::all();
-        $kompetensis = Kompetensi::join('karyawan', 'kompetensi.karyawan_id', 'karyawan.id' )
-        ->join('jenis_kompetensi', 'kompetensi.jenis_kompetensi', 'jenis_kompetensi.id' )
+
+
+	public function index()
+	{
+		$kompetensis = Kompetensi::all();
+		$kompetensis = Kompetensi::join('karyawan', 'kompetensi.karyawan_id', 'karyawan.id' )
+        ->join('jenis_kompetensi', 'kompetensi.jenis_kompetensi', 'jenis_kompetensi.nama' )
         ->select('kompetensi.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.nid','jenis_kompetensi.nama as nama_jenis','jenis_kompetensi.no')
         ->orderBy('kompetensi.id','DESC')
         ->get();
@@ -112,12 +114,13 @@ class KompetensisController extends Controller
             if(!empty($data) && $data->count()){
                 foreach ($data as $key => $value) {
                     $inserts[] = [
+                    'id' => $value->no,
                      'nid' => $value->nid,
                      'nama' => $value->nama,
                      'jabatan' => $value->jabatan,
                      ];
                      $insert[] = [
-            
+                    'karyawan_id' => $value->no,
                      'jenis_kompetensi'=> $value->nama_kompetensi,
                      'standar' => $value->standar,
                      'nilai' => $value->nilai,
