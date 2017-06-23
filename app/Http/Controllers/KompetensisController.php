@@ -16,7 +16,7 @@ class KompetensisController extends Controller
 	public function index()
 	{
 		$kompetensis = Kompetensi::all();
-		$kompetensis = Kompetensi::join('karyawan', 'kompetensi.nama', 'karyawan.nama' )
+		$kompetensis = Kompetensi::join('karyawan', 'kompetensi.karyawan_id', 'karyawan.id' )
         ->join('jenis_kompetensi', 'kompetensi.jenis_kompetensi', 'jenis_kompetensi.nama' )
         ->select('kompetensi.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.nid','jenis_kompetensi.nama as nama_jenis','jenis_kompetensi.no')
         ->orderBy('kompetensi.id','DESC')
