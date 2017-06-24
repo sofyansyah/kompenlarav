@@ -330,9 +330,7 @@ ul a span{
 
 
 @section('content')
-
-
-<div class="content" style=" margin-bottom: 5%">
+<div class="content" id="printChart" style=" margin-bottom: 5%">
   <figure class="org-chart cf">
     <ul class="administration">
       <li>                  
