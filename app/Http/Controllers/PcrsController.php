@@ -121,7 +121,7 @@ class PcrsController extends Controller
 
 	public function eskporpcr()
 	{
-		$kompetensi = Kompetensi::join('karyawan', 'kompetensi.karyawan_id', 'karyawan.id' )
+		$kompetensi = Kompetensi::join('karyawan', 'kompetensi.karyawan_id', 'karyawan.nama' )
 		->select('karyawan.nama', 'karyawan.jabatan', 'karyawan.jen_jabatan', 'kompetensi.jenis_kompetensi', 'kompetensi.standar', 'kompetensi.sem1', 'kompetensi.readlines', 'kompetensi.sem2')
 		->get();
 
