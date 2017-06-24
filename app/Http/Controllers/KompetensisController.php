@@ -16,7 +16,7 @@ class KompetensisController extends Controller
 	{
 		$kompetensis = Kompetensi::all();
 		$kompetensis = Kompetensi::join('karyawan', 'kompetensi.karyawan_id', 'karyawan.id' )
-        ->join('jenis_kompetensi', 'kompetensi.jenis_kompetensi', 'jenis_kompetensi.nama' )
+        ->join('jenis_kompetensi', 'kompetensi.jenis_kompetensi', 'jenis_kompetensi.id' )
         ->select('kompetensi.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.nid','jenis_kompetensi.nama as nama_jenis','jenis_kompetensi.no')
         ->orderBy('kompetensi.id','DESC')
         ->paginate(10);
@@ -119,16 +119,21 @@ class KompetensisController extends Controller
             })->get();
             if(!empty($data) && $data->count()){
                 foreach ($data as $key => $value) {
-                    $datauser[$key] = Karyawan::where('nid',$value->nid)->get();
+                    
+                    $datauser[$key]     = Karyawan::where('nid',$value->nid)->get();
+                    $datajenkom[$key]   = JenisKompetensi::where('nama',$value->nama_kompetensi)->get();
+
                     foreach ($datauser[$key] as $k => $v) {
-                        $insert[$k] = [
-                            'karyawan_id'       => $v->id,
-                            'jenis_kompetensi'  => $value->nama_kompetensi,
-                            'standar'           => $value->standar,
-                            'nilai'             => $value->nilai,
-                            'gap'               => $value->gap,
-                            'unit'              => $value->unit,
-                         ];
+                        foreach ($datajenkom[$key] as $a => $b) {
+                            $insert[$k] = [
+                                'karyawan_id'       => $v->id,
+                                'jenis_kompetensi'  => $b->id,
+                                'standar'           => $value->standar,
+                                'nilai'             => $value->nilai,
+                                'gap'               => $value->gap,
+                                'unit'              => $value->unit,
+                             ];
+                        }
                          
                         DB::table('kompetensi')->insert($insert[$k]);
                         $cek_pcr[$k] = Pcr::where('karyawan_id',$v->id)->first();
