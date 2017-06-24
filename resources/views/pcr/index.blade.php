@@ -14,20 +14,17 @@
     <div class="panel-body">
         <div class="table-responsive">
             <div class="pull-left">
-               <form class="form-inline">
+               <form action="{{url('ekspor-range')}}" method="POST" class="form-inline">
+               {{csrf_field()}}
                   <div class="input-group input-daterange">
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="dari">
                     <div class="input-group-addon">to</div>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="sampai">
                 </div>
                   <button type="submit" class="btn btn-primary"><b>Eksport PCR</b></button>
                 </form>
             </div>
-            <br><br>
-            <div class="pull-right">
-                <a href="{{url('ekspor-pcr')}}" class="btn btn-info"><b><i class="fa fa-file-excel-o"></i> Eksport PCR</b></a>
-            </div>
-            <br><br>
+            <br><br><br>
             <table id="kompetensi" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                     <tr>

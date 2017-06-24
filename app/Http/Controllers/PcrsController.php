@@ -167,4 +167,14 @@ class PcrsController extends Controller
         	});
         })->download('xls');
 	}
+	public function eskporange(Request $r)
+	{
+		$pcr = Pcr::join('karyawan', 'pcr.karyawan_id', 'karyawan.id' )
+		->select('pcr.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.jen_jabatan','karyawan.nid')
+		->where('pcr.pcr','>','0')
+		->whereBetween('pcr.created_at', [date('Y-m-d H:i:s',strtotime($r->dari)), date('Y-m-d H:i:s',strtotime($r->sampai))])
+		->get();
+
+		return view ('pcr.eksporange',compact('pcr'));
+	}
 }
