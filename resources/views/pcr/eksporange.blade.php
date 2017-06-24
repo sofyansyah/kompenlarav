@@ -54,7 +54,7 @@
 
         @endphp
 
-            <table class="table table-bordered pcr_karyawan" style="border: none;">
+            <table class="table table-bordered " id="pcr_karyawan" style="border: none;">
                 <tr style="border: none;">
                     <td class="judul">Sebutan Jabatan : </td>
                     <!--  <td class="titik">:</td> -->
@@ -94,23 +94,15 @@
                     <td></td>
                     <td></td>
                     <td rowspan="{{count($inti)+1}}" style="padding: 60px 0px;" class="text-center">{{$inti->sum('readlines')/count($inti)}}%</td>
-                    <td></td>
+                    <td class="text-center"></td>
                 </tr>
 
                 @foreach($inti as $data_inti)
                     <tr>
-                        <td>{{$data_inti->nama}}</td>
+                        <td class="text-left">{{$data_inti->nama}}</td>
                         <td class="text-center">{{$data_inti->standar}}</td>
-                        <td class="text-center">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="sem1[]" value="@if(count($data_inti->sem1) > 0) {{$data_inti->sem1}} @endif">
-                            </div>
-                        </td>
-                        <td class="text-center">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="sem2[]" value="@if(count($data_inti->sem2) > 0) {{$data_inti->sem2}} @endif">
-                            </div>
-                        </td>
+                        <td class="text-center" name="sem1[]">@if(count($data_inti->sem1) > 0) {{$data_inti->sem1}} @endif</td>
+                        <td class="text-center" name="sem2[]">@if(count($data_inti->sem2) > 0) {{$data_inti->sem2}} @endif</td>
                     </tr>
                     <input type="hidden" name="idinti[]" value="{{$data_inti->id}}">
                 @endforeach
@@ -121,22 +113,14 @@
                     <td></td>
                     <td></td>
                     <td rowspan="{{count($peran)+1}}" style="padding: 60px 0px;" class="text-center">{{$peran->sum('readlines')/count($peran)}}%</td>
-                    <td></td>
+                    <td class="text-center"></td>
                 </tr>
                 @foreach($peran as $data_peran)
                     <tr>
-                        <td>{{$data_peran->nama}}</td>
+                        <td class="text-left">{{$data_peran->nama}}</td>
                         <td class="text-center">{{$data_peran->standar}}</td>
-                        <td class="text-center">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="sem1[]" value="@if(count($data_inti->sem1) > 0) {{$data_inti->sem1}} @endif">
-                            </div>
-                        </td>
-                        <td class="text-center">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="sem2[]" value="@if(count($data_inti->sem2) > 0) {{$data_inti->sem2}} @endif">
-                            </div>
-                        </td>
+                        <td class="text-center" name="sem1[]">@if(count($data_inti->sem1) > 0) {{$data_inti->sem1}} @endif</td>
+                        <td class="text-center" name="sem2[]">@if(count($data_inti->sem2) > 0) {{$data_inti->sem2}} @endif</td>
                     </tr>
                     <input type="hidden" name="idperan[]" value="{{$data_peran->id}}">
                 @endforeach
@@ -147,22 +131,14 @@
                     <td></td>
                     <td></td>
                     <td rowspan="{{count($bidang)+1}}" style="padding: 60px 0px;" class="text-center">{{$bidang->sum('readlines')/count($bidang)}}%</td>
-                    <td></td>
+                    <td class="text-center"></td>
                 </tr>
                 @foreach($bidang as $data_bidang)
                     <tr>
-                        <td>{{$data_bidang->nama}}</td>
+                        <td class="text-left">{{$data_bidang->nama}}</td>
                         <td class="text-center">{{$data_bidang->standar}}</td>
-                        <td class="text-center">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="sem1[]" value="@if(count($data_inti->sem1) > 0) {{$data_inti->sem1}} @endif">
-                            </div>
-                        </td>
-                        <td class="text-center">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="sem2[]" value="@if(count($data_inti->sem2) > 0) {{$data_inti->sem2}} @endif">
-                            </div>
-                        </td>
+                        <td class="text-center" name="sem1[]">@if(count($data_inti->sem1) > 0) {{$data_inti->sem1}} @endif</td>
+                        <td class="text-center" name="sem2[]">@if(count($data_inti->sem2) > 0) {{$data_inti->sem2}} @endif</td>
                     </tr>
                     <input type="hidden" name="idbidang[]" value="{{$data_bidang->id}}">
                 @endforeach
@@ -192,13 +168,13 @@
 @section('javascript')
 <script>
     $(document).ready(function() {
-        $('.pcr_karyawan').DataTable();
+        $('#pcr_karyawan').DataTable();
     } );
     $(function () 
     {
-        var table = $('.pcr_karyawan').dataTable();
-        var table_html = $('.pcr_karyawan')[0].outerHTML;
-        var css_html = '<style>.export, .text-center {border: 1pt solid #333} </style>';
+        var table = $('#pcr_karyawan').dataTable();
+        var table_html = $('#pcr_karyawan')[0].outerHTML;
+        var css_html = '<style>.export, .text-center, .text-left {border: 1pt solid #333} </style>';
         $("#btnExport").click(function(e) 
         {
             e.preventDefault();
