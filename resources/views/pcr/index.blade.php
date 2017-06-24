@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('css_styles')
 <link href="{{asset('css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker.css">
 <style>
     .dropdown-menu{min-width: 80px!important;}
 </style>
@@ -12,6 +13,17 @@
     <div class="panel-heading"><h3>Data PCR</h3></div>
     <div class="panel-body">
         <div class="table-responsive">
+            <div class="pull-left">
+               <form class="form-inline">
+                  <div class="input-group input-daterange">
+                    <input type="text" class="form-control">
+                    <div class="input-group-addon">to</div>
+                    <input type="text" class="form-control">
+                </div>
+                  <button type="submit" class="btn btn-primary"><b>Eksport PCR</b></button>
+                </form>
+            </div>
+            <br><br>
             <div class="pull-right">
                 <a href="{{url('ekspor-pcr')}}" class="btn btn-info"><b><i class="fa fa-file-excel-o"></i> Eksport PCR</b></a>
             </div>
@@ -51,13 +63,18 @@
 
 @endsection
 @section('javascript')
-<script>
-    $(document).ready(function() {
-        $('#kompetensi').DataTable();
-    } );
-    $('.dropdown-toggle').dropdown();
-</script>
-
 <script src="{{asset('js/jquery-1.12.4.js')}}"></script>
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/js/bootstrap-datepicker.js"></script>
+<script>
+    $(document).ready(function() {
+
+        $('#kompetensi').DataTable();
+        $('.input-daterange input').each(function() {
+            $(this).datepicker('clearDates');
+        });
+    });
+
+    $('.dropdown-toggle').dropdown();
+</script>
 @endsection

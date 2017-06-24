@@ -55,137 +55,120 @@
                     <!-- <td class="titik">:</td> -->
                     <td class="detail">{{$pcr->nama}}</td>
                 </tr>
+                <tr>
+                    <th style="border-top:1px solid #fff; border-left:1px solid #fff; border-right:1px solid #fff; "></th>
+                    <th style="border-top:1px solid #fff; border-left:1px solid #fff; "></th>
+                    <th colspan="2" class="text-center">Leveliness</th>
+                    <th style="border-top:1px solid #fff; border-left:1px solid #fff; border-right:1px solid #fff; "></th>
+                    <th style="border-top:1px solid #fff; border-left:1px solid #fff; border-right:1px solid #fff; "></th>
+                </tr>
+                <tr>
+                    <th class="text-center">Jenis Kompetensi</th>
+                    <th class="text-center">Item Kompetensi</th>
+                    <th class="text-center">Standar</th>
+                    <th class="text-center">Sem 1</th>
+                    <th class="text-center">Readliness</th>
+                    <th class="text-center">Sem 2</th>
+                </tr>
 
-                <div class="table-responsive">
+                
 
-                    <form action="{{url('editpost/pcr/'.$pcr->id)}}" method="POST">
-                        {{csrf_field()}}
+                <tr class="bor">
+                    <td rowspan="{{count($inti)+1}}" style="padding: 60px 0px;" class="text-center"><b>Kompetensi Inti</b></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td rowspan="{{count($inti)+1}}" style="padding: 60px 0px;" class="text-center">{{$inti->sum('readlines')/count($inti)}}%</td>
+                    <td></td>
+                </tr>
 
-                        <tr>
-                            <th class="export" style="border-top:1px solid #fff; border-left:1px solid #fff; border-right:1px solid #fff;"></th>
-                            <th class="export" style="border-top:1px solid #fff; border-left:1px solid #fff; "></th>
-                            <th class="export" colspan="2" class="text-center">Leveliness</th>
-                            <th class="export" style="border-top:1px solid #fff; border-left:1px solid #fff; border-right:1px solid #fff; "></th>
-                            <th class="export" style="border-top:1px solid #fff; border-left:1px solid #fff; border-right:1px solid #fff; "></th>
-                        </tr>
-                        <tr>
-                            <th class="text-center" style="width: 10%">Jenis Kompetensi</th>
-                            <th class="text-center" style="width: 10%">Item Kompetensi</th>
-                            <th class="text-center" style="width: 5%">Standar</th>
-                            <th class="text-center" style="width: 5%">Sem 1</th>
-                            <th class="text-center" style="width: 5%">Readliness</th>
-                            <th class="text-center" style="width: 5%">Sem 2</th>
-                        </tr>
-                        @foreach($komp as $k => $data)
-                        <input type="hidden" name="idkomp[]" value="{{$data->id}}">
+                @foreach($inti as $data_inti)
+                    <tr>
+                        <td>{{$data_inti->nama}}</td>
+                        <td class="text-center">{{$data_inti->standar}}</td>
+                        <td class="text-center">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="sem1[]" value="@if(count($data_inti->sem1) > 0) {{$data_inti->sem1}} @endif">
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="sem2[]" value="@if(count($data_inti->sem2) > 0) {{$data_inti->sem2}} @endif">
+                            </div>
+                        </td>
+                    </tr>
+                    <input type="hidden" name="idinti[]" value="{{$data_inti->id}}">
+                @endforeach
 
-                        <!-- KOMPETENSI INTI -->
-                        @if($data->type == 'inti')
-                        @if($inti[0]->no == $data->no)
-                        <tr>
-                            <td rowspan="{{count($inti)}}" style="padding: 60px 0px;" class="text-center"><b>Kompetensi {{title_case($data->type)}}</b></td>
-                            <td><b>{{$data->no}}</b> &nbsp;{{$data->nama}}</td>
-                            <td class="text-center">{{$data->standar}}</td>
-                            <td class="text-center" name="sem1[]">@if(!empty($data->sem1)) {{$data->sem1}} @endif
-                            </td>
-                            <td rowspan="{{count($inti)}}" style="padding: 60px 0px;" class="text-center">
-                                {{round($inti->sum('readlines')/count($inti))}}%
-                            </td>
-                            <td class="text-center" name="sem2[]">@if(!empty($data->sem2)) {{$data->sem2}} @endif
-                            </td>
-                        </tr>
-                        @elseif($data->no > 1)
-                        <tr>
-                            <td><b>{{$data->no}}</b> &nbsp;{{$data->nama}}</td>
-                            <td class="text-center">{{$data->standar}}</td>
-                            <td class="text-center" name="sem1[]">@if(!empty($data->sem1)) {{$data->sem1}} @endif
-                            </td>
-                            <td class="text-center" name="sem2[]">@if(!empty($data->sem2)) {{$data->sem2}} @endif
+                <tr>
+                    <td rowspan="{{count($peran)+1}}" style="padding: 60px 0px;" class="text-center"><b>Kompetensi Peran</b></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td rowspan="{{count($peran)+1}}" style="padding: 60px 0px;" class="text-center">{{$peran->sum('readlines')/count($peran)}}%</td>
+                    <td></td>
+                </tr>
+                @foreach($peran as $data_peran)
+                    <tr>
+                        <td>{{$data_peran->nama}}</td>
+                        <td class="text-center">{{$data_peran->standar}}</td>
+                        <td class="text-center">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="sem1[]" value="@if(count($data_inti->sem1) > 0) {{$data_inti->sem1}} @endif">
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="sem2[]" value="@if(count($data_inti->sem2) > 0) {{$data_inti->sem2}} @endif">
+                            </div>
+                        </td>
+                    </tr>
+                    <input type="hidden" name="idperan[]" value="{{$data_peran->id}}">
+                @endforeach
 
-                            </td>
-                        </tr>
-                        @endif
-                        @endif
-                        <!-- TUTUP KOMPETENSI INTI -->
+                 <tr>
+                    <td rowspan="{{count($bidang)+1}}" style="padding: 60px 0px;" class="text-center"><b>Kompetensi Bidang</b></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td rowspan="{{count($bidang)+1}}" style="padding: 60px 0px;" class="text-center">{{$bidang->sum('readlines')/count($bidang)}}%</td>
+                    <td></td>
+                </tr>
+                @foreach($bidang as $data_bidang)
+                    <tr>
+                        <td>{{$data_bidang->nama}}</td>
+                        <td class="text-center">{{$data_bidang->standar}}</td>
+                        <td class="text-center">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="sem1[]" value="@if(count($data_inti->sem1) > 0) {{$data_inti->sem1}} @endif">
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="sem2[]" value="@if(count($data_inti->sem2) > 0) {{$data_inti->sem2}} @endif">
+                            </div>
+                        </td>
+                    </tr>
+                    <input type="hidden" name="idbidang[]" value="{{$data_bidang->id}}">
+                @endforeach
 
-                        <!-- KOMPETENSI PERAN -->
-                        @if($data->type == 'peran')
-                        @if($peran[0]->no == $data->no)
-                        <tr>
-                            <td rowspan="{{count($peran)}}" style="padding: 60px 0px;" class="text-center"><b>Kompetensi {{title_case($data->type)}}</b></td>
-                            <td><b>{{$data->no}}</b> &nbsp;{{$data->nama}}</td>
-                            <td class="text-center">{{$data->standar}}</td>
-                            <td class="text-center" name="sem1[]">@if(!empty($data->sem1)) {{$data->sem1}} @endif
-                            </td>
-                            <td rowspan="{{count($peran)}}" style="padding: 60px 0px;" class="text-center">
-                                {{$peran->sum('readlines')/count($peran)}}%
-                            </td>
-                            <td class="text-center" name="sem2[]">@if(!empty($data->sem2)) {{$data->sem2}} @endif
-                            </td>
-                        </tr>
-                        @elseif($data->no > 1)
-                        <tr>
-                            <td><b>{{$data->no}}</b> &nbsp;{{$data->nama}}</td>
-                            <td class="text-center">{{$data->standar}}</td>
-                            <td class="text-center" name="sem1[]">@if(!empty($data->sem1)) {{$data->sem1}} @endif
-                            </td>
-                            <td class="text-center" name="sem2[]">@if(!empty($data->sem2)) {{$data->sem2}} @endif
-                            </td>
-                        </tr>
-                        @endif
-                        @endif
-                        <!-- TUTUP KOMPETENSI PERAN -->
-
-                        <!-- KOMPETENSI BIDANG -->
-                        @if($data->type == 'bidang')
-                        @if($bidang[0]->no == $data->no)
-                        <tr>
-                            <td rowspan="{{count($bidang)}}" style="padding: 60px 0px;" class="text-center"><b>Kompetensi {{title_case($data->type)}}</b></td>
-                            <td><b>{{$data->no}}</b> &nbsp;{{$data->nama}}</td>
-                            <td class="text-center">{{$data->standar}}</td>
-                            <td class="text-center" name="sem1[]">@if(!empty($data->sem1)) {{$data->sem1}} @endif
-                            </td>
-                            <td rowspan="{{count($bidang)}}" style="padding: 60px 0px;" class="text-center">
-                                {{$bidang->sum('readlines')/count($bidang)}}%
-                            </td>
-                            <td class="text-center" name="sem2[]">@if(!empty($data->sem2)) {{$data->sem2}} @endif
-                            </td>
-                        </tr>
-                        @elseif($data->no > 1)
-                        <tr>
-                            <td><b>{{$data->no}}</b> &nbsp;{{$data->nama}}</td>
-                            <td class="text-center">{{$data->standar}}</td>
-                            <td class="text-center" name="sem1[]">@if(!empty($data->sem1)) {{$data->sem1}} @endif
-                            </td>
-                            <td class="text-center" name="sem2[]">@if(!empty($data->sem2)) {{$data->sem2}} @endif
-                            </td>
-                        </tr>
-                        @endif
-                        @endif
-                        <!-- TUTUP KOMPETENSI BIDANG -->
-
-                        @endforeach
-
-                        <tr>
-                            <td style="border:1px solid #fff;"></td>
-                            <td style="border:1px solid #fff;"></td>
-                            <td style="border:1px solid #fff;"></td>
-                            <td style="border-left:1px solid #fff; border-top:1px solid #fff; border-bottom:1px solid #fff;"></td>
-                            <td class="text-center">{{$pcr->pcr}}%</td>
-                            <td style="border:1px solid #fff;"></td>
-                        </tr>
-                        <tr>
-                            <td style="border:1px solid #fff;"></td>
-                            <td style="border:1px solid #fff;"></td>
-                            <td style="border:1px solid #fff;"></td>
-                            <td style="border:1px solid #fff;"></td>
-                            <td style="border:1px solid #fff;"></td>
-
-                        </tr>
-                    </form>
-                </div>
+                <tr>
+                    <td style="border:1px solid #fff;"></td>
+                    <td style="border:1px solid #fff;"></td>
+                    <td style="border:1px solid #fff;"></td>
+                    <td style="border-left:1px solid #fff; border-top:1px solid #fff; border-bottom:1px solid #fff;"></td>
+                    <td class="text-center">{{$pcr->pcr}}%</td>
+                    <td style="border:1px solid #fff;"></td>
+                </tr>
+                <tr>
+                    <td style="border:1px solid #fff;"></td>
+                    <td style="border:1px solid #fff;"></td>
+                    <td style="border:1px solid #fff;"></td>
+                    <td style="border:1px solid #fff;"></td>
+                    <td style="border:1px solid #fff;"></td>
+                </tr>
             </table>
-            <button id="btnExport" class="btn btn-primary" style="float: right;">Eksport</button>
+        <button id="btnExport" class="btn btn-primary" style="float: right;">Eksport</button>
         </div>
     </div>
 </div>
