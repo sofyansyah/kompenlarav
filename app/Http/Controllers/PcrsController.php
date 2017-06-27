@@ -84,42 +84,49 @@ class PcrsController extends Controller
 			$nilai_peran = 0;
 		}
 
-		//SAVE PCR
-		$pcr->pcr = ($nilai_inti+$nilai_peran+$nilai_bid)/($count_peran+$count_inti+$count_bid);
-		$pcr->save();
-
 		//INTI
-		foreach ($r->idinti as $i => $inti) {
-			$cek_inti[$i] = Kompetensi::where('id',$inti)->get();
-			foreach ($cek_inti[$i] as $k => $v) {
-				$v->sem1 		= $r->sem1[$i];
-				$v->sem2 		= $r->sem2[$i];
-				$v->readlines 	= round(($r->sem1[$i]/$v->standar)*100);
-				$v->save();
+		if (count($r->idinti) > 0) {
+			foreach ($r->idinti as $i => $inti) {
+				$cek_inti[$i] = Kompetensi::where('id',$inti)->get();
+				foreach ($cek_inti[$i] as $k => $v) {
+					$v->sem1 		= $r->sem1[$i];
+					$v->sem2 		= $r->sem2[$i];
+					$v->readlines 	= round(($r->sem1[$i]/$v->standar)*100);
+					$v->save();
+				}
 			}
 		}
 
 		//PERAN
-		foreach ($r->idperan as $p => $peran) {
-			$cek_peran[$p] = Kompetensi::where('id',$peran)->get();
-			foreach ($cek_peran[$p] as $a => $b) {
-				$b->sem1 		= $r->sem1[$p];
-				$b->sem2 		= $r->sem2[$p];
-				$b->readlines 	= round(($r->sem1[$p]/$b->standar)*100);
-				$b->save();
+		if (count($r->idperan) > 0) {
+			foreach ($r->idperan as $p => $peran) {
+				$cek_peran[$p] = Kompetensi::where('id',$peran)->get();
+				foreach ($cek_peran[$p] as $a => $b) {
+					$b->sem1 		= $r->sem1[$p];
+					$b->sem2 		= $r->sem2[$p];
+					$b->readlines 	= round(($r->sem1[$p]/$b->standar)*100);
+					$b->save();
+				}
 			}
 		}
 
 		//BIDANG
-		foreach ($r->idbidang as $bid => $bidang) {
-			$cek_bidang[$bid] = Kompetensi::where('id',$bidang)->get();
-			foreach ($cek_bidang[$bid] as $c => $d) {
-				$d->sem1 		= $r->sem1[$bid];
-				$d->sem2 		= $r->sem2[$bid];
-				$d->readlines 	= round(($r->sem1[$bid]/$d->standar)*100);
-				$d->save();
+		if (count($r->idbidang) > 0) {
+			foreach ($r->idbidang as $bid => $bidang) {
+				$cek_bidang[$bid] = Kompetensi::where('id',$bidang)->get();
+				foreach ($cek_bidang[$bid] as $c => $d) {
+					$d->sem1 		= $r->sem1[$bid];
+					$d->sem2 		= $r->sem2[$bid];
+					$d->readlines 	= round(($r->sem1[$bid]/$d->standar)*100);
+					$d->save();
+				}
 			}
 		}
+
+		//SAVE PCR
+		$pcr->pcr = ($nilai_inti+$nilai_peran+$nilai_bid)/($count_peran+$count_inti+$count_bid);
+		$pcr->save();
+
 		return redirect()->back()->with('success','Berhasil edit data');
 
 	}
@@ -172,7 +179,7 @@ class PcrsController extends Controller
 		$pcr = Pcr::join('karyawan', 'pcr.karyawan_id', 'karyawan.id' )
 		->select('pcr.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.jen_jabatan','karyawan.nid')
 		->where('pcr.pcr','>','0')
-		->whereBetween('pcr.created_at', [date('Y-m-d H:i:s',strtotime($r->dari)), date('Y-m-d H:i:s',strtotime($r->sampai))])
+		->whereBetween('pcr.updated_at', [date('Y-m-d',strtotime($r->dari)), date('Y-m-d',strtotime($r->sampai))])
 		->get();
 
 		return view ('pcr.eksporange',compact('pcr'));

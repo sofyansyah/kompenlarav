@@ -12,7 +12,7 @@
 @endsection
 @section('content')
 <div class="panel panel-default">
-    <div class="panel-body">
+    <div class="panel-body" style="overflow: hidden;">
         <div class="col-md-12">
             <h3>Edit Kompetensi</h3>
             <br>
@@ -44,19 +44,19 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Standar</label>
                     <div class="col-sm-8">
-                        <input type="number" min="0" name="standar" value="{{$komp->standar}}" class="form-control">
+                        <input type="number" name="standar" value="{{$komp->standar}}" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Nilai</label>
                     <div class="col-sm-8">
-                        <input type="number" min="0" name="nilai" value="{{$komp->nilai}}" class="form-control">
+                        <input type="number" name="nilai" value="{{$komp->nilai}}" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-4 control-label">GAP</label>
                     <div class="col-sm-8">
-                        <input type="number" min="0" name="gap" value="{{$komp->gap}}" class="form-control">
+                        <input type="number" name="gap" value="{{$komp->gap}}" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
