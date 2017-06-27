@@ -157,8 +157,8 @@ class PcrsController extends Controller
 
 	public function eskporpcr()
 	{
-		$kompetensi = Kompetensi::join('karyawan', 'kompetensi.karyawan_id', 'karyawan.nama' )
-		->select('karyawan.nama', 'karyawan.jabatan', 'karyawan.jen_jabatan', 'kompetensi.jenis_kompetensi', 'kompetensi.standar', 'kompetensi.sem1', 'kompetensi.readlines', 'kompetensi.sem2')
+		$kompetensi = Pcr::join('karyawan', 'pcr.karyawan_id', 'karyawan.id' )
+		->select('pcr.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.jen_jabatan','karyawan.nid')
 		->get();
 
        	Excel::create('KOMP', function($excel) use($kompetensi) {
