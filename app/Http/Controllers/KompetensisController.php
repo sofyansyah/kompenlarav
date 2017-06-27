@@ -61,18 +61,20 @@ class KompetensisController extends Controller
         ->select('kompetensi.*','karyawan.nama','jenis_kompetensi.nama as nama_jenis')
         ->where('kompetensi.id',$id)
         ->first();
+
         $jenis = JenisKompetensi::all();
+
         return view('kompetensi.edit_kompetensi',compact('komp','jenis'));
     }
     public function editpostkompetensi(Request $r,$id)
     {
         $komp = Kompetensi::findOrFail($id);
-        $komp->jenis_kompetensi = $r->jenis;
         $komp->standar          = $r->standar;
         $komp->nilai            = $r->nilai;
         $komp->gap              = $r->gap;
         $komp->unit             = $r->unit;
         $komp->save();
+
         return redirect()->back()->with('success','Berhasil edit data');
     }
     public function hapuskompetensi($id)
