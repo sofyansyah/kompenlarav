@@ -77,7 +77,7 @@
                         </tr>
 
                         
-
+                        @if(count($inti) > 0)
                         <tr class="bor">
                             <td rowspan="{{count($inti)+1}}" style="padding: 60px 0px;" class="text-center"><b>Kompetensi Inti</b></td>
                             <td></td>
@@ -104,7 +104,9 @@
                             </tr>
                             <input type="hidden" name="idinti[]" value="{{$data_inti->id}}">
                         @endforeach
+                        @endif
 
+                        @if(count($peran) > 0)
                         <tr>
                             <td rowspan="{{count($peran)+1}}" style="padding: 60px 0px;" class="text-center"><b>Kompetensi Peran</b></td>
                             <td></td>
@@ -130,7 +132,9 @@
                             </tr>
                             <input type="hidden" name="idperan[]" value="{{$data_peran->id}}">
                         @endforeach
-
+                        @endif
+                        
+                        @if(count($bidang) > 0)
                          <tr>
                             <td rowspan="{{count($bidang)+1}}" style="padding: 60px 0px;" class="text-center"><b>Kompetensi Bidang</b></td>
                             <td></td>
@@ -156,6 +160,7 @@
                             </tr>
                             <input type="hidden" name="idbidang[]" value="{{$data_bidang->id}}">
                         @endforeach
+                        @endif
 
                         <tr>
                             <td style="border:1px solid #fff;"></td>
