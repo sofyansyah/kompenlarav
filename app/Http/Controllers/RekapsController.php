@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Excel;
+use App\Rekap;
+use App\Karyawan;
+use App\Pcr;
 
 class RekapsController extends Controller
 {
@@ -20,5 +23,193 @@ class RekapsController extends Controller
 			});
 
 		})->download();
+	}
+	public function index(){
+
+
+		$gen_manager = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'GENERAL MANAGER')
+		->first();
+
+
+		$man_pemeliharaan = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'MANAJER PEMELIHARAAN')
+		->first();
+
+
+		$man_enjiniring = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'MANAJER ENJINIRING & QUALITY ASSURANCE (PjS)')
+		->first();
+
+		$spv_ownerpltgu = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR SYSTEM OWNER PLTGU')
+		->first();
+
+		$spv_ownercng = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR SYSTEM OWNER COMMON CNG')
+		->first();
+
+		$spv_technoowner = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR TECHNOLOGY OWNER')
+		->first();
+
+
+		$spv_muturisiko = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR MANAJEMEN MUTU, RISIKO & KEPATUHAN')
+		->first();
+
+		$man_operasi = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'MANAJER OPERASI')
+		->first();
+
+		$spv_rendal12 = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR NIAGA & RENDAL OPERASI BLOK 1.2')
+		->first();
+
+		$spv_rendal345 = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR RENDAL OPERASI BLOK 3.4.5')
+		->first();
+
+		$spv_produksiabcde = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SPV Senior Produksi (A,B,C,D,E)')
+		->first();
+
+		$spv_rendalpemeliharaan = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR RENDAL PEMELIHARAAN')
+		->first();
+
+		$spv_mesin12 = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR  PEMELIHARAAN MESIN BLOK 1.2 (Pjs)')
+		->first();
+
+		$spv_listrik12 = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR PEMELIHARAAN LISTRIK BLOK 1.2')
+		->first();
+
+		$spv_kontrol12 = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR PEMELIHARAAN KONTROL & INSTRUMEN BLOK 1.2')
+		->first();
+
+		$spv_outage = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR OUTAGE MANAGEMENT')
+		->first();
+
+		$spv_k3 = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR K3')
+		->first();
+
+		$spv_lingkungan = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR LINGKUNGAN')
+		->first();
+
+		$spv_sarana = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR SARANA')
+		->first();
+		$man_keuangan = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'MANAJER KEUANGAN & ADMINISTRASI')
+		->first();
+
+		$spv_sdm = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR SDM (Pjs)')
+		->first();
+
+		$spv_umum = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR UMUM & CSR')
+		->first();
+
+		$spv_keuangan = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR KEUANGAN')
+		->first();
+
+		$man_logistik = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'MANAJER LOGISTIK')
+		->first();
+
+		$spv_pengadaan = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR PENGADAAN')
+		->first();
+
+		$spv_gudang = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR ADMINISTRASI GUDANG')
+		->first();
+
+		$spv_inventori = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR INVENTORI KONTROL & KATALOGER')
+		->first();
+
+		$man_cng = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'MANAJER CNG & BAHAN BAKAR')
+		->first();
+
+		$spv_cng = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR RENDAL CNG & BAHAN BAKAR (Pjs)')
+		->first();
+
+		$spv_cngplant = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR OPERASI & PEMELIHARAAN CNG PLANT')
+		->first();
+
+
+		return view ('rekap', compact('gen_manager', 'man_pemeliharaan', 'man_enjiniring', 'spv_ownerpltgu', 'spv_ownercng', 'spv_technoowner','spv_muturisiko','man_operasi', 'spv_rendal12', 'spv_rendal345','spv_produksiabcde','spv_rendalpemeliharaan', 'spv_mesin12', 'spv_listrik12', 'spv_kontrol12', 'spv_outage', 'spv_k3', 'spv_lingkungan', 'spv_sarana', 'man_keuangan', 'spv_keuangan', 'spv_umum','spv_sdm', 'man_logistik', 'spv_pengadaan', 'spv_gudang', 'spv_inventori', 'man_cng', 'spv_cng', 'spv_cngplant'));
 	}
 }

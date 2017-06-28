@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Jcr extends Model
+class Rekap extends Model
 {
-    //
+    protected $table = 'all_jcr';
 }

@@ -58,6 +58,7 @@ Route::post('ekspor-range', 'PcrsController@eskporange');
 
 //JCR
 Route::get('downloadView', 'RekapsController@downloadExcel');
+Route::get('rekap', 'RekapsController@index');
 
 //EXCEL
 Route::get('importExport', 'ExcelsController@importExport');
