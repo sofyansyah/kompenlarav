@@ -349,7 +349,7 @@ ul a span{
                 </tr>
                 <tr>
                   <td class="tg-yw4l">Dept.Read</td>
-                  <td class="tg-yw4l"></td>
+                  <td class="tg-yw4l"><?php $i = ($man_enjiniring->pcr + $man_operasi->pcr + $man_pemeliharaan->pcr + $man_keuangan->pcr + $man_logistik->pcr + $man_cng->pcr)/6; echo round($i).'%'; ?></td>
                 </tr>
               </table>
              
@@ -366,7 +366,7 @@ ul a span{
                   </tr>
                   <tr>
                     <td class="tg-yw4l">Dept.Read</td>
-                    <td class="tg-yw4l"></td>
+                    <td class="tg-yw4l"><?php $i = ($spv_ownerpltgu->pcr + $spv_ownercng->pcr + $spv_technoowner->pcr + $spv_muturisiko->pcr)/4; echo round($i).'%'; ?></td>
                   </tr>
                 </table>
               </a>
@@ -435,7 +435,9 @@ ul a span{
               </tr>
               <tr>
                 <td class="tg-yw4l">Dept.Read</td>
-                <td class="tg-yw4l"></td>
+                
+                <td class="tg-yw4l">@if(count($spv_produksiabcde) > 0)<?php $i = ($spv_rendal12->pcr + $spv_rendal345->pcr + $spv_produksiabcde->pcr)/3; echo round($i).'%'; ?> @else 0% @endif</td>
+                
               </tr>
             </table>
           </a>
@@ -489,7 +491,8 @@ ul a span{
           </tr>
           <tr>
             <td class="tg-yw4l">Dept.Read</td>
-            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l">@if(count($spv_outage = $spv_k3) > 0)<?php $i = ($spv_rendalpemeliharaan->pcr + $spv_mesin12->pcr + $spv_listrik12->pcr + $spv_kontrol12->pcr + $spv_outage->pcr + $spv_k3->pcr + $spv_lingkungan->pcr + $spv_sarana->pcr)/8; echo round($i).'%'; ?>@else 0% @endif</td>
+            
           </tr>
         </table>
       </a>
@@ -608,7 +611,7 @@ ul a span{
         </tr>
         <tr>
           <td class="tg-yw4l">Dept.Read</td>
-          <td class="tg-yw4l"></td>
+          <td class="tg-yw4l"><?php $i = ($spv_sdm->pcr + $spv_umum->pcr + $spv_keuangan->pcr)/3; echo round($i).'%'; ?></td>
         </tr>
       </table>
     </a>
@@ -662,7 +665,7 @@ ul a span{
       </tr>
       <tr>
         <td class="tg-yw4l">Dept.Read</td>
-        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"><?php $i = ($spv_pengadaan->pcr + $spv_gudang->pcr + $spv_inventori->pcr)/3; echo round($i).'%'; ?></td>
       </tr>
     </table>
   </a>
@@ -715,7 +718,7 @@ ul a span{
     </tr>
     <tr>
       <td class="tg-yw4l">Dept.Read</td>
-      <td class="tg-yw4l"></td>
+      <td class="tg-yw4l"><?php $i = ($spv_cng->pcr + $spv_cngplant->pcr)/2; echo round($i).'%'; ?></td>
     </tr>
   </table>
 </a>

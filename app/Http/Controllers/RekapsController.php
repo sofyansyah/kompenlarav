@@ -26,6 +26,10 @@ class RekapsController extends Controller
 	}
 	public function index(){
 
+		$rata = DB::table('all_jcr')
+		->join('pcr', 'all_jcr.pcr_id', 'pcr.id')
+		->select('all_jcr.*', 'pcr.pcr')
+		->get();
 
 		$gen_manager = DB::table('pcr')
 		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
