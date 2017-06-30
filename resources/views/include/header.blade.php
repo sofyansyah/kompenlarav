@@ -25,7 +25,7 @@
         </ul>
       </li> --}}
       <li ><a href={{url('pcr')}}>PCR<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-pencil-square-o"></span></a></li>
-      <li ><a href="rekap">Rekap JCR<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-book"></span></a></li>
+      <li ><a href="{{url('rekap')}}">Rekap JCR<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-book"></span></a></li>
       <li>
         <a href="{{ url('/logout') }}"
         onclick="event.preventDefault();

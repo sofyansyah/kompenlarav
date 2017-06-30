@@ -31,12 +31,12 @@ class RekapsController extends Controller
 		->select('all_jcr.*', 'pcr.pcr')
 		->get();
 
+
 		$gen_manager = DB::table('pcr')
 		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
 		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
 		->where('karyawan.jabatan', 'GENERAL MANAGER')
 		->first();
-
 
 		$man_pemeliharaan = DB::table('pcr')
 		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')

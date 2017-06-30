@@ -11,15 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
-Route::get('/rekap', function () {
-    return view('rekap');
-});
-
-
+// Route::get('/', function () {
+//     return view('home');
+// });
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
