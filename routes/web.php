@@ -15,9 +15,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/rekap', function () {
-    return view('rekap');
-});
 
 
 Auth::routes();
@@ -59,6 +56,7 @@ Route::post('ekspor-range', 'PcrsController@eskporange');
 //JCR
 Route::get('downloadView', 'RekapsController@downloadExcel');
 Route::get('rekap', 'RekapsController@index');
+Route::get('table', 'RekapsController@table');
 
 //EXCEL
 Route::get('importExport', 'ExcelsController@importExport');
