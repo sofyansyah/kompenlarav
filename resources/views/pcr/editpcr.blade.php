@@ -93,16 +93,16 @@
                                     <td class="text-center">{{$data_inti->standar}}</td>
                                     <td class="text-center">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="sem1[]" required value="@if(count($data_inti->sem1) > 0) {{$data_inti->sem1}} @endif">
+                                            <input type="text" class="form-control" name="sem1_inti[]" required value="@if(count($data_inti->sem1) > 0) {{$data_inti->sem1}} @endif">
                                         </div>
                                     </td>
                                     <td class="text-center">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="sem2[]" required value="@if(count($data_inti->sem2) > 0) {{$data_inti->sem2}} @endif">
+                                            <input type="text" class="form-control" name="sem2_inti[]" required value="@if(count($data_inti->sem2) > 0) {{$data_inti->sem2}} @endif">
                                         </div>
                                     </td>
                                 </tr>
-                                <input type="hidden" name="idinti[]" value="{{$data_inti->id}}">
+                                <input type="hidden" name="idinti[]" value="{{$data_inti->id_inti}}">
                             @endforeach
                         @endif
 
@@ -121,16 +121,16 @@
                                     <td class="text-center">{{$data_peran->standar}}</td>
                                     <td class="text-center">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="sem1[]" required value="@if(count($data_inti->sem1) > 0) {{$data_inti->sem1}} @endif">
+                                            <input type="text" class="form-control" name="sem1_peran[]" required value="@if(count($data_peran->sem1) > 0) {{$data_peran->sem1}} @endif">
                                         </div>
                                     </td>
                                     <td class="text-center">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="sem2[]" required value="@if(count($data_inti->sem2) > 0) {{$data_inti->sem2}} @endif">
+                                            <input type="text" class="form-control" name="sem2_peran[]" required value="@if(count($data_peran->sem2) > 0) {{$data_peran->sem2}} @endif">
                                         </div>
                                     </td>
                                 </tr>
-                                <input type="hidden" name="idperan[]" value="{{$data_peran->id}}">
+                                <input type="hidden" name="idperan[]" value="{{$data_peran->id_peran}}">
                             @endforeach
                         @endif
                         
@@ -149,16 +149,16 @@
                                     <td class="text-center">{{$data_bidang->standar}}</td>
                                     <td class="text-center">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="sem1[]" required value="@if(count($data_inti->sem1) > 0) {{$data_inti->sem1}} @endif">
+                                            <input type="text" class="form-control" name="sem1_bidang[]" required value="@if(count($data_bidang->sem1) > 0) {{$data_bidang->sem1}} @endif">
                                         </div>
                                     </td>
                                     <td class="text-center">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="sem2[]" required value="@if(count($data_inti->sem2) > 0) {{$data_inti->sem2}} @endif">
+                                            <input type="text" class="form-control" name="sem2_bidang[]" required value="@if(count($data_bidang->sem2) > 0) {{$data_bidang->sem2}} @endif">
                                         </div>
                                     </td>
                                 </tr>
-                                <input type="hidden" name="idbidang[]" value="{{$data_bidang->id}}">
+                                <input type="hidden" name="idbidang[]" value="{{$data_bidang->id_bidang}}">
                             @endforeach
                         @endif
 

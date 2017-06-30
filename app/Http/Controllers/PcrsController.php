@@ -34,19 +34,19 @@ class PcrsController extends Controller
 		$inti 	= Kompetensi::where('karyawan_id',$pcr->karyawan_id)
 							  ->join('jenis_kompetensi','kompetensi.jenis_kompetensi','=','jenis_kompetensi.id')
 							  ->where('jenis_kompetensi.type','inti')
-							  ->select('jenis_kompetensi.nama','kompetensi.standar','kompetensi.nilai','kompetensi.gap','kompetensi.unit','kompetensi.sem1','kompetensi.sem2','kompetensi.readlines','kompetensi.id')
+							  ->select('jenis_kompetensi.nama','kompetensi.standar','kompetensi.nilai','kompetensi.gap','kompetensi.unit','kompetensi.sem1','kompetensi.sem2','kompetensi.readlines','kompetensi.id as id_inti')
 							  ->get();
 		
 		$peran 	= Kompetensi::where('karyawan_id',$pcr->karyawan_id)
 							  ->join('jenis_kompetensi','kompetensi.jenis_kompetensi','=','jenis_kompetensi.id')
 							  ->where('jenis_kompetensi.type','peran')
-							  ->select('jenis_kompetensi.nama','kompetensi.standar','kompetensi.nilai','kompetensi.gap','kompetensi.unit','kompetensi.sem1','kompetensi.sem2','kompetensi.readlines','kompetensi.id')
+							  ->select('jenis_kompetensi.nama','kompetensi.standar','kompetensi.nilai','kompetensi.gap','kompetensi.unit','kompetensi.sem1','kompetensi.sem2','kompetensi.readlines','kompetensi.id as id_peran')
 							  ->get();
 
 		$bidang = Kompetensi::where('karyawan_id',$pcr->karyawan_id)
 							  ->join('jenis_kompetensi','kompetensi.jenis_kompetensi','=','jenis_kompetensi.id')
 							  ->where('jenis_kompetensi.type','bidang')
-							  ->select('jenis_kompetensi.nama','kompetensi.standar','kompetensi.nilai','kompetensi.gap','kompetensi.unit','kompetensi.sem1','kompetensi.sem2','kompetensi.readlines','kompetensi.id')
+							  ->select('jenis_kompetensi.nama','kompetensi.standar','kompetensi.nilai','kompetensi.gap','kompetensi.unit','kompetensi.sem1','kompetensi.sem2','kompetensi.readlines','kompetensi.id as id_bidang')
 							  ->get();
 
 		return view ('pcr.editpcr',compact('pcr','komp','inti','peran','bidang'));
@@ -55,14 +55,23 @@ class PcrsController extends Controller
 	{
 		$pcr 	= Pcr::findOrFail($id);
 
-		$inti 	= Kompetensi::where('karyawan_id',$pcr->karyawan_id)->join('jenis_kompetensi','kompetensi.jenis_kompetensi','=','jenis_kompetensi.id')->where('jenis_kompetensi.type','inti')->get();
-		$peran 	= Kompetensi::where('karyawan_id',$pcr->karyawan_id)->join('jenis_kompetensi','kompetensi.jenis_kompetensi','=','jenis_kompetensi.id')->where('jenis_kompetensi.type','peran')->get();
-		$bidang = Kompetensi::where('karyawan_id',$pcr->karyawan_id)->join('jenis_kompetensi','kompetensi.jenis_kompetensi','=','jenis_kompetensi.id')->where('jenis_kompetensi.type','bidang')->get();
-
+		$inti 	= Kompetensi::where('kompetensi.id',$r->idinti)->get();
+		$peran 	= Kompetensi::where('kompetensi.id',$r->idperan)->get();
+		$bidang = Kompetensi::where('kompetensi.id',$r->idbidang)->get();
 
 		if (count($bidang) > 0) {
 			$nilai_bid = round($bidang->sum('readlines')/count($bidang));
 			$count_bid = 1;
+
+			foreach ($r->idbidang as $bid => $bidangnya) {
+				$cek_bidang[$bid] = Kompetensi::where('id',$bidangnya)->get();
+				foreach ($cek_bidang[$bid] as $c => $d) {
+					$d->sem1 		= $r->sem1_bidang[$bid];
+					$d->sem2 		= $r->sem2_bidang[$bid];
+					$d->readlines 	= round(($r->sem1_bidang[$bid]/$d->standar)*100);
+					$d->save();
+				}
+			}
 		}else{
 			$count_bid = 0;
 			$nilai_bid = 0;
@@ -71,6 +80,17 @@ class PcrsController extends Controller
 		if (count($inti) > 0) {
 			$nilai_inti = round($inti->sum('readlines')/count($inti));
 			$count_inti = 1;
+
+			foreach ($r->idinti as $i => $intinya) {
+				$cek_inti[$i] = Kompetensi::where('id',$intinya)->get();
+				foreach ($cek_inti[$i] as $k => $v) {
+					$v->sem1 		= $r->sem1_inti[$i];
+					$v->sem2 		= $r->sem2_inti[$i];
+					$v->readlines 	= round(($r->sem1_inti[$i]/$v->standar)*100);
+					$v->save();
+				}
+			}
+
 		}else{
 			$count_inti = 0;
 			$nilai_inti = 0;
@@ -79,48 +99,20 @@ class PcrsController extends Controller
 		if (count($peran) > 0) {
 			$nilai_peran = round($peran->sum('readlines')/count($peran));
 			$count_peran = 1;
-		}else{
-			$count_peran = 0;
-			$nilai_peran = 0;
-		}
 
-		//INTI
-		if (count($r->idinti) > 0) {
-			foreach ($r->idinti as $i => $inti) {
-				$cek_inti[$i] = Kompetensi::where('id',$inti)->get();
-				foreach ($cek_inti[$i] as $k => $v) {
-					$v->sem1 		= $r->sem1[$i];
-					$v->sem2 		= $r->sem2[$i];
-					$v->readlines 	= round(($r->sem1[$i]/$v->standar)*100);
-					$v->save();
-				}
-			}
-		}
-
-		//PERAN
-		if (count($r->idperan) > 0) {
-			foreach ($r->idperan as $p => $peran) {
-				$cek_peran[$p] = Kompetensi::where('id',$peran)->get();
+			foreach ($r->idperan as $p => $perannya) {
+				$cek_peran[$p] = Kompetensi::where('id',$perannya)->get();
 				foreach ($cek_peran[$p] as $a => $b) {
-					$b->sem1 		= $r->sem1[$p];
-					$b->sem2 		= $r->sem2[$p];
-					$b->readlines 	= round(($r->sem1[$p]/$b->standar)*100);
+					$b->sem1 		= $r->sem1_peran[$p];
+					$b->sem2 		= $r->sem2_peran[$p];
+					$b->readlines 	= round(($r->sem1_peran[$p]/$b->standar)*100);
 					$b->save();
 				}
 			}
-		}
 
-		//BIDANG
-		if (count($r->idbidang) > 0) {
-			foreach ($r->idbidang as $bid => $bidang) {
-				$cek_bidang[$bid] = Kompetensi::where('id',$bidang)->get();
-				foreach ($cek_bidang[$bid] as $c => $d) {
-					$d->sem1 		= $r->sem1[$bid];
-					$d->sem2 		= $r->sem2[$bid];
-					$d->readlines 	= round(($r->sem1[$bid]/$d->standar)*100);
-					$d->save();
-				}
-			}
+		}else{
+			$count_peran = 0;
+			$nilai_peran = 0;
 		}
 
 		//SAVE PCR
