@@ -155,6 +155,36 @@ class RekapsController extends Controller
 		->where('karyawan.jabatan', 'SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3 & 4 E (Pjs)')
 		->first();
 
+		$spv_produk5a = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 5 A')
+		->first();
+
+		$spv_produk5b = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 5 B')
+		->first();
+
+		$spv_produk5c = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 5 C (Pjs)')
+		->first();
+
+		$spv_produk5d = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 5 D')
+		->first();
+
+		$spv_produk5e = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 5 E (Pjs)')
+		->first();
+
 		$spv_rendalpemeliharaan = DB::table('pcr')
 		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
 		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
@@ -269,7 +299,7 @@ class RekapsController extends Controller
 		->first();
 
 
-		return view ('rekap.index', compact('gen_manager', 'man_pemeliharaan', 'man_enjiniring', 'spv_ownerpltgu', 'spv_ownercng', 'spv_technoowner','spv_muturisiko','man_operasi', 'spv_rendal12', 'spv_rendal345','spv_produk12a', 'spv_produk12b', 'spv_produk12c', 'spv_produk12d', 'spv_produk12e', 'spv_produk34a', 'spv_produk34b', 'spv_produk34c', 'spv_produk34d', 'spv_produk34e','spv_rendalpemeliharaan', 'spv_mesin12', 'spv_listrik12', 'spv_kontrol12', 'spv_outagemanaj', 'spv_k3', 'spv_lingkungan', 'spv_sarana', 'man_keuangan', 'spv_keuangan', 'spv_umum','spv_sdm', 'man_logistik', 'spv_pengadaan', 'spv_gudang', 'spv_inventori', 'man_cng', 'spv_cng', 'spv_cngplant'));
+		return view ('rekap.index', compact('gen_manager', 'man_pemeliharaan', 'man_enjiniring', 'spv_ownerpltgu', 'spv_ownercng', 'spv_technoowner','spv_muturisiko','man_operasi', 'spv_rendal12', 'spv_rendal345','spv_produk12a', 'spv_produk12b', 'spv_produk12c', 'spv_produk12d', 'spv_produk12e', 'spv_produk34a', 'spv_produk34b', 'spv_produk34c', 'spv_produk34d', 'spv_produk34e', 'spv_produk5a', 'spv_produk5b', 'spv_produk5c', 'spv_produk5d', 'spv_produk5e','spv_rendalpemeliharaan', 'spv_mesin12', 'spv_listrik12', 'spv_kontrol12', 'spv_outagemanaj', 'spv_k3', 'spv_lingkungan', 'spv_sarana', 'man_keuangan', 'spv_keuangan', 'spv_umum','spv_sdm', 'man_logistik', 'spv_pengadaan', 'spv_gudang', 'spv_inventori', 'man_cng', 'spv_cng', 'spv_cngplant'));
 	}
 
 }
