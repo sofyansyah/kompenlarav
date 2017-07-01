@@ -95,10 +95,64 @@ class RekapsController extends Controller
 		->where('karyawan.jabatan', 'SUPERVISOR SENIOR RENDAL OPERASI BLOK 3.4.5')
 		->first();
 
-		$spv_produksiabcde = DB::table('pcr')
+		$spv_produk12a = DB::table('pcr')
 		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
 		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
-		->where('karyawan.jabatan', 'SUPERVISOR SENIOR PRODUKSI (A,B,C,D,E)')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 A')
+		->first();
+
+		$spv_produk12b = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 B')
+		->first();
+
+		$spv_produk12c = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 C')
+		->first();
+
+		$spv_produk12d = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 D')
+		->first();
+
+		$spv_produk12e = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 E (Pjs)')
+		->first();
+
+		$spv_produk34a = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3.4 A')
+		->first();
+
+		$spv_produk34b = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3.4 B')
+		->first();
+
+		$spv_produk34c = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3 & 4 C')
+		->first();
+
+		$spv_produk34d = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3 & 4 D')
+		->first();
+
+		$spv_produk34e = DB::table('pcr')
+		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
+		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3 & 4 E (Pjs)')
 		->first();
 
 		$spv_rendalpemeliharaan = DB::table('pcr')
@@ -215,7 +269,7 @@ class RekapsController extends Controller
 		->first();
 
 
-		return view ('rekap.index', compact('gen_manager', 'man_pemeliharaan', 'man_enjiniring', 'spv_ownerpltgu', 'spv_ownercng', 'spv_technoowner','spv_muturisiko','man_operasi', 'spv_rendal12', 'spv_rendal345','spv_produksiabcde','spv_rendalpemeliharaan', 'spv_mesin12', 'spv_listrik12', 'spv_kontrol12', 'spv_outagemanaj', 'spv_k3', 'spv_lingkungan', 'spv_sarana', 'man_keuangan', 'spv_keuangan', 'spv_umum','spv_sdm', 'man_logistik', 'spv_pengadaan', 'spv_gudang', 'spv_inventori', 'man_cng', 'spv_cng', 'spv_cngplant'));
+		return view ('rekap.index', compact('gen_manager', 'man_pemeliharaan', 'man_enjiniring', 'spv_ownerpltgu', 'spv_ownercng', 'spv_technoowner','spv_muturisiko','man_operasi', 'spv_rendal12', 'spv_rendal345','spv_produk12a', 'spv_produk12b', 'spv_produk12c', 'spv_produk12d', 'spv_produk12e', 'spv_produk34a', 'spv_produk34b', 'spv_produk34c', 'spv_produk34d', 'spv_produk34e','spv_rendalpemeliharaan', 'spv_mesin12', 'spv_listrik12', 'spv_kontrol12', 'spv_outagemanaj', 'spv_k3', 'spv_lingkungan', 'spv_sarana', 'man_keuangan', 'spv_keuangan', 'spv_umum','spv_sdm', 'man_logistik', 'spv_pengadaan', 'spv_gudang', 'spv_inventori', 'man_cng', 'spv_cng', 'spv_cngplant'));
 	}
 
 }

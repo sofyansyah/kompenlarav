@@ -3,8 +3,18 @@
 @section('css_styles')
 <link href="{{asset('css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
 <style>
-    div.dataTables_wrapper div.dataTables_paginate{display: none;}
-    </style>
+    div.dataTables_wrapper div.dataTables_paginate{cursor: pointer;}
+    .paginate_button{
+        padding: 0 5px;
+    }
+    .dt-button{
+        padding: 5px 15px;
+        border-radius: 5px;
+        float: left;
+        background: #3097D1;
+        color: #fff;
+    }
+</style>
 @endsection
 @section('content')
 
@@ -45,11 +55,7 @@
 					@endforelse
 				</tbody>
 			</table>
-			   @if(!empty($karyawans))
-            <div class="pull-right">
-                {{$karyawans->render()}}
-            </div>
-            @endif
+		
 		</div>
 	</div>
 	<div class="panel-footer">

@@ -3,7 +3,17 @@
 <link href="{{asset('css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker.css">
 <style>
-    div.dataTables_wrapper div.dataTables_paginate{display: none;}
+    div.dataTables_wrapper div.dataTables_paginate{cursor: pointer;}
+    .paginate_button{
+        padding: 0 5px;
+    }
+    .dt-button{
+        padding: 5px 15px;
+        border-radius: 5px;
+        float: left;
+        background: #3097D1;
+        color: #fff;
+    }
 </style>
 @endsection
 

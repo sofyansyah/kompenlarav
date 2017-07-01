@@ -2,8 +2,17 @@
 @section('css_styles')
 <link href="{{asset('css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
 <style>
-    .dropdown-menu{min-width: 80px!important;}
-    div.dataTables_wrapper div.dataTables_paginate{display: none;}
+    div.dataTables_wrapper div.dataTables_paginate{cursor: pointer;}
+    .paginate_button{
+        padding: 0 5px;
+    }
+    .dt-button{
+        padding: 5px 15px;
+        border-radius: 5px;
+        float: left;
+        background: #3097D1;
+        color: #fff;
+    }
 </style>
 @endsection
 
@@ -11,9 +20,9 @@
 <div class="panel panel-default">
     <div class="panel-heading"><h3>Data Kompetensi</h3></div>
     <div class="panel-body">
-    <a href="{{url('tambah-kompetensi')}}" class="btn btn-success"><i class="fa fa-plus "></i> Tambah</a>
+        <a href="{{url('tambah-kompetensi')}}" class="btn btn-success"><i class="fa fa-plus "></i> Tambah</a>
         <div class="table-responsive">
-            <table id="kompetensi" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <table id="table-kompetensi" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th class="text-center">No</th>
@@ -58,21 +67,17 @@
                 @endforelse
             </tbody>
         </table>
-            @if(!empty($kompetensis))
-            <div class="pull-right">
-                {{$kompetensis->render()}}
-            </div>
-            @endif
+
     </div>
 </div>
 <div class="panel-footer">
-        <form action="{{ url('importkomp')}}" class="form-horizontal" method="post" enctype="multipart/form-data">
+    <form action="{{ url('importkomp')}}" class="form-horizontal" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
-            <input type="file" name="import_file">
-            <button class="btn btn-primary">Import File</button>
-        </form>
+        <input type="file" name="import_file">
+        <button class="btn btn-primary">Import File</button>
+    </form>
 
-    </div>
+</div>
 </div>
 <!-- <a href="{{url('downloadExcel')}}" class="btn btn-success">Download XLS</a> -->
 <br><br>
@@ -80,11 +85,14 @@
 @section('javascript')
 <script>
     $(document).ready(function() {
-        $('#kompetensi').DataTable();
+        $('#table-kompetensi').DataTable();
     } );
+</script>
+<script>
     $('.dropdown-toggle').dropdown();
 </script>
 
 <script src="{{asset('js/jquery-1.12.4.js')}}"></script>
+<script src="{{asset('js/bootstrap.min.js')}}"></script>
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
 @endsection
