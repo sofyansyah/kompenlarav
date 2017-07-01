@@ -97,7 +97,7 @@ class RekapsController extends Controller
 		$spv_produksiabcde = DB::table('pcr')
 		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
 		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
-		->where('karyawan.jabatan', 'SPV Senior Produksi (A,B,C,D,E)')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR PRODUKSI (A,B,C,D,E)')
 		->first();
 
 		$spv_rendalpemeliharaan = DB::table('pcr')
@@ -124,7 +124,7 @@ class RekapsController extends Controller
 		->where('karyawan.jabatan', 'SUPERVISOR SENIOR PEMELIHARAAN KONTROL & INSTRUMEN BLOK 1.2')
 		->first();
 
-		$spv_outage = DB::table('pcr')
+		$spv_outagemanaj = DB::table('pcr')
 		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
 		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
 		->where('karyawan.jabatan', 'SUPERVISOR SENIOR OUTAGE MANAGEMENT')
@@ -214,7 +214,7 @@ class RekapsController extends Controller
 		->first();
 
 
-		return view ('rekap', compact('gen_manager', 'man_pemeliharaan', 'man_enjiniring', 'spv_ownerpltgu', 'spv_ownercng', 'spv_technoowner','spv_muturisiko','man_operasi', 'spv_rendal12', 'spv_rendal345','spv_produksiabcde','spv_rendalpemeliharaan', 'spv_mesin12', 'spv_listrik12', 'spv_kontrol12', 'spv_outage', 'spv_k3', 'spv_lingkungan', 'spv_sarana', 'man_keuangan', 'spv_keuangan', 'spv_umum','spv_sdm', 'man_logistik', 'spv_pengadaan', 'spv_gudang', 'spv_inventori', 'man_cng', 'spv_cng', 'spv_cngplant'));
+		return view ('rekap', compact('gen_manager', 'man_pemeliharaan', 'man_enjiniring', 'spv_ownerpltgu', 'spv_ownercng', 'spv_technoowner','spv_muturisiko','man_operasi', 'spv_rendal12', 'spv_rendal345','spv_produksiabcde','spv_rendalpemeliharaan', 'spv_mesin12', 'spv_listrik12', 'spv_kontrol12', 'spv_outagemanaj', 'spv_k3', 'spv_lingkungan', 'spv_sarana', 'man_keuangan', 'spv_keuangan', 'spv_umum','spv_sdm', 'man_logistik', 'spv_pengadaan', 'spv_gudang', 'spv_inventori', 'man_cng', 'spv_cng', 'spv_cngplant'));
 	}
 
 	public function table(){
@@ -290,7 +290,7 @@ class RekapsController extends Controller
 		$spv_produksiabcde = DB::table('pcr')
 		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
 		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
-		->where('karyawan.jabatan', 'SPV Senior Produksi (A,B,C,D,E)')
+		->where('karyawan.jabatan', 'SUPERVISOR SENIOR PRODUKSI (A,B,C,D,E)')
 		->first();
 
 		$spv_rendalpemeliharaan = DB::table('pcr')
@@ -317,7 +317,7 @@ class RekapsController extends Controller
 		->where('karyawan.jabatan', 'SUPERVISOR SENIOR PEMELIHARAAN KONTROL & INSTRUMEN BLOK 1.2')
 		->first();
 
-		$spv_outage = DB::table('pcr')
+		$spv_outagemanaj = DB::table('pcr')
 		->join('karyawan', 'pcr.karyawan_id', 'karyawan.id')
 		->select('pcr.*', 'karyawan.nid', 'karyawan.jabatan')
 		->where('karyawan.jabatan', 'SUPERVISOR SENIOR OUTAGE MANAGEMENT')
@@ -407,7 +407,7 @@ class RekapsController extends Controller
 		->first();
 
 
-		return view ('index', compact('gen_manager', 'man_pemeliharaan', 'man_enjiniring', 'spv_ownerpltgu', 'spv_ownercng', 'spv_technoowner','spv_muturisiko','man_operasi', 'spv_rendal12', 'spv_rendal345','spv_produksiabcde','spv_rendalpemeliharaan', 'spv_mesin12', 'spv_listrik12', 'spv_kontrol12', 'spv_outage', 'spv_k3', 'spv_lingkungan', 'spv_sarana', 'man_keuangan', 'spv_keuangan', 'spv_umum','spv_sdm', 'man_logistik', 'spv_pengadaan', 'spv_gudang', 'spv_inventori', 'man_cng', 'spv_cng', 'spv_cngplant'));
+		return view ('rekap.index', compact('gen_manager', 'man_pemeliharaan', 'man_enjiniring', 'spv_ownerpltgu', 'spv_ownercng', 'spv_technoowner','spv_muturisiko','man_operasi', 'spv_rendal12', 'spv_rendal345','spv_produksiabcde','spv_rendalpemeliharaan', 'spv_mesin12', 'spv_listrik12', 'spv_kontrol12', 'spv_outagemanaj', 'spv_k3', 'spv_lingkungan', 'spv_sarana', 'man_keuangan', 'spv_keuangan', 'spv_umum','spv_sdm', 'man_logistik', 'spv_pengadaan', 'spv_gudang', 'spv_inventori', 'man_cng', 'spv_cng', 'spv_cngplant'));
 	}
 
 }
