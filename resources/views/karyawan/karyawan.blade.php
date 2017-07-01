@@ -3,13 +3,23 @@
 @section('css_styles')
 <link href="{{asset('css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
 <style>
-    div.dataTables_wrapper div.dataTables_paginate{display: none;}
-    </style>
+    div.dataTables_wrapper div.dataTables_paginate{cursor: pointer;}
+    .paginate_button{
+        padding: 0 5px;
+    }
+    .dt-button{
+        padding: 5px 15px;
+        border-radius: 5px;
+        float: left;
+        background: #3097D1;
+        color: #fff;
+    }
+</style>
 @endsection
 @section('content')
 
 <div class="panel panel-default ">
-	<div class="panel-heading"><h4>Data Karyawan</h4></div>
+	<div class="panel-heading"><h3>Data Karyawan</h3></div>
 	<div class="panel-body">
 		<a href="{{url('/tambah-karyawan')}}" class="btn btn-success" style="padding: 6px 12px; margin-bottom: 20px;"><i class="fa fa-plus"></i> Tambah</a>
 		<div class="table-responsive">
@@ -33,7 +43,7 @@
 						<td class="text-center">{{$karyawan->nid}}</td>
 						<td>{{$karyawan->jabatan}}</td>
 						<td class="text-center">{{$karyawan->grade}}</td>
-						<td>{{$karyawan->jen_jabatan}}</td>
+						<td class="text-center">{{$karyawan->jen_jabatan}}</td>
 						<td class="buttons">
 							<ul class="action">
 								<li><a href="{{url('edit/karyawan/'.$karyawan->id)}}" class="btn btn-warning"  data-toggle="tooltip" title="Edit" style="padding: 6px 12px;"><i class="fa fa-pencil"></i></a></li>
@@ -45,11 +55,7 @@
 					@endforelse
 				</tbody>
 			</table>
-			   @if(!empty($karyawans))
-            <div class="pull-right">
-                {{$karyawans->render()}}
-            </div>
-            @endif
+		
 		</div>
 	</div>
 	<div class="panel-footer">

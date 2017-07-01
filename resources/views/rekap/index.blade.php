@@ -18,7 +18,7 @@
 
 @section('content')
 <div class="panel panel-default">
-    <div class="panel-heading"><h4>Rekap JCR</h4></div>
+    <div class="panel-heading"><h3>Rekap JCR</h3></div>
     <div class="panel-body">
         <div class="table-responsive">
             <table id="table-rekap" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -85,7 +85,7 @@
                         <td class="text-center">7</td>
                         <td class="text-left">MANAGER OPERASI</td>
                         <td class="text-center">@if(count($man_operasi->pcr.'%') > 0){{$man_operasi->pcr.'%'}} @else 0% @endif</td>
-                        <td class="text-center">@if(count($spv_produksiabcde) > 0)<?php $i = ($spv_rendal12->pcr + $spv_rendal345->pcr + $spv_produksiabcde->pcr)/3; echo round($i).'%'; ?> @else 0% @endif</td>
+                        <td class="text-center">@if(count($spv_produk12a) > 0)<?php $i = ($spv_rendal12->pcr + $spv_rendal345->pcr + $spv_produk12a->pcr + $spv_produk12b->pcr + $spv_produk12c->pcr + $spv_produk12d->pcr + $spv_produk12e->pcr + $spv_produk34a->pcr + $spv_produk34b->pcr + $spv_produk34c->pcr + $spv_produk34d->pcr + $spv_produk34e->pcr)/12; echo round($i).'%'; ?> @else 0% @endif</td>
                         <td class="text-center">-</td>
                     </tr>
 
@@ -107,14 +107,86 @@
 
                      <tr>
                         <td class="text-center">10</td>
-                        <td class="text-left">SUPERVISOR SENIOR PRODUKSI (A,B,C,D,E)</td>
-                        <td class="text-center">@if(count($spv_produksiabcde) > 0){{$spv_produksiabcde->pcr.'%'}} @else 0% @endif</td>
+                        <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 A</td>
+                        <td class="text-center">@if(count($spv_produk12a) > 0){{$spv_produk12a->pcr.'%'}} @else 0% @endif</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">0%</td>
+                    </tr>
+
+                    <tr>
+                        <td class="text-center">11</td>
+                        <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 B</td>
+                        <td class="text-center">@if(count($spv_produk12b) > 0){{$spv_produk12b->pcr.'%'}} @else 0% @endif</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">0%</td>
+                    </tr>
+
+                    <tr>
+                        <td class="text-center">12</td>
+                        <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 C</td>
+                        <td class="text-center">@if(count($spv_produk12c) > 0){{$spv_produk12c->pcr.'%'}} @else 0% @endif</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">0%</td>
+                    </tr>
+
+                    <tr>
+                        <td class="text-center">13</td>
+                        <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 D</td>
+                        <td class="text-center">@if(count($spv_produk12d) > 0){{$spv_produk12d->pcr.'%'}} @else 0% @endif</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">0%</td>
+                    </tr>
+
+                    <tr>
+                        <td class="text-center">14</td>
+                        <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 E (Pjs)</td>
+                        <td class="text-center">@if(count($spv_produk12e) > 0){{$spv_produk12e->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
                         <td class="text-center">0%</td>
                     </tr>
 
                      <tr>
-                        <td class="text-center">11</td>
+                        <td class="text-center">15</td>
+                        <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3.4 A</td>
+                        <td class="text-center">@if(count($spv_produk34a) > 0){{$spv_produk34a->pcr.'%'}} @else 0% @endif</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">0%</td>
+                    </tr>
+
+                     <tr>
+                        <td class="text-center">16</td>
+                        <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3.4 B</td>
+                        <td class="text-center">@if(count($spv_produk34b) > 0){{$spv_produk34b->pcr.'%'}} @else 0% @endif</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">0%</td>
+                    </tr>
+
+                     <tr>
+                        <td class="text-center">17</td>
+                        <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3 & 4 C</td>
+                        <td class="text-center">@if(count($spv_produk34c) > 0){{$spv_produk34c->pcr.'%'}} @else 0% @endif</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">0%</td>
+                    </tr>
+
+                     <tr>
+                        <td class="text-center">18</td>
+                        <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3 & 4 D</td>
+                        <td class="text-center">@if(count($spv_produk34d) > 0){{$spv_produk34d->pcr.'%'}} @else 0% @endif</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">0%</td>
+                    </tr>
+
+                     <tr>
+                        <td class="text-center">19</td>
+                        <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3 & 4 E (Pjs)</td>
+                        <td class="text-center">@if(count($spv_produk34e) > 0){{$spv_produk34e->pcr.'%'}} @else 0% @endif</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">0%</td>
+                    </tr>
+
+                     <tr>
+                        <td class="text-center">20</td>
                         <td class="text-left">MANAGER PEMELIHARAAN</td>
                         <td class="text-center">@if(count($man_pemeliharaan->pcr.'%') > 0){{$man_pemeliharaan->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">@if(count($spv_outage = $spv_k3) > 0)<?php $i = ($spv_rendalpemeliharaan->pcr + $spv_mesin12->pcr + $spv_listrik12->pcr + $spv_kontrol12->pcr + $spv_outage->pcr + $spv_k3->pcr + $spv_lingkungan->pcr + $spv_sarana->pcr)/8; echo round($i).'%'; ?>@else 0% @endif</td>
@@ -122,7 +194,7 @@
                     </tr>
 
                         <tr>
-                        <td class="text-center">12</td>
+                        <td class="text-center">21</td>
                         <td class="text-left">SUPERVISOR SENIOR RENDAL PEMELIHARAAN</td>
                         <td class="text-center">@if(count($spv_rendalpemeliharaan->pcr.'%') > 0){{$spv_rendalpemeliharaan->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
@@ -130,7 +202,7 @@
                     </tr>
 
                      <tr>
-                        <td class="text-center">13</td>
+                        <td class="text-center">22</td>
                         <td class="text-left">SUPERVISOR SENIOR  PEMELIHARAAN MESIN BLOK 1.2 (Pjs)</td>
                         <td class="text-center">@if(count($spv_mesin12->pcr.'%') > 0){{$spv_mesin12->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
@@ -139,7 +211,7 @@
 
 
                      <tr>
-                        <td class="text-center">14</td>
+                        <td class="text-center">23</td>
                         <td class="text-left">SUPERVISOR SENIOR PEMELIHARAAN LISTRIK BLOK 1.2</td>
                         <td class="text-center">@if(count($spv_listrik12->pcr.'%') > 0){{$spv_listrik12->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
@@ -147,7 +219,7 @@
                     </tr>
 
                     <tr>
-                        <td class="text-center">15</td>
+                        <td class="text-center">24</td>
                         <td class="text-left">SUPERVISOR SENIOR PEMELIHARAAN KONTROL & INSTRUMEN BLOK 1.2</td>
                         <td class="text-center">@if(count($spv_kontrol12->pcr.'%') > 0){{$spv_kontrol12->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
@@ -155,7 +227,7 @@
                     </tr>
 
                      <tr>
-                        <td class="text-center">16</td>
+                        <td class="text-center">25</td>
                         <td class="text-left">SUPERVISOR SENIOR OUTAGE MANAGEMENT</td>
                         <td class="text-center">@if(count($spv_outagemanaj) > 0){{$spv_outagemanaj->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
@@ -163,7 +235,7 @@
                     </tr>
 
                      <tr>
-                        <td class="text-center">17</td>
+                        <td class="text-center">26</td>
                         <td class="text-left">SUPERVISOR SENIOR K3</td>
                         <td class="text-center">@if(count($spv_k3->pcr.'%') > 0){{$spv_k3->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
@@ -171,7 +243,7 @@
                     </tr>
 
                      <tr>
-                        <td class="text-center">18</td>
+                        <td class="text-center">27</td>
                         <td class="text-left">SUPERVISOR SENIOR LINGKUNGAN</td>
                         <td class="text-center">@if(count($spv_lingkungan->pcr.'%') > 0){{$spv_lingkungan->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
@@ -179,7 +251,7 @@
                     </tr>
 
                      <tr>
-                        <td class="text-center">19</td>
+                        <td class="text-center">28</td>
                         <td class="text-left">SUPERVISOR SENIOR SARANA</td>
                         <td class="text-center">@if(count($spv_sarana->pcr.'%') > 0){{$spv_sarana->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
@@ -187,7 +259,7 @@
                     </tr>
 
                     <tr>
-                        <td class="text-center">20</td>
+                        <td class="text-center">29</td>
                         <td class="text-left">MANAGER KUANGAN & ADMINISTRASI</td>
                         <td class="text-center">@if(count($man_keuangan->pcr.'%') > 0){{$man_keuangan->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center"><?php $i = ($spv_sdm->pcr + $spv_umum->pcr + $spv_keuangan->pcr)/3; echo round($i).'%'; ?></td>
@@ -195,7 +267,7 @@
                     </tr>
 
                     <tr>
-                        <td class="text-center">21</td>
+                        <td class="text-center">30</td>
                         <td class="text-left">SUPERVISOR SENIOR SDM (Pjs)</td>
                         <td class="text-center">@if(count($spv_sdm->pcr.'%') > 0){{$spv_sdm->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
@@ -203,7 +275,7 @@
                     </tr>
 
                     <tr>
-                        <td class="text-center">22</td>
+                        <td class="text-center">31</td>
                         <td class="text-left">SUPERVISOR SENIOR UMUM & CSR</td>
                         <td class="text-center">@if(count($spv_umum->pcr.'%') > 0){{$spv_umum->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
@@ -211,7 +283,7 @@
                     </tr>
 
                     <tr>
-                        <td class="text-center">23</td>
+                        <td class="text-center">32</td>
                         <td class="text-left">SUPERVISOR SENIOR KEUANGAN</td>
                         <td class="text-center">@if(count($spv_keuangan->pcr.'%') > 0){{$spv_keuangan->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
@@ -220,7 +292,7 @@
 
 
                     <tr>
-                        <td class="text-center">24</td>
+                        <td class="text-center">33</td>
                         <td class="text-left">MANAJER LOGISTIK</td>
                         <td class="text-center">@if(count($man_logistik->pcr.'%') > 0){{$man_logistik->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center"><?php $i = ($spv_pengadaan->pcr + $spv_gudang->pcr + $spv_inventori->pcr)/3; echo round($i).'%'; ?></td>
@@ -228,7 +300,7 @@
                     </tr>
 
                       <tr>
-                        <td class="text-center">25</td>
+                        <td class="text-center">34</td>
                         <td class="text-left">SUPERVISOR SENIOR PENGADAAN</td>
                         <td class="text-center">@if(count($spv_pengadaan->pcr.'%') > 0){{$spv_pengadaan->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
@@ -236,7 +308,7 @@
                     </tr>
 
                     <tr>
-                        <td class="text-center">26</td>
+                        <td class="text-center">35</td>
                         <td class="text-left">SUPERVISOR SENIOR ADMINISTRASI GUDANG</td>
                         <td class="text-center">@if(count($spv_gudang->pcr.'%') > 0){{$spv_gudang->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
@@ -244,7 +316,7 @@
                     </tr>
 
                     <tr>
-                        <td class="text-center">27</td>
+                        <td class="text-center">36</td>
                         <td class="text-left">SUPERVISOR SENIOR INVENTORI KONTROL & KATALOGER</td>
                         <td class="text-center">@if(count($spv_inventori->pcr.'%') > 0){{$spv_inventori->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
@@ -252,7 +324,7 @@
                     </tr>
 
                     <tr>
-                        <td class="text-center">28</td>
+                        <td class="text-center">37</td>
                         <td class="text-left">MANAGER CNG & BAHAN BAKAR</td>
                         <td class="text-center">@if(count($man_cng->pcr.'%') > 0){{$man_cng->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center"><?php $i = ($spv_cng->pcr + $spv_cngplant->pcr)/2; echo round($i).'%'; ?></td>
@@ -260,7 +332,7 @@
                     </tr>
 
                      <tr>
-                        <td class="text-center">29</td>
+                        <td class="text-center">38</td>
                         <td class="text-left">SUPERVISOR SENIOR RENDAL CNG & BAHAN BAKAR (Pjs)</td>
                         <td class="text-center">@if(count($spv_cng->pcr.'%') > 0){{$spv_cng->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
@@ -268,7 +340,7 @@
                     </tr>
 
                      <tr>
-                        <td class="text-center">30</td>
+                        <td class="text-center">39</td>
                         <td class="text-left">SUPERVISOR SENIOR OPERASI & PEMELIHARAAN CNG PLANT</td>
                         <td class="text-center">@if(count($spv_cngplant->pcr.'%') > 0){{$spv_cngplant->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>

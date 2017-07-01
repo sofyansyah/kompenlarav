@@ -13,7 +13,6 @@ class KaryawansController extends Controller
 	public function index()
 	{
 		$karyawans = Karyawan::all();
-		$karyawans = Karyawan::paginate(10);
 		return view ('karyawan.karyawan', compact('karyawans'));
 
 	}

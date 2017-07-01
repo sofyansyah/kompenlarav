@@ -14,7 +14,7 @@
     .cover{
         background:url(/images/pln1.jpg);
         background-repeat: no-repeat;
-        background-size: 100%;
+        background-size: 107%;
 
     }
     .nopadding{
@@ -24,7 +24,7 @@
         width: 900px!important;
     }
     .cover h4{
-        padding: 33% 8%;
+        padding: 35% 8%;
         font-size: 30px;
         font-weight: bold;
         color: #fafafa;
@@ -38,7 +38,7 @@
 </style>
 
 <div class="container">
-    <div class="row" style="margin-top: 15%;">
+    <div class="col-sm-12" style="margin-top: 15%;">
         <div class="col-md-5 cover nopadding">
             <h4>PT PLN Muara Tawar</h4>
         </div>
