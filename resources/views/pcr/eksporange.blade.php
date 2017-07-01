@@ -54,7 +54,7 @@
 
         @endphp
 
-            <table class="table table-bordered " id="pcr_karyawan" style="border: none;">
+            <table class="table table-bordered pcr_karyawan" id="pcr_karyawan" style="border: none;">
                 <tr style="border: none;">
                     <td class="judul">Sebutan Jabatan : </td>
                     <!--  <td class="titik">:</td> -->
@@ -87,7 +87,7 @@
                 </tr>
 
                 
-
+            @if(count($inti) > 0)
                 <tr class="bor">
                     <td rowspan="{{count($inti)+1}}" style="padding: 60px 0px;" class="text-center"><b>Kompetensi Inti</b></td>
                     <td></td>
@@ -106,7 +106,9 @@
                     </tr>
                     <input type="hidden" name="idinti[]" value="{{$data_inti->id}}">
                 @endforeach
+            @endif
 
+            @if(count($peran) > 0)
                 <tr>
                     <td rowspan="{{count($peran)+1}}" style="padding: 60px 0px;" class="text-center"><b>Kompetensi Peran</b></td>
                     <td></td>
@@ -115,6 +117,7 @@
                     <td rowspan="{{count($peran)+1}}" style="padding: 60px 0px;" class="text-center">{{$peran->sum('readlines')/count($peran)}}%</td>
                     <td class="text-center"></td>
                 </tr>
+
                 @foreach($peran as $data_peran)
                     <tr>
                         <td class="text-left">{{$data_peran->nama}}</td>
@@ -124,7 +127,9 @@
                     </tr>
                     <input type="hidden" name="idperan[]" value="{{$data_peran->id}}">
                 @endforeach
+            @endif
 
+            @if(count($bidang) > 0)
                  <tr>
                     <td rowspan="{{count($bidang)+1}}" style="padding: 60px 0px;" class="text-center"><b>Kompetensi Bidang</b></td>
                     <td></td>
@@ -142,6 +147,7 @@
                     </tr>
                     <input type="hidden" name="idbidang[]" value="{{$data_bidang->id}}">
                 @endforeach
+            @endif
 
                 <tr>
                     <td style="border:1px solid #fff;"></td>
@@ -167,13 +173,14 @@
 @endsection
 @section('javascript')
 <script>
-    $(document).ready(function() {
-        $('#pcr_karyawan').DataTable();
-    } );
     $(function () 
     {
-        var table = $('#pcr_karyawan').dataTable();
-        var table_html = $('#pcr_karyawan')[0].outerHTML;
+        var kar = $('.pcr_karyawan');
+
+        for (var i=0; i>=0; i++) {
+            Things[i]
+        }
+        var table_html = $('.pcr_karyawan')[0].outerHTML;
         var css_html = '<style>.export, .text-center, .text-left {border: 1pt solid #333} </style>';
         $("#btnExport").click(function(e) 
         {
@@ -184,20 +191,4 @@
     });
 
 </script>
-
-<script>
-    function goBack() {
-        window.history.back();
-    }
-</script>
-
-<script src="{{asset('js/select2.js')}}"></script>
-<script type="text/javascript">
-  $('.select2').select2();
-</script>
-<script src="{{asset('js/jquery-1.12.4.js')}}"></script>
-<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
-
 @endsection

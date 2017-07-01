@@ -174,6 +174,8 @@ class PcrsController extends Controller
 		->whereBetween('pcr.updated_at', [date('Y-m-d',strtotime($r->dari)), date('Y-m-d',strtotime($r->sampai))])
 		->get();
 
+		// dd($pcr);
+
 		return view ('pcr.eksporange',compact('pcr'));
 	}
 }
