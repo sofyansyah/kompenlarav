@@ -302,4 +302,21 @@ class RekapsController extends Controller
 		return view ('rekap.index', compact('gen_manager', 'man_pemeliharaan', 'man_enjiniring', 'spv_ownerpltgu', 'spv_ownercng', 'spv_technoowner','spv_muturisiko','man_operasi', 'spv_rendal12', 'spv_rendal345','spv_produk12a', 'spv_produk12b', 'spv_produk12c', 'spv_produk12d', 'spv_produk12e', 'spv_produk34a', 'spv_produk34b', 'spv_produk34c', 'spv_produk34d', 'spv_produk34e', 'spv_produk5a', 'spv_produk5b', 'spv_produk5c', 'spv_produk5d', 'spv_produk5e','spv_rendalpemeliharaan', 'spv_mesin12', 'spv_listrik12', 'spv_kontrol12', 'spv_outagemanaj', 'spv_k3', 'spv_lingkungan', 'spv_sarana', 'man_keuangan', 'spv_keuangan', 'spv_umum','spv_sdm', 'man_logistik', 'spv_pengadaan', 'spv_gudang', 'spv_inventori', 'man_cng', 'spv_cng', 'spv_cngplant'));
 	}
 
+	public function rekapbaru()
+	{
+		$jabatan = Karyawan::where('jabatan','like','SUPERVISOR%')
+						->orWhere('jabatan','like','MANAJER%')
+						->orWhere('jabatan','like','GENERAL MANAGER%')
+						->join('pcr','karyawan.id','=','pcr.karyawan_id')
+						->select('jabatan','pcr')
+						->orderBy('karyawan.id','DESC')
+						->get();
+
+		$sum_pcr_general 	= Karyawan::where('jabatan','like','MANAJER%')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr');
+		$count_pcr_general 	= Karyawan::where('jabatan','like','MANAJER%')->join('pcr','karyawan.id','=','pcr.karyawan_id')->count();
+		$rata_general 		= ($sum_pcr_general / $count_pcr_general);
+
+		return view('rekap.indexbaru',compact('jabatan','rata_general'));
+	}
+
 }
