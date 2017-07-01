@@ -41,8 +41,8 @@
                     <tr>
                         <td class="text-center">{{$k+1}}</td>
                         <td class="text-center">{{$data->nid}}</td>
-                        <td class="text-center">{{$data->jabatan}}</td>
-                        <td class="text-center">{{$data->nama}}</td>
+                        <td class="text-left">{{$data->jabatan}}</td>
+                        <td class="text-left">{{$data->nama}}</td>
                         <th class="text-center">{{$data->pcr}}%</th>
                         <td class="text-center">
                             <a href="{{url('edit/pcr/'.$data->id)}}" class="btn btn-warning  text-center" title="Edit"><i class="fa fa-pencil"></i></a>

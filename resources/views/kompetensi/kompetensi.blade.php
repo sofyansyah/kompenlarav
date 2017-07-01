@@ -9,7 +9,7 @@
 
 @section('content')
 <div class="panel panel-default">
-    <div class="panel-heading">Data Kompetensi</div>
+    <div class="panel-heading"><h3>Data Kompetensi</h3></div>
     <div class="panel-body">
     <a href="{{url('tambah-kompetensi')}}" class="btn btn-success"><i class="fa fa-plus "></i> Tambah</a>
         <div class="table-responsive">
@@ -36,7 +36,7 @@
                         <td class="text-center">{{$i}}</td>
                         <td>{{$data->nid}}</td>
                         <td>{{$data->nama}}</td>
-                        <td class="text-center">{{$data->jabatan}}</td>
+                        <td class="text-left">{{$data->jabatan}}</td>
                         <td class="text-center">{{$data->nama_jenis}}</td>
                         <td class="text-center">{{$data->standar}}</td>
                         <td class="text-center">{{$data->nilai}}</td>

@@ -18,7 +18,7 @@
 
 @section('content')
 <div class="panel panel-default">
-    <div class="panel-heading"><h4>Rekap JCR</h4></div>
+    <div class="panel-heading"><h3>Rekap JCR</h3></div>
     <div class="panel-body">
         <div class="table-responsive">
             <table id="table-rekap" class="table table-striped table-bordered" cellspacing="0" width="100%">
