@@ -4,11 +4,10 @@
 <link href="{{asset('css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
 <style>
     div.dataTables_wrapper div.dataTables_paginate{display: none;}
+    </style>
 @endsection
 @section('content')
-<style>
 
-</style>
 <div class="panel panel-default ">
 	<div class="panel-heading"><h4>Data Karyawan</h4></div>
 	<div class="panel-body">
