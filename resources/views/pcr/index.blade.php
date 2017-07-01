@@ -3,7 +3,6 @@
 <link href="{{asset('css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker.css">
 <style>
-    .dropdown-menu{min-width: 80px!important;}
     div.dataTables_wrapper div.dataTables_paginate{display: none;}
 </style>
 @endsection
@@ -78,6 +77,5 @@
         });
     });
 
-    $('.dropdown-toggle').dropdown();
 </script>
 @endsection
