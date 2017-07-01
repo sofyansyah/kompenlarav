@@ -2,8 +2,10 @@
 @section('css_styles')
 <link href="{{asset('css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
 <style>
-    /*.dropdown-menu{min-width: 80px!important;}
-    div.dataTables_wrapper div.dataTables_paginate{display: none;}*/
+    div.dataTables_wrapper div.dataTables_paginate{cursor: pointer;}
+    .paginate_button{
+        padding: 0 5px;
+    }
     .dt-button{
         padding: 5px 15px;
         border-radius: 5px;
@@ -16,7 +18,7 @@
 
 @section('content')
 <div class="panel panel-default">
-    <div class="panel-heading">Rekap JCR</div>
+    <div class="panel-heading"><h4>Rekap JCR</h4></div>
     <div class="panel-body">
         <div class="table-responsive">
             <table id="table-rekap" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -251,7 +253,7 @@
 
                     <tr>
                         <td class="text-center">28</td>
-                        <td class="text-left">>MANAGER CNG & BAHAN BAKAR</td>
+                        <td class="text-left">MANAGER CNG & BAHAN BAKAR</td>
                         <td class="text-center">@if(count($man_cng->pcr.'%') > 0){{$man_cng->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center"><?php $i = ($spv_cng->pcr + $spv_cngplant->pcr)/2; echo round($i).'%'; ?></td>
                         <td class="text-center">-</td>

@@ -2,6 +2,8 @@
 
 @section('css_styles')
 <link href="{{asset('css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
+<style>
+    div.dataTables_wrapper div.dataTables_paginate{display: none;}
 @endsection
 @section('content')
 <style>
@@ -44,6 +46,11 @@
 					@endforelse
 				</tbody>
 			</table>
+			   @if(!empty($karyawans))
+            <div class="pull-right">
+                {{$karyawans->render()}}
+            </div>
+            @endif
 		</div>
 	</div>
 	<div class="panel-footer">
