@@ -93,7 +93,7 @@
                         <td class="text-center">7</td>
                         <td class="text-left">MANAJER OPERASI</td>
                         <td class="text-center">@if(count($man_operasi->pcr.'%') > 0){{$man_operasi->pcr.'%'}} @else 0% @endif</td>
-                        <td class="text-center">@if(count($spv_produk12a) > 0)<?php $i = ($spv_rendal12->pcr + $spv_rendal345->pcr + $spv_produk12a->pcr + $spv_produk12b->pcr + $spv_produk12c->pcr + $spv_produk12d->pcr + $spv_produk12e->pcr + $spv_produk34a->pcr + $spv_produk34b->pcr + $spv_produk34c->pcr + $spv_produk34d->pcr + $spv_produk34e->pcr + $operasi)/13; echo round($i).'%'; ?> @else 0% @endif</td>
+                        <td class="text-center">@if(count($spv_produk12a) > 0)<?php $i = ($spv_rendal12->pcr + $spv_rendal345->pcr + $spv_produk12a->pcr + $spv_produk12b->pcr + $spv_produk12c->pcr + $spv_produk12d->pcr + $spv_produk12e->pcr + $spv_produk34a->pcr + $spv_produk34b->pcr + $spv_produk34c->pcr + $spv_produk34d->pcr + $spv_produk34e->pcr + $spv_kimia->pcr + $operasi)/14; echo round($i).'%'; ?> @else 0% @endif</td>
                         <td class="text-center">-</td>
                     </tr>
 
