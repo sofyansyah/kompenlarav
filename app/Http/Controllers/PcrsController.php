@@ -14,7 +14,7 @@ class PcrsController extends Controller
 	{
 		$pcr = Pcr::join('karyawan', 'pcr.karyawan_id', 'karyawan.id' )
 		->select('pcr.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.nid')
-		->paginate(10);
+		->get();
 		return view ('pcr.index',compact('pcr'));
 	}
 	public function editpcr($id)

@@ -64,11 +64,7 @@
                     @endforelse
                 </tbody>
             </table>
-               @if(!empty($pcr))
-            <div class="pull-right">
-                {{$pcr->render()}}
-            </div>
-            @endif
+    
         </div>
     </div>
 </div>
