@@ -45,7 +45,7 @@
                         <td class="text-center">2</td>
                         <td class="text-left">MANAJER ENJINIRING & QUALITY ASSURANCE (PjS)</td>
                         <td class="text-center">@if(count($man_enjiniring) > 0){{$man_enjiniring->pcr.'%'}} @else 0% @endif</td>
-                        <td class="text-center"><?php $i = ($spv_ownerpltgu->pcr + $spv_ownercng->pcr + $spv_technoowner->pcr + $spv_muturisiko->pcr)/4; echo round($i).'%'; ?></td>
+                        <td class="text-center"><?php $i = ($spv_ownerpltgu->pcr + $spv_ownercng->pcr + $spv_technoowner->pcr + $spv_muturisiko->pcr+ $engineer2)/5; echo round($i).'%'; ?></td>
                         <td class="text-center">-</td>
                     </tr>
 
@@ -93,7 +93,7 @@
                         <td class="text-center">7</td>
                         <td class="text-left">MANAJER OPERASI</td>
                         <td class="text-center">@if(count($man_operasi->pcr.'%') > 0){{$man_operasi->pcr.'%'}} @else 0% @endif</td>
-                        <td class="text-center">@if(count($spv_produk12a) > 0)<?php $i = ($spv_rendal12->pcr + $spv_rendal345->pcr + $spv_produk12a->pcr + $spv_produk12b->pcr + $spv_produk12c->pcr + $spv_produk12d->pcr + $spv_produk12e->pcr + $spv_produk34a->pcr + $spv_produk34b->pcr + $spv_produk34c->pcr + $spv_produk34d->pcr + $spv_produk34e->pcr)/12; echo round($i).'%'; ?> @else 0% @endif</td>
+                        <td class="text-center">@if(count($spv_produk12a) > 0)<?php $i = ($spv_rendal12->pcr + $spv_rendal345->pcr + $spv_produk12a->pcr + $spv_produk12b->pcr + $spv_produk12c->pcr + $spv_produk12d->pcr + $spv_produk12e->pcr + $spv_produk34a->pcr + $spv_produk34b->pcr + $spv_produk34c->pcr + $spv_produk34d->pcr + $spv_produk34e->pcr + $operasi)/13; echo round($i).'%'; ?> @else 0% @endif</td>
                         <td class="text-center">-</td>
                     </tr>
 
@@ -281,7 +281,7 @@
                         <td class="text-center">26</td>
                         <td class="text-left">MANAJER PEMELIHARAAN</td>
                         <td class="text-center">@if(count($man_pemeliharaan->pcr.'%') > 0){{$man_pemeliharaan->pcr.'%'}} @else 0% @endif</td>
-                        <td class="text-center">@if(count($spv_outage = $spv_k3) > 0)<?php $i = ($spv_rendalpemeliharaan->pcr + $spv_mesin12->pcr + $spv_listrik12->pcr + $spv_kontrol12->pcr + $spv_outage->pcr + $spv_k3->pcr + $spv_lingkungan->pcr + $spv_sarana->pcr)/8; echo round($i).'%'; ?>@else 0% @endif</td>
+                        <td class="text-center">@if(count($spv_outage = $spv_k3) > 0)<?php $i = ($spv_rendalpemeliharaan->pcr + $spv_mesin12->pcr + $spv_listrik12->pcr + $spv_kontrol12->pcr + $spv_outage->pcr + $spv_k3->pcr + $spv_lingkungan->pcr + $spv_sarana->pcr + $pemeliharaan)/9; echo round($i).'%'; ?>@else 0% @endif</td>
                         <td class="text-center">-</td>
                     </tr>
 
@@ -363,7 +363,7 @@
                         <td class="text-center">35</td>
                         <td class="text-left">MANAJER KUANGAN & ADMINISTRASI</td>
                         <td class="text-center">@if(count($man_keuangan->pcr.'%') > 0){{$man_keuangan->pcr.'%'}} @else 0% @endif</td>
-                        <td class="text-center"><?php $i = ($spv_sdm->pcr + $spv_umum->pcr + $spv_keuangan->pcr)/3; echo round($i).'%'; ?></td>
+                        <td class="text-center"><?php $i = ($spv_sdm->pcr + $spv_umum->pcr + $spv_keuangan->pcr + $keuangan)/4; echo round($i).'%'; ?></td>
                         <td class="text-center">-</td>
                     </tr>
 

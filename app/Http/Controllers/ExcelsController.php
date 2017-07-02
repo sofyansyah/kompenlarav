@@ -37,7 +37,6 @@ class ExcelsController extends Controller
 					$insert[] = ['nama' => $value->nama,
 					 'nid' => $value->nid,
 					 'jabatan' => $value->jabatan,
-					 'kode_atasan' => $value->kode_atasan,
 					 'grade' => $value->grade,
 					 'jen_jabatan' => $value->jenjang_jabatan,
 					 ];

@@ -308,18 +308,34 @@ class RekapsController extends Controller
 		$jcr_count4 = Karyawan::where('jabatan','like','%SYSTEM OWNER COMMON CNG%')->where('jabatan','!=','SUPERVISOR SENIOR SYSTEM OWNER COMMON CNG')->count();
 		$jcr4 = $jcr_sum4 / $jcr_count4;
 
-		return view ('rekap.index', compact('gen_manager', 'man_pemeliharaan', 'man_enjiniring', 'spv_ownerpltgu', 'spv_ownercng', 'spv_technoowner','spv_muturisiko','man_operasi', 'spv_rendal12', 'spv_rendal345','spv_produk12a', 'spv_produk12b', 'spv_produk12c', 'spv_produk12d', 'spv_produk12e', 'spv_produk34a', 'spv_produk34b', 'spv_produk34c', 'spv_produk34d', 'spv_produk34e', 'spv_produk5a', 'spv_produk5b', 'spv_produk5c', 'spv_produk5d', 'spv_produk5e','spv_rendalpemeliharaan', 'spv_mesin12', 'spv_listrik12', 'spv_kontrol12', 'spv_outagemanaj', 'spv_k3', 'spv_lingkungan', 'spv_sarana', 'man_keuangan', 'spv_keuangan', 'spv_umum','spv_sdm', 'man_logistik', 'spv_pengadaan', 'spv_gudang', 'spv_inventori', 'man_cng', 'spv_cng', 'spv_cngplant','jcr4','spv_kimia'));
+		$jcr_engineer   = Karyawan::where('jabatan','like','%SENIOR ENGINEER II ENJINIRING & QUALITY ASSURANCE%')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr');
+		$count_engineer = Karyawan::where('jabatan','like','%SENIOR ENGINEER II ENJINIRING & QUALITY ASSURANCE%')->count();
+		$engineer2 = $jcr_engineer / $count_engineer;
+
+		$jcr_operasi   = Karyawan::where('jabatan','like','%SENIOR ENGINEER II OPERASI%')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr');
+		$count_operasi = Karyawan::where('jabatan','like','%SENIOR ENGINEER II OPERASI%')->count();
+		$operasi = $jcr_operasi / $count_operasi;
+
+		$jcr_pemeliharaan   = Karyawan::where('jabatan','like','%SENIOR ENGINEER II PEMELIHARAAN%')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr');
+		$count_pemeliharaan = Karyawan::where('jabatan','like','%SENIOR ENGINEER II PEMELIHARAAN%')->count();
+		$pemeliharaan = $jcr_pemeliharaan / $count_pemeliharaan;
+
+		$jcr_keuangan   = Karyawan::where('jabatan','like','%SENIOR OFFICER II KEUANGAN & ADMINISTRASI%')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr');
+		$count_keuangan = Karyawan::where('jabatan','like','%SENIOR OFFICER II KEUANGAN & ADMINISTRASI%')->count();
+		$keuangan = $jcr_keuangan / $count_keuangan;
+
+		return view ('rekap.index', compact('gen_manager', 'man_pemeliharaan', 'man_enjiniring', 'spv_ownerpltgu', 'spv_ownercng', 'spv_technoowner','spv_muturisiko','man_operasi', 'spv_rendal12', 'spv_rendal345','spv_produk12a', 'spv_produk12b', 'spv_produk12c', 'spv_produk12d', 'spv_produk12e', 'spv_produk34a', 'spv_produk34b', 'spv_produk34c', 'spv_produk34d', 'spv_produk34e', 'spv_produk5a', 'spv_produk5b', 'spv_produk5c', 'spv_produk5d', 'spv_produk5e','spv_rendalpemeliharaan', 'spv_mesin12', 'spv_listrik12', 'spv_kontrol12', 'spv_outagemanaj', 'spv_k3', 'spv_lingkungan', 'spv_sarana', 'man_keuangan', 'spv_keuangan', 'spv_umum','spv_sdm', 'man_logistik', 'spv_pengadaan', 'spv_gudang', 'spv_inventori', 'man_cng', 'spv_cng', 'spv_cngplant','jcr4','spv_kimia','engineer2', 'operasi','pemeliharaan', 'keuangan'));
 	}
 
 	public function rekapbaru()
 	{
 		$jabatan = Karyawan::where('jabatan','like','SUPERVISOR%')
-						->orWhere('jabatan','like','MANAJER%')
-						->orWhere('jabatan','like','GENERAL MANAGER%')
-						->join('pcr','karyawan.id','=','pcr.karyawan_id')
-						->select('jabatan','pcr')
-						->orderBy('karyawan.id','DESC')
-						->get();
+		->orWhere('jabatan','like','MANAJER%')
+		->orWhere('jabatan','like','GENERAL MANAGER%')
+		->join('pcr','karyawan.id','=','pcr.karyawan_id')
+		->select('jabatan','pcr')
+		->orderBy('karyawan.id','DESC')
+		->get();
 
 		$sum_pcr_general 	= Karyawan::where('jabatan','like','MANAJER%')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr');
 		$count_pcr_general 	= Karyawan::where('jabatan','like','MANAJER%')->join('pcr','karyawan.id','=','pcr.karyawan_id')->count();
