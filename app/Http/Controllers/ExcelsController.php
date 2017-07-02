@@ -37,6 +37,7 @@ class ExcelsController extends Controller
 					$insert[] = ['nama' => $value->nama,
 					 'nid' => $value->nid,
 					 'jabatan' => $value->jabatan,
+					 'kode_atasan' => $value->kode_atasan,
 					 'grade' => $value->grade,
 					 'jen_jabatan' => $value->jenjang_jabatan,
 					 ];
@@ -45,7 +46,7 @@ class ExcelsController extends Controller
 				}
 				if(!empty($insert)){
 					DB::table('karyawan')->insert($insert);
-					DB::table('tes')->insert($inserts);
+					// DB::table('tes')->insert($inserts);
 					return redirect()->back()->with('success','Berhasil import data');
 				}
 			}
