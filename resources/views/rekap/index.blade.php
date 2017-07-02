@@ -50,11 +50,13 @@
                     </tr>
 
                     <tr>
-                        <td class="text-center">3</td>
+                        <td class="text-center">3</td>rek
                         <td class="text-left">SUPERVISOR SENIOR SYSTEM OWNER PLTGU</td>
                         <td class="text-center">@if(count($spv_ownerpltgu->pcr.'%') > 0){{$spv_ownerpltgu->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
-                        <td class="text-center">0%</td>
+                        <td class="text-center">
+                            {{(\App\Karyawan::where('jabatan','like','%SYSTEM OWNER PLTGU%')->where('jabatan','!=','SUPERVISOR SENIOR SYSTEM OWNER PLTGU')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr')) / (\App\Karyawan::where('jabatan','like','%SYSTEM OWNER PLTGU%')->where('jabatan','!=','SUPERVISOR SENIOR SYSTEM OWNER PLTGU')->count())}}%
+                        </td>
                     </tr>
 
                     <tr>
@@ -62,7 +64,9 @@
                         <td class="text-left">SUPERVISOR SENIOR SYSTEM OWNER COMMON CNG</td>
                         <td class="text-center">@if(count($spv_ownercng->pcr.'%') > 0){{$spv_ownercng->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
-                        <td class="text-center">0%</td>
+                        <td class="text-center">
+                            {{(\App\Karyawan::where('jabatan','like','%SYSTEM OWNER COMMON CNG%')->where('jabatan','!=','SUPERVISOR SENIOR SYSTEM OWNER COMMON CNG')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr')) / (\App\Karyawan::where('jabatan','like','%SYSTEM OWNER COMMON CNG%')->where('jabatan','!=','SUPERVISOR SENIOR SYSTEM OWNER COMMON CNG')->count())}}%
+                        </td>
                     </tr>
 
                     <tr>
@@ -70,7 +74,9 @@
                         <td class="text-left">SUPERVISOR SENIOR TECHNOLOGY OWNER</td>
                         <td class="text-center">@if(count($spv_technoowner->pcr.'%') > 0){{$spv_technoowner->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
-                        <td class="text-center">0%</td>
+                        <td class="text-center">
+                            {{(\App\Karyawan::where('jabatan','like','%TECHNOLOGY OWNER%')->where('jabatan','!=','SUPERVISOR SENIOR TECHNOLOGY OWNER')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr')) / (\App\Karyawan::where('jabatan','like','%TECHNOLOGY OWNER%')->where('jabatan','!=','SUPERVISOR SENIOR TECHNOLOGY OWNER')->count())}}%
+                        </td>
                     </tr>
 
                     <tr>
@@ -78,7 +84,9 @@
                         <td class="text-left">SUPERVISOR SENIOR MANAJEMEN MUTU, RISIKO & KEPATUHAN</td>
                         <td class="text-center">@if(count($spv_muturisiko->pcr.'%') > 0){{$spv_muturisiko->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
-                        <td class="text-center">0%</td>
+                        <td class="text-center">
+                            {{(\App\Karyawan::where('jabatan','like','%MANAJEMEN MUTU, RISIKO & KEPATUHAN%')->where('jabatan','!=','SUPERVISOR SENIOR MANAJEMEN MUTU, RISIKO & KEPATUHAN')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr')) / (\App\Karyawan::where('jabatan','like','%MANAJEMEN MUTU, RISIKO & KEPATUHAN%')->where('jabatan','!=','SUPERVISOR SENIOR MANAJEMEN MUTU, RISIKO & KEPATUHAN')->count())}}%
+                        </td>
                     </tr>
 
                      <tr>
@@ -94,7 +102,9 @@
                         <td class="text-left">SUPERVISOR SENIOR NIAGA & RENDAL OPERASI BLOK 1.2</td>
                         <td class="text-center">@if(count($spv_rendal12->pcr.'%') > 0){{$spv_rendal12->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
-                        <td class="text-center">0%</td>
+                        <td class="text-center">
+                            {{(\App\Karyawan::where('jabatan','like','%OPERASI BLOK 1.2%')->orWhere('jabatan','like','%ANALYST NIAGA%')->where('jabatan','!=','SUPERVISOR SENIOR NIAGA & RENDAL OPERASI BLOK 1.2')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr')) / (\App\Karyawan::where('jabatan','like','%OPERASI BLOK 1.2%')->orWhere('jabatan','like','%ANALYST NIAGA%')->where('jabatan','!=','SUPERVISOR SENIOR NIAGA & RENDAL OPERASI BLOK 1.2')->count())}}%
+                        </td>
                     </tr>
 
                     <tr>
@@ -102,7 +112,9 @@
                         <td class="text-left">SUPERVISOR SENIOR RENDAL OPERASI BLOK 3.4.5</td>
                         <td class="text-center">@if(count($spv_rendal345->pcr.'%') > 0){{$spv_rendal345->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
-                        <td class="text-center">0%</td>
+                        <td class="text-center">
+                            {{(\App\Karyawan::where('jabatan','like','%OPERASI BLOK 3.4.5%')->where('jabatan','!=','SUPERVISOR SENIOR RENDAL OPERASI BLOK 3.4.5')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr')) / (\App\Karyawan::where('jabatan','like','%OPERASI BLOK 3.4.5%')->where('jabatan','!=','SUPERVISOR SENIOR RENDAL OPERASI BLOK 3.4.5')->count())}}%
+                        </td>
                     </tr>
 
                      <tr>
@@ -110,7 +122,9 @@
                         <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 A</td>
                         <td class="text-center">@if(count($spv_produk12a) > 0){{$spv_produk12a->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
-                        <td class="text-center">0%</td>
+                        <td class="text-center">
+                            {{(\App\Karyawan::where('jabatan','like','%PLTGU BLOK 1.2 A%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 A')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr')) / (\App\Karyawan::where('jabatan','like','%PLTGU BLOK 1.2 A%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 A')->count())}}%
+                        </td>
                     </tr>
 
                     <tr>
@@ -118,7 +132,9 @@
                         <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 B</td>
                         <td class="text-center">@if(count($spv_produk12b) > 0){{$spv_produk12b->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
-                        <td class="text-center">0%</td>
+                        <td class="text-center">
+                            {{(\App\Karyawan::where('jabatan','like','%PLTGU BLOK 1.2 B%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 B')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr')) / (\App\Karyawan::where('jabatan','like','%PLTGU BLOK 1.2 B%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 B')->count())}}%
+                        </td>
                     </tr>
 
                     <tr>
@@ -126,7 +142,9 @@
                         <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 C</td>
                         <td class="text-center">@if(count($spv_produk12c) > 0){{$spv_produk12c->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
-                        <td class="text-center">0%</td>
+                        <td class="text-center">
+                            {{(\App\Karyawan::where('jabatan','like','%PLTGU BLOK 1.2 C%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 C')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr')) / (\App\Karyawan::where('jabatan','like','%PLTGU BLOK 1.2 C%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 C')->count())}}%
+                        </td>
                     </tr>
 
                     <tr>
@@ -134,7 +152,9 @@
                         <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 D</td>
                         <td class="text-center">@if(count($spv_produk12d) > 0){{$spv_produk12d->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
-                        <td class="text-center">0%</td>
+                        <td class="text-center">
+                            {{(\App\Karyawan::where('jabatan','like','%PLTGU BLOK 1.2 D%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 D')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr')) / (\App\Karyawan::where('jabatan','like','%PLTGU BLOK 1.2 D%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 D')->count())}}%
+                        </td>
                     </tr>
 
                     <tr>
@@ -142,7 +162,9 @@
                         <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 E (Pjs)</td>
                         <td class="text-center">@if(count($spv_produk12e) > 0){{$spv_produk12e->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
-                        <td class="text-center">0%</td>
+                        <td class="text-center">
+                            {{(\App\Karyawan::where('jabatan','like','%PLTGU BLOK 1.2 E%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 E')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr')) / (\App\Karyawan::where('jabatan','like','%PLTGU BLOK 1.2 E%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 1.2 E')->count())}}%
+                        </td>
                     </tr>
 
                      <tr>
@@ -150,7 +172,9 @@
                         <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3.4 A</td>
                         <td class="text-center">@if(count($spv_produk34a) > 0){{$spv_produk34a->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
-                        <td class="text-center">0%</td>
+                        <td class="text-center">
+                            {{(\App\Karyawan::where('jabatan','like','%PLTGU BLOK 3.4 A%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3.4 A')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr')) / (\App\Karyawan::where('jabatan','like','%PLTGU BLOK 3.4 A%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3.4 A')->count())}}%
+                        </td>
                     </tr>
 
                      <tr>
@@ -158,7 +182,9 @@
                         <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3.4 B</td>
                         <td class="text-center">@if(count($spv_produk34b) > 0){{$spv_produk34b->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
-                        <td class="text-center">0%</td>
+                        <td class="text-center">
+                            {{(\App\Karyawan::where('jabatan','like','%PLTGU BLOK 3.4 B%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3.4 B')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr')) / (\App\Karyawan::where('jabatan','like','%PLTGU BLOK 3.4 B%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3.4 B')->count())}}%
+                        </td>
                     </tr>
 
                      <tr>
@@ -166,7 +192,9 @@
                         <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3 & 4 C</td>
                         <td class="text-center">@if(count($spv_produk34c) > 0){{$spv_produk34c->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
-                        <td class="text-center">0%</td>
+                        <td class="text-center">
+                            {{(\App\Karyawan::where('jabatan','like','%PLTGU BLOK 3 & 4 C%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3 & 4 C')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr')) / (\App\Karyawan::where('jabatan','like','%PLTGU BLOK 3 & 4 C%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3 & 4 C')->count())}}%
+                        </td>
                     </tr>
 
                      <tr>
@@ -174,7 +202,9 @@
                         <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3 & 4 D</td>
                         <td class="text-center">@if(count($spv_produk34d) > 0){{$spv_produk34d->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
-                        <td class="text-center">0%</td>
+                        <td class="text-center">
+                            {{(\App\Karyawan::where('jabatan','like','%PLTGU BLOK 3 & 4 D%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3 & 4 D')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr')) / (\App\Karyawan::where('jabatan','like','%PLTGU BLOK 3 & 4 D%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3 & 4 D')->count())}}%
+                        </td>
                     </tr>
 
                      <tr>
@@ -182,7 +212,9 @@
                         <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3 & 4 E (Pjs)</td>
                         <td class="text-center">@if(count($spv_produk34e) > 0){{$spv_produk34e->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
-                        <td class="text-center">0%</td>
+                        <td class="text-center">
+                            {{(\App\Karyawan::where('jabatan','like','%PLTGU BLOK 3 & 4 E%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3 & 4 E')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr')) / (\App\Karyawan::where('jabatan','like','%PLTGU BLOK 3 & 4 E%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 3 & 4 E')->count())}}%
+                        </td>
                     </tr>
 
                      <tr>
@@ -190,7 +222,9 @@
                         <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 5 A</td>
                         <td class="text-center">@if(count($spv_produk5a) > 0){{$spv_produk5a->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
-                        <td class="text-center">0%</td>
+                        <td class="text-center">
+                            {{(\App\Karyawan::where('jabatan','like','%PLTGU BLOK 5 A%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 5 A')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr')) / (\App\Karyawan::where('jabatan','like','%PLTGU BLOK 5 A%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 5 A')->count())}}%
+                        </td>
                     </tr>
 
                      <tr>
@@ -198,7 +232,9 @@
                         <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 5 B</td>
                         <td class="text-center">@if(count($spv_produk5b) > 0){{$spv_produk5b->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
-                        <td class="text-center">0%</td>
+                        <td class="text-center">
+                            {{(\App\Karyawan::where('jabatan','like','%PLTGU BLOK 5 B%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 5 B')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr')) / (\App\Karyawan::where('jabatan','like','%PLTGU BLOK 5 B%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 5 B')->count())}}%
+                        </td>
                     </tr>
 
                      <tr>
@@ -206,7 +242,9 @@
                         <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 5 C (Pjs)</td>
                         <td class="text-center">@if(count($spv_produk5c) > 0){{$spv_produk5c->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
-                        <td class="text-center">0%</td>
+                        <td class="text-center">
+                            {{(\App\Karyawan::where('jabatan','like','%PLTGU BLOK 5 C%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 5 C')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr')) / (\App\Karyawan::where('jabatan','like','%PLTGU BLOK 5 C%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 5 C')->count())}}%
+                        </td>
                     </tr>
 
                      <tr>
@@ -214,7 +252,9 @@
                         <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 5 D</td>
                         <td class="text-center">@if(count($spv_produk5d) > 0){{$spv_produk5d->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
-                        <td class="text-center">0%</td>
+                        <td class="text-center">
+                            {{(\App\Karyawan::where('jabatan','like','%PLTGU BLOK 5 D%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 5 D')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr')) / (\App\Karyawan::where('jabatan','like','%PLTGU BLOK 5 D%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 5 D')->count())}}%
+                        </td>
                     </tr>
 
                      <tr>
@@ -222,7 +262,9 @@
                         <td class="text-left">SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 5 E (Pjs)</td>
                         <td class="text-center">@if(count($spv_produk5e) > 0){{$spv_produk5e->pcr.'%'}} @else 0% @endif</td>
                         <td class="text-center">-</td>
-                        <td class="text-center">0%</td>
+                        <td class="text-center">
+                            {{(\App\Karyawan::where('jabatan','like','%PLTGU BLOK 5 E%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 5 E')->join('pcr','karyawan.id','=','pcr.karyawan_id')->sum('pcr')) / (\App\Karyawan::where('jabatan','like','%PLTGU BLOK 5 E%')->where('jabatan','!=','SUPERVISOR SENIOR PRODUKSI PLTGU BLOK 5 E')->count())}}%
+                        </td>
                     </tr>
 
                      <tr>
@@ -233,7 +275,7 @@
                         <td class="text-center">-</td>
                     </tr>
 
-                        <tr>
+                    <tr>
                         <td class="text-center">26</td>
                         <td class="text-left">SUPERVISOR SENIOR RENDAL PEMELIHARAAN</td>
                         <td class="text-center">@if(count($spv_rendalpemeliharaan->pcr.'%') > 0){{$spv_rendalpemeliharaan->pcr.'%'}} @else 0% @endif</td>
