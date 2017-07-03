@@ -116,9 +116,10 @@ class KompetensisController extends Controller
         // dd(phpinfo());
         // set_time_limit(600000000);
         if(Input::hasFile('import_file')){
+
             $path = input::file('import_file')->getRealPath();
-            $data = Excel::load($path, function($reader) {
-            })->get();
+            $data = Excel::load($path, function($reader) {})->get();
+
             if(!empty($data) && $data->count()){
                 foreach ($data as $key => $value) {
                     
@@ -131,7 +132,10 @@ class KompetensisController extends Controller
                                 'karyawan_id'       => $v->id,
                                 'jenis_kompetensi'  => $b->id,
                                 'standar'           => $value->standar,
+                                'tahun'             => date('Y'),
                                 'nilai'             => $value->nilai,
+                                'sem1'              => $value->nilai,
+                                'readlines'         => round(($value->nilai/$value->standar)*100),
                                 'gap'               => $value->gap,
                                 'unit'              => $value->unit,
                              ];
@@ -141,7 +145,8 @@ class KompetensisController extends Controller
                         $cek_pcr[$k] = Pcr::where('karyawan_id',$v->id)->first();
                         if (count($cek_pcr[$k]) == 0) {
                             $pcr[$k] = new Pcr;
-                            $pcr[$k]->karyawan_id = $v->id;
+                            $pcr[$k]->karyawan_id   = $v->id;
+                            $pcr[$k]->pcr           = ($nilai_inti+$nilai_peran+$nilai_bid)/($count_peran+$count_inti+$count_bid);
                             $pcr[$k]->save();
                         }
                     }   
