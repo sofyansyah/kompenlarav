@@ -19,7 +19,8 @@ class KompetensisController extends Controller
         ->join('jenis_kompetensi', 'kompetensi.jenis_kompetensi', 'jenis_kompetensi.id' )
         ->select('kompetensi.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.nid','jenis_kompetensi.nama as nama_jenis','jenis_kompetensi.no')
         ->orderBy('kompetensi.id','DESC')
-        ->get();
+        ->paginate(10);
+        // ->get();
         // dd(count($kompetensis));
         return view ('kompetensi.kompetensi', compact('kompetensis'));
     }
