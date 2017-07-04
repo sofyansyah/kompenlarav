@@ -129,7 +129,7 @@ class KompetensisController extends Controller
                 foreach ($data as $key => $value) {
                     
                     $datauser[$key]     = Karyawan::where('nid',$value->nid)->get();
-                    $datajenkom[$key]   = JenisKompetensi::where('nama',$value->nama_kompetensi)->get();
+                    $datajenkom[$key]   = JenisKompetensi::where('nama',$value->kompetensi)->get();
 
                     foreach ($datauser[$key] as $k => $v) {
                         foreach ($datajenkom[$key] as $a => $b) {
