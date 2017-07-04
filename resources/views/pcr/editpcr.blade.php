@@ -83,7 +83,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td rowspan="{{count($inti)+1}}" style="padding: 60px 0px;" class="text-center">{{$inti->sum('readlines')/count($inti)}}%</td>
+                                <td rowspan="{{count($inti)+1}}" style="padding: 60px 0px;" class="text-center">{{round($inti->sum('readlines')/count($inti))}}%</td>
                                 <td></td>
                             </tr>
 
@@ -112,7 +112,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td rowspan="{{count($peran)+1}}" style="padding: 60px 0px;" class="text-center">{{$peran->sum('readlines')/count($peran)}}%</td>
+                                <td rowspan="{{count($peran)+1}}" style="padding: 60px 0px;" class="text-center">{{round($peran->sum('readlines')/count($peran))}}%</td>
                                 <td></td>
                             </tr>
                             @foreach($peran as $data_peran)
@@ -140,7 +140,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td rowspan="{{count($bidang)+1}}" style="padding: 60px 0px;" class="text-center">{{$bidang->sum('readlines')/count($bidang)}}%</td>
+                                <td rowspan="{{count($bidang)+1}}" style="padding: 60px 0px;" class="text-center">{{round($bidang->sum('readlines')/count($bidang))}}%</td>
                                 <td></td>
                             </tr>
                             @foreach($bidang as $data_bidang)

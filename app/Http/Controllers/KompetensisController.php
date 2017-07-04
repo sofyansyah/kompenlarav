@@ -40,7 +40,10 @@ class KompetensisController extends Controller
         $komp->karyawan_id      = $r->karyawan;
         $komp->jenis_kompetensi = $r->jenis;
         $komp->standar          = $r->standar;
+        $komp->tahun            = date('Y');
         $komp->nilai            = $r->nilai;
+        $komp->sem1             = $r->nilai;
+        $komp->readlines        = round(($r->nilai/$r->standar)*100);
         $komp->gap              = $r->gap;
         $komp->unit             = $r->unit;
         $komp->save();
@@ -72,6 +75,8 @@ class KompetensisController extends Controller
         $komp->standar          = $r->standar;
         $komp->nilai            = $r->nilai;
         $komp->gap              = $r->gap;
+        $komp->sem1             = $r->nilai;
+        $komp->readlines        = round(($r->nilai/$r->standar)*100);
         $komp->unit             = $r->unit;
         $komp->save();
 
@@ -142,10 +147,40 @@ class KompetensisController extends Controller
                         }
                          
                         DB::table('kompetensi')->insert($insert[$k]);
+
+                        $inti[$k]   = Kompetensi::join('jenis_kompetensi','kompetensi.jenis_kompetensi','=','jenis_kompetensi.id')->where('karyawan_id',$v->id)->where('type','inti')->get();
+                        $peran[$k]  = Kompetensi::join('jenis_kompetensi','kompetensi.jenis_kompetensi','=','jenis_kompetensi.id')->where('karyawan_id',$v->id)->where('type','peran')->get();
+                        $bidang[$k] = Kompetensi::join('jenis_kompetensi','kompetensi.jenis_kompetensi','=','jenis_kompetensi.id')->where('karyawan_id',$v->id)->where('type','bidang')->get();
+
+                        if (count($inti[$k]) > 0) {
+                            $nilai_inti = round($inti[$k]->sum('readlines')/count($inti[$k]));
+                            $count_inti = 1;
+                        }else{
+                            $count_inti = 0;
+                            $nilai_inti = 0;
+                        }
+
+                        if (count($peran[$k]) > 0) {
+                            $nilai_peran = round($peran[$k]->sum('readlines')/count($peran[$k]));
+                            $count_peran = 1;
+                        }else{
+                            $count_peran = 1;
+                            $nilai_peran = 0;
+                        }
+
+                        if (count($bidang[$k]) > 0) {
+                            $nilai_bid = round($bidang[$k]->sum('readlines')/count($bidang[$k]));
+                            $count_bid = 1;
+                        }else{
+                            $count_bid = 0;
+                            $nilai_bid = 0;
+                        }
+
                         $cek_pcr[$k] = Pcr::where('karyawan_id',$v->id)->first();
                         if (count($cek_pcr[$k]) == 0) {
                             $pcr[$k] = new Pcr;
                             $pcr[$k]->karyawan_id   = $v->id;
+                            $pcr[$k]->tahun         = date('Y');
                             $pcr[$k]->pcr           = ($nilai_inti+$nilai_peran+$nilai_bid)/($count_peran+$count_inti+$count_bid);
                             $pcr[$k]->save();
                         }
