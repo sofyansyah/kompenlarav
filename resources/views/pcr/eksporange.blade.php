@@ -41,7 +41,7 @@
     </div>
 </div>
 
-<div class="panel panel-default" style="overflow: hidden; margin-bottom: 100px;">
+<div class="panel panel-default pcr_karyawan" style="overflow: hidden; margin-bottom: 100px;">
     <div class="panel-body">
         <div class="col-md-12">
         @foreach($pcr as $data)
@@ -177,9 +177,9 @@
     {
         var kar = $('.pcr_karyawan');
 
-        for (var i=0; i>=0; i++) {
-            Things[i]
-        }
+        // for (var i=0; i>=0; i++) {
+        //     Things[i]
+        // }
         var table_html = $('.pcr_karyawan')[0].outerHTML;
         var css_html = '<style>.export, .text-center, .text-left {border: 1pt solid #333} </style>';
         $("#btnExport").click(function(e) 
