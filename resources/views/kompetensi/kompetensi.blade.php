@@ -13,6 +13,7 @@
         background: #3097D1;
         color: #fff;
     }
+    #table-kompetensi_paginate{display: none;}
 </style>
 @endsection
 
@@ -67,7 +68,9 @@
                 @endforelse
             </tbody>
         </table>
-
+        <div class="pull-right">
+            {{$kompetensis->render()}}
+        </div>
     </div>
 </div>
 <div class="panel-footer">

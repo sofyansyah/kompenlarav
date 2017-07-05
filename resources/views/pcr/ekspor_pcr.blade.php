@@ -77,62 +77,87 @@
                             <th class="text-center" style="width: 5%">Sem 2</th>
                         </tr>
 
-                        <tr class="bor">
-                            <td rowspan="{{count($inti)+1}}" style="padding: 60px 0px;" class="text-center"><b>Kompetensi Inti</b></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td rowspan="{{count($inti)+1}}" style="padding: 60px 0px;" class="text-center">{{$inti->sum('readlines')/count($inti)}}%</td>
-                            <td class="text-center"></td>
-                        </tr>
-
-
-                        <!-- KOMPETENSI INTI -->
-                        @foreach($inti as $data_inti)
-                        <tr>
-                            <td class="text-left">{{$data_inti->nama}}</td>
-                            <td class="text-center">{{$data_inti->standar}}</td>
-                            <td class="text-center" name="sem1[]">@if(count($data_inti->sem1) > 0) {{$data_inti->sem1}} @endif</td>
-                            <td class="text-center" name="sem2[]">@if(count($data_inti->sem2) > 0) {{$data_inti->sem2}} @endif</td>
-                        </tr>
-                        <input type="hidden" name="idinti[]" value="{{$data_inti->id}}">
-                        @endforeach
-
-                        <tr>
-                            <td rowspan="{{count($peran)+1}}" style="padding: 60px 0px;" class="text-center"><b>Kompetensi Peran</b></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td rowspan="{{count($peran)+1}}" style="padding: 60px 0px;" class="text-center">{{$peran->sum('readlines')/count($peran)}}%</td>
-                            <td class="text-center"></td>
-                        </tr>
-                        @foreach($peran as $data_peran)
-                        <tr>
-                            <td class="text-left">{{$data_peran->nama}}</td>
-                            <td class="text-center">{{$data_peran->standar}}</td>
-                            <td class="text-center" name="sem1[]">@if(count($data_inti->sem1) > 0) {{$data_inti->sem1}} @endif</td>
-                            <td class="text-center" name="sem2[]">@if(count($data_inti->sem2) > 0) {{$data_inti->sem2}} @endif</td>
-                        </tr>
-                        <input type="hidden" name="idperan[]" value="{{$data_peran->id}}">
-                        @endforeach
-
-                        <tr>
-                            <td rowspan="{{count($bidang)+1}}" style="padding: 60px 0px;" class="text-center"><b>Kompetensi Bidang</b></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td rowspan="{{count($bidang)+1}}" style="padding: 60px 0px;" class="text-center">{{$bidang->sum('readlines')/count($bidang)}}%</td>
-                            <td class="text-center"></td>
-                        </tr>
-                        @foreach($bidang as $data_bidang)
-                        <tr>
-                            <td class="text-left">{{$data_bidang->nama}}</td>
-                            <td class="text-center">{{$data_bidang->standar}}</td>
-                            <td class="text-center" name="sem1[]">@if(count($data_inti->sem1) > 0) {{$data_inti->sem1}} @endif</div>
-                                <td class="text-center" name="sem2[]">@if(count($data_inti->sem2) > 0) {{$data_inti->sem2}} @endif</td>
+                        @if(count($inti) > 0)
+                            <tr class="bor">
+                                <td rowspan="{{count($inti)+1}}" style="padding: 60px 0px;" class="text-center"><b>Kompetensi Inti</b></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td rowspan="{{count($inti)+1}}" style="padding: 60px 0px;" class="text-center">{{round($inti->sum('readlines')/count($inti))}}%</td>
+                                <td></td>
                             </tr>
-                            <input type="hidden" name="idbidang[]" value="{{$data_bidang->id}}">
+
+                            @foreach($inti as $data_inti)
+                                <tr>
+                                    <td>{{$data_inti->nama}}</td>
+                                    <td class="text-center">{{$data_inti->standar}}</td>
+                                    <td class="text-center">
+                                        <div class="form-group">
+                                            @if(count($data_inti->sem1) > 0) {{$data_inti->sem1}} @endif
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="form-group">
+                                            @if(count($data_inti->sem2) > 0) {{$data_inti->sem2}} @endif
+                                        </div>
+                                    </td>
+                                </tr>
                             @endforeach
+                        @endif
+
+                        @if(count($peran) > 0)
+                            <tr>
+                                <td rowspan="{{count($peran)+1}}" style="padding: 60px 0px;" class="text-center"><b>Kompetensi Peran</b></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td rowspan="{{count($peran)+1}}" style="padding: 60px 0px;" class="text-center">{{round($peran->sum('readlines')/count($peran))}}%</td>
+                                <td></td>
+                            </tr>
+                            @foreach($peran as $data_peran)
+                                <tr>
+                                    <td>{{$data_peran->nama}}</td>
+                                    <td class="text-center">{{$data_peran->standar}}</td>
+                                    <td class="text-center">
+                                        <div class="form-group">
+                                            @if(count($data_peran->sem1) > 0) {{$data_peran->sem1}} @endif
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="form-group">
+                                            @if(count($data_peran->sem2) > 0) {{$data_peran->sem2}} @endif
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+
+                        @if(count($bidang) > 0)
+                             <tr>
+                                <td rowspan="{{count($bidang)+1}}" style="padding: 60px 0px;" class="text-center"><b>Kompetensi Bidang</b></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td rowspan="{{count($bidang)+1}}" style="padding: 60px 0px;" class="text-center">{{round($bidang->sum('readlines')/count($bidang))}}%</td>
+                                <td></td>
+                            </tr>
+                            @foreach($bidang as $data_bidang)
+                                <tr>
+                                    <td>{{$data_bidang->nama}}</td>
+                                    <td class="text-center">{{$data_bidang->standar}}</td>
+                                    <td class="text-center">
+                                        <div class="form-group">
+                                            @if(count($data_bidang->sem1) > 0) {{$data_bidang->sem1}} @endif
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="form-group">
+                                            @if(count($data_bidang->sem2) > 0) {{$data_bidang->sem2}} @endif
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
 
                             <tr>
                                 <td style="border:1px solid #fff;"></td>

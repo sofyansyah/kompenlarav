@@ -93,7 +93,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td rowspan="{{count($inti)+1}}" style="padding: 60px 0px;" class="text-center">{{$inti->sum('readlines')/count($inti)}}%</td>
+                    <td rowspan="{{count($inti)+1}}" style="padding: 60px 0px;" class="text-center">{{round($inti->sum('readlines')/count($inti))}}%</td>
                     <td class="text-center"></td>
                 </tr>
 
@@ -104,7 +104,6 @@
                         <td class="text-center" name="sem1[]">@if(count($data_inti->sem1) > 0) {{$data_inti->sem1}} @endif</td>
                         <td class="text-center" name="sem2[]">@if(count($data_inti->sem2) > 0) {{$data_inti->sem2}} @endif</td>
                     </tr>
-                    <input type="hidden" name="idinti[]" value="{{$data_inti->id}}">
                 @endforeach
             @endif
 
@@ -114,7 +113,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td rowspan="{{count($peran)+1}}" style="padding: 60px 0px;" class="text-center">{{$peran->sum('readlines')/count($peran)}}%</td>
+                    <td rowspan="{{count($peran)+1}}" style="padding: 60px 0px;" class="text-center">{{round($peran->sum('readlines')/count($peran))}}%</td>
                     <td class="text-center"></td>
                 </tr>
 
@@ -122,10 +121,9 @@
                     <tr>
                         <td class="text-left">{{$data_peran->nama}}</td>
                         <td class="text-center">{{$data_peran->standar}}</td>
-                        <td class="text-center" name="sem1[]">@if(count($data_inti->sem1) > 0) {{$data_inti->sem1}} @endif</td>
-                        <td class="text-center" name="sem2[]">@if(count($data_inti->sem2) > 0) {{$data_inti->sem2}} @endif</td>
+                        <td class="text-center" name="sem1[]">@if(count($data_peran->sem1) > 0) {{$data_peran->sem1}} @endif</td>
+                        <td class="text-center" name="sem2[]">@if(count($data_peran->sem2) > 0) {{$data_peran->sem2}} @endif</td>
                     </tr>
-                    <input type="hidden" name="idperan[]" value="{{$data_peran->id}}">
                 @endforeach
             @endif
 
@@ -135,17 +133,16 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td rowspan="{{count($bidang)+1}}" style="padding: 60px 0px;" class="text-center">{{$bidang->sum('readlines')/count($bidang)}}%</td>
+                    <td rowspan="{{count($bidang)+1}}" style="padding: 60px 0px;" class="text-center">{{round($bidang->sum('readlines')/count($bidang))}}%</td>
                     <td class="text-center"></td>
                 </tr>
                 @foreach($bidang as $data_bidang)
                     <tr>
                         <td class="text-left">{{$data_bidang->nama}}</td>
                         <td class="text-center">{{$data_bidang->standar}}</td>
-                        <td class="text-center" name="sem1[]">@if(count($data_inti->sem1) > 0) {{$data_inti->sem1}} @endif</td>
-                        <td class="text-center" name="sem2[]">@if(count($data_inti->sem2) > 0) {{$data_inti->sem2}} @endif</td>
+                        <td class="text-center" name="sem1[]">@if(count($data_bidang->sem1) > 0) {{$data_bidang->sem1}} @endif</td>
+                        <td class="text-center" name="sem2[]">@if(count($data_bidang->sem2) > 0) {{$data_bidang->sem2}} @endif</td>
                     </tr>
-                    <input type="hidden" name="idbidang[]" value="{{$data_bidang->id}}">
                 @endforeach
             @endif
 

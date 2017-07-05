@@ -170,14 +170,14 @@
                             <td class="text-center">{{$pcr->pcr}}%</td>
                             <td style="border:1px solid #fff;"></td>
                         </tr>
-                        <tr>
+                        {{-- <tr>
                             <td style="border:1px solid #fff;"></td>
                             <td style="border:1px solid #fff;"></td>
                             <td style="border:1px solid #fff;"></td>
                             <td style="border:1px solid #fff;"></td>
                             <td style="border:1px solid #fff;"></td>
                             <td class="text-right" style="border:1px solid #fff;"><button class="btn btn-primary">Simpan</button></td>
-                        </tr>
+                        </tr> --}}
                     </table>
                 </form>
             </div>

@@ -23,7 +23,7 @@
     <div class="panel-heading"><h3>Data PCR</h3></div>
     <div class="panel-body">
         <div class="table-responsive">
-            <div class="pull-left">
+            {{-- <div class="pull-left">
                <form action="{{url('ekspor-range')}}" method="POST" class="form-inline">
                {{csrf_field()}}
                   <div class="input-group input-daterange">
@@ -34,7 +34,7 @@
                   <button type="submit" class="btn btn-primary"><b>Eksport PCR</b></button>
                 </form>
             </div>
-            <br><br><br>
+            <br><br><br> --}}
             <table id="kompetensi" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                     <tr>
