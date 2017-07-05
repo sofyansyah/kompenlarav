@@ -169,23 +169,5 @@
 </div>
 @endsection
 @section('javascript')
-<script>
-    $(function () 
-    {
-        var kar = $('.pcr_karyawan');
-
-        // for (var i=0; i>=0; i++) {
-        //     Things[i]
-        // }
-        var table_html = $('.pcr_karyawan')[0].outerHTML;
-        var css_html = '<style>.export, .text-center, .text-left {border: 1pt solid #333} </style>';
-        $("#btnExport").click(function(e) 
-        {
-            e.preventDefault();
-            window.open('data:application/vnd.ms-excel,' + 
-                encodeURIComponent('<html><head>' + css_html + '</' + 'head><body>' + table_html + '</body></html>'));
-        });
-    });
-
-</script>
+<script src="{{asset('js/export.js')}}"></script>
 @endsection
