@@ -37,7 +37,7 @@
                         <td class="text-center">1</td>
                         <td class="text-left">GENERAL MANAGER</td>
                         <td class="text-center">@if(count($gen_manager) > 0){{round($gen_manager->pcr)}}% @else 0% @endif</td>
-                        <td class="text-center">@if(count($spv_general) > 0){{round($spv_general)}} @else 0% @endif</td>
+                        <td class="text-center">@if(count($spv_general) > 0){{round($spv_general)}}% @else 0% @endif</td>
                         <td class="text-center">-</td>
                     </tr>
                     <tr>
