@@ -7,6 +7,8 @@ use App\Kompetensi;
 use App\Karyawan;
 use App\Pcr;
 use Excel;
+use Illuminate\Support\Facades\DB;
+
 
 class PcrsController extends Controller
 {
@@ -170,9 +172,10 @@ class PcrsController extends Controller
 	{
 		$pcr = Pcr::join('karyawan', 'pcr.karyawan_id', 'karyawan.id' )
 		->select('pcr.*','karyawan.nama', 'karyawan.jabatan', 'karyawan.jen_jabatan','karyawan.nid')
-		->where('pcr.pcr','>','0')
-		->whereBetween('pcr.updated_at', [date('Y-m-d',strtotime($r->dari)), date('Y-m-d',strtotime($r->sampai))])
-		->get();
+		->paginate(75);
+		// ->where('pcr.pcr','>','0')
+		// ->whereBetween('pcr.updated_at', [date('Y-m-d',strtotime($r->dari)), date('Y-m-d',strtotime($r->sampai))])
+		
 
 		// dd($pcr);
 
