@@ -97,7 +97,7 @@
                                         </div>
                                     </td>
                                     <td class="text-center">
-                                        <div class="form-group">
+                                        <div class="form-group">                                            
                                             <input type="text" class="form-control" name="sem2_inti[]" required value="@if(count($data_inti->sem2) > 0) {{$data_inti->sem2}} @endif">
                                         </div>
                                     </td>

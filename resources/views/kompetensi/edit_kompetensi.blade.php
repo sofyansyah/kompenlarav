@@ -48,9 +48,15 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-4 control-label">Nilai</label>
+                    <label class="col-sm-4 control-label">Nilai Sem 1</label>
                     <div class="col-sm-8">
-                        <input type="number" name="nilai" value="{{$komp->nilai}}" class="form-control">
+                        <input type="number" name="sem1" value="{{$komp->sem1}}" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Nilai Sem 2</label>
+                    <div class="col-sm-8">
+                        <input type="number" name="sem2" value="{{$komp->sem2}}" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">

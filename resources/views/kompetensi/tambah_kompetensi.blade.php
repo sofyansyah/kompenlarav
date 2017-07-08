@@ -8,6 +8,7 @@
             box-sizing: border-box;
         }
         .control-label{text-align: left!important;}
+        .show{display: block;}
     </style>
 @endsection
 @section('content')
@@ -40,15 +41,24 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-4 control-label">Unit</label>
+                    <label class="col-sm-4 control-label">Pilih Semester</label>
                     <div class="col-sm-8">
-                        <input type="text" name="unit" class="form-control" required>
+                        <select name="sem" class="form-control" onchange="show(this)">
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                        </select>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group hilang">
+                    <label class="col-sm-4 control-label">Unit</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="unit" class="form-control hilang" required>
+                    </div>
+                </div>
+                <div class="form-group hilang">
                     <label class="col-sm-4 control-label">Standar</label>
                     <div class="col-sm-8">
-                        <input type="number" min="0" name="standar" class="form-control" required>
+                        <input type="number" min="0" name="standar" class="form-control hilang" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -57,10 +67,10 @@
                         <input type="number" min="0" name="nilai" class="form-control" required>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group hilang">
                     <label class="col-sm-4 control-label">GAP</label>
                     <div class="col-sm-8">
-                        <input type="number" min="0" name="gap" class="form-control" required>
+                        <input type="number" min="0" name="gap" class="form-control hilang" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -77,5 +87,13 @@
 <script src="{{asset('js/select2.js')}}"></script>
 <script type="text/javascript">
   $('.select2').select2();
+
+  function show(elem) {
+      if (elem.value == 2) {
+         $('.hilang').addClass('hide').attr('disabled','disabled')
+      }else{
+         $('.hilang').addClass('show').removeAttr('disabled','disabled')
+      }
+  }
 </script>
 @endsection

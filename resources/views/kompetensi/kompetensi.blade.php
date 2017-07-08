@@ -21,7 +21,10 @@
 <div class="panel panel-default">
     <div class="panel-heading"><h3>Data Kompetensi</h3></div>
     <div class="panel-body">
+        <a href="{{url('hapus-kompetensi')}}" class="btn btn-danger" onclick="return confirm('Apa anda yakin akan menghapus semua data kompetensi');">Hapus Semua</a>
         <a href="{{url('tambah-kompetensi')}}" class="btn btn-success"><i class="fa fa-plus "></i> Tambah</a>
+        <br><br>
+        @include('include.alert')
         <div class="table-responsive">
             <table id="table-kompetensi" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>

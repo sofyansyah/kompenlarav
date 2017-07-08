@@ -32,26 +32,76 @@ class KompetensisController extends Controller
     }
     public function post_kompetensi(Request $r)
     {
+        // dd(request()->all());
         $cek = Kompetensi::where('karyawan_id',$r->karyawan)->where('jenis_kompetensi',$r->jenis)->first();
         if (count($cek) > 0) {
             return redirect()->back()->with('warning','Maaf data yang anda masukan sudah ada');
         }
-        $komp = new Kompetensi;
-        $komp->karyawan_id      = $r->karyawan;
-        $komp->jenis_kompetensi = $r->jenis;
-        $komp->standar          = $r->standar;
-        $komp->tahun            = date('Y');
-        $komp->nilai            = $r->nilai;
-        $komp->sem1             = $r->nilai;
-        $komp->readlines        = round(($r->nilai/$r->standar)*100);
-        $komp->gap              = $r->gap;
-        $komp->unit             = $r->unit;
-        $komp->save();
+
+        $cekkomp  = Kompetensi::where('semester','1')->where('karyawan_id',$r->karyawan)->where('jenis_kompetensi',$r->jenis)->where('tahun',date('Y'))->first();   
+
+        if ($r->sem == '1') {
+            $komp = new Kompetensi;
+            $komp->karyawan_id      = $r->karyawan;
+            $komp->jenis_kompetensi = $r->jenis;
+            $komp->standar          = $r->standar;
+            $komp->tahun            = date('Y');
+            $komp->nilai            = $r->nilai;
+            $komp->semester         = $r->sem;
+            $komp->sem1             = $r->nilai;
+            $komp->readlines        = round(($r->nilai/$r->standar)*100);
+            $komp->gap              = $r->gap;
+            $komp->unit             = $r->unit;
+            $komp->save();
+        }
+        if($r->sem == '2'){
+            if (count($cekkomp) == 0) {
+                return redirect()->back()->with('warning','Maaf data untuk semester 1 belum anda masukan');
+            }else{
+                $cekkomp->sem2 = $r->nilai;
+                $cekkomp->save();
+            }
+        }
+
+        //PCRNYA
+        $inti   = Kompetensi::join('jenis_kompetensi','kompetensi.jenis_kompetensi','=','jenis_kompetensi.id')->where('karyawan_id',$r->karyawan)->where('type','inti')->get();
+        $peran  = Kompetensi::join('jenis_kompetensi','kompetensi.jenis_kompetensi','=','jenis_kompetensi.id')->where('karyawan_id',$r->karyawan)->where('type','peran')->get();
+        $bidang = Kompetensi::join('jenis_kompetensi','kompetensi.jenis_kompetensi','=','jenis_kompetensi.id')->where('karyawan_id',$r->karyawan)->where('type','bidang')->get();
+
+        if (count($inti) > 0) {
+            $nilai_inti = round($inti->sum('readlines')/count($inti));
+            $count_inti = 1;
+        }else{
+            $count_inti = 0;
+            $nilai_inti = 0;
+        }
+
+        if (count($peran) > 0) {
+            $nilai_peran = round($peran->sum('readlines')/count($peran));
+            $count_peran = 1;
+        }else{
+            $count_peran = 1;
+            $nilai_peran = 0;
+        }
+
+        if (count($bidang) > 0) {
+            $nilai_bid = round($bidang->sum('readlines')/count($bidang));
+            $count_bid = 1;
+        }else{
+            $count_bid = 0;
+            $nilai_bid = 0;
+        }
 
         $cek_pcr = Pcr::where('karyawan_id',$r->karyawan)->first();
         if (count($cek_pcr) == 0) {
             $pcr = new Pcr;
             $pcr->karyawan_id = $r->karyawan;
+            $pcr->pcr     = ($nilai_inti+$nilai_peran+$nilai_bid)/($count_peran+$count_inti+$count_bid);
+            $pcr->tahun       = date('Y');
+            $pcr->save();
+        }else{
+            $pcr = Pcr::where('karyawan_id',$r->karyawan)->first();
+            $pcr->pcr     = ($nilai_inti+$nilai_peran+$nilai_bid)/($count_peran+$count_inti+$count_bid);
             $pcr->save();
         }
 
@@ -73,10 +123,11 @@ class KompetensisController extends Controller
     {
         $komp = Kompetensi::findOrFail($id);
         $komp->standar          = $r->standar;
-        $komp->nilai            = $r->nilai;
+        $komp->nilai            = $r->sem1;
         $komp->gap              = $r->gap;
-        $komp->sem1             = $r->nilai;
-        $komp->readlines        = round(($r->nilai/$r->standar)*100);
+        $komp->sem1             = $r->sem1;
+        $komp->sem2             = $r->sem2;
+        $komp->readlines        = round(($r->sem1/$r->standar)*100);
         $komp->unit             = $r->unit;
         $komp->save();
 
@@ -133,20 +184,30 @@ class KompetensisController extends Controller
 
                     foreach ($datauser[$key] as $k => $v) {
                         foreach ($datajenkom[$key] as $a => $b) {
-                            $insert[$k] = [
-                                'karyawan_id'       => $v->id,
-                                'jenis_kompetensi'  => $b->id,
-                                'standar'           => $value->standar,
-                                'tahun'             => date('Y'),
-                                'nilai'             => $value->nilai,
-                                'sem1'              => $value->nilai,
-                                'readlines'         => round(($value->nilai/$value->standar)*100),
-                                'gap'               => $value->gap,
-                                'unit'              => $value->unit,
-                             ];
+                            
+                            if ($value->semester == '1') {
+                                $insert[$k] = [
+                                    'karyawan_id'       => $v->id,
+                                    'jenis_kompetensi'  => $b->id,
+                                    'standar'           => $value->standar,
+                                    'tahun'             => date('Y'),
+                                    'nilai'             => $value->nilai,
+                                    'semester'          => $value->semester,
+                                    'sem1'              => $value->nilai,
+                                    'readlines'         => round(($value->nilai/$value->standar)*100),
+                                    'gap'               => $value->gap,
+                                    'unit'              => $value->unit,
+                                 ];
+                                 DB::table('kompetensi')->insert($insert[$k]);
+                             }
+
+                             if ($value->semester == '2') {
+                                    $cekkomp2[$k] = Kompetensi::where('semester','1')->where('karyawan_id',$v->id)->where('jenis_kompetensi',$b->id)->where('tahun',date('Y'))->first();
+                                    $cekkomp2[$k]->sem2 = $value->nilai;
+                                    $cekkomp2[$k]->save();
+                             }
+
                         }
-                         
-                        DB::table('kompetensi')->insert($insert[$k]);
 
                         $inti[$k]   = Kompetensi::join('jenis_kompetensi','kompetensi.jenis_kompetensi','=','jenis_kompetensi.id')->where('karyawan_id',$v->id)->where('type','inti')->get();
                         $peran[$k]  = Kompetensi::join('jenis_kompetensi','kompetensi.jenis_kompetensi','=','jenis_kompetensi.id')->where('karyawan_id',$v->id)->where('type','peran')->get();
@@ -189,5 +250,14 @@ class KompetensisController extends Controller
             }
             return redirect()->back()->with('success','Berhasil import data');
         }
+    }
+    public function hapus()
+    {
+        $komp = Kompetensi::all();
+        foreach ($komp as $k => $v) {
+            $pcr = Pcr::where('karyawan_id',$v->karyawan_id)->delete();
+        }
+        Kompetensi::truncate();
+        return redirect()->back()->with('success','Berhasil hapus data kompetensi');
     }
 }
