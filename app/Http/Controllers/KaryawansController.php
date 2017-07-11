@@ -9,7 +9,7 @@ use Validator;
 
 
 class KaryawansController extends Controller
-{
+{    
 	public function index()
 	{
 		$karyawans = Karyawan::all();
