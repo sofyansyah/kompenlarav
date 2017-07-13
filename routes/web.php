@@ -72,4 +72,6 @@ Route::group(['middleware' => ['session']], function () {
     Route::post('importkomp', 'KompetensisController@importExcel');
 
     Route::post('importExcel', 'ExcelsController@importExcel');
+
+    Route::post('logout', 'HomeController@logout');
 });

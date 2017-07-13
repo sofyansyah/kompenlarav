@@ -1,5 +1,13 @@
 @extends('layouts.app')
-<style>
+@section('content')
+<style type="text/css">
+    .panel-default{padding: 20px;}
+    .nopadding{
+        padding:0!important;
+    }
+    .col-md-5{
+        padding-bottom: 100px;
+    }
     .navbar, .footer{
         display: none!important;
     }
@@ -7,46 +15,22 @@
         margin-left: 0px!important;
         width: 100%!important;
     }
-</style>
-
-@section('content')
-<style type="text/css">
-    .panel-default{padding: 20px;}
-    .cover{
-        background:url(/images/pln1.jpg);
-        background-repeat: no-repeat;
-        background-size: 100%;
-
-    }
-    .nopadding{
-        padding:0!important;
-    }
-    .container{
-        width: 900px!important;
-    }
-    .cover h4{
-        padding: 35% 8%;
-        font-size: 30px;
-        font-weight: bold;
-        color: #fafafa;
-        background-color: rgba(62, 64, 66, 0.58);
-        margin-top: 0;
-
-    }    
-    .col-md-5{
-        padding-bottom: 100px;
+    @media screen and (min-width: 767px) {
+        .container{margin: 5% 25%;}
     }
 </style>
 
 <div class="container">
-    <div class="col-sm-12" style="margin-top: 15%;">
-        <div class="col-md-5 cover nopadding">
-            <h4>PT PLN Muara Tawar</h4>
-        </div>
-
-        <div class="col-md-7 nopadding">
+    <div class="col-sm-12">
+        <div class="col-xs-12 col-sm-12 col-md-9  nopadding">
             <div class="panel panel-default">
-                <div class="panel-heading text-center">Login</div>
+                <div class="panel-heading text-center">
+                    <div class="text-center">
+                        <img src="{{asset('images/download.jpg')}}" width="200">
+                    </div>
+                <br>
+                    <h4><b>Login System</b></h4>
+                </div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{url('login')}}">
                         {{ csrf_field() }}

@@ -178,15 +178,13 @@ class KompetensisController extends Controller
 
             if(!empty($data) && $data->count()){
                 foreach ($data as $key => $value) {
-                    
                     $datauser[$key]     = Karyawan::where('nid',$value->nid)->get();
-                    $datajenkom[$key]   = JenisKompetensi::where('nama',$value->kompetensi)->get();
-
                     foreach ($datauser[$key] as $k => $v) {
-                        foreach ($datajenkom[$key] as $a => $b) {
+                        $datajenkom[$key][$k]   = JenisKompetensi::where('nama',$value->kompetensi)->get();
+                        foreach ($datajenkom[$key][$k] as $a => $b) {
                             
                             if ($value->semester == '1') {
-                                $insert[$k] = [
+                                $insert[$key][$k][$a] = [
                                     'karyawan_id'       => $v->id,
                                     'jenis_kompetensi'  => $b->id,
                                     'standar'           => $value->standar,
@@ -198,13 +196,13 @@ class KompetensisController extends Controller
                                     'gap'               => $value->gap,
                                     'unit'              => $value->unit,
                                  ];
-                                 DB::table('kompetensi')->insert($insert[$k]);
+                                 DB::table('kompetensi')->insert($insert[$key][$k][$a]);
                              }
 
                              if ($value->semester == '2') {
-                                    $cekkomp2[$k] = Kompetensi::where('semester','1')->where('karyawan_id',$v->id)->where('jenis_kompetensi',$b->id)->where('tahun',date('Y'))->first();
-                                    $cekkomp2[$k]->sem2 = $value->nilai;
-                                    $cekkomp2[$k]->save();
+                                    $cekkomp2[$key][$k][$a] = Kompetensi::where('semester','1')->where('karyawan_id',$v->id)->where('jenis_kompetensi',$b->id)->where('tahun',date('Y'))->first();
+                                    $cekkomp2[$key][$k][$a]->sem2 = $value->nilai;
+                                    $cekkomp2[$key][$k][$a]->save();
                              }
 
                         }

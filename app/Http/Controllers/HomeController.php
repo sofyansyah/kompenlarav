@@ -31,4 +31,9 @@ class HomeController extends Controller
 
         return redirect()->back()->with('error','email dan password yang anda masukan tidak sesuai');
     }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('login');
+    }
 }
